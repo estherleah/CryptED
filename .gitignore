@@ -54,8 +54,3 @@ fastlane/screenshots
 
 # Visual Studio Code
 .vscode/
-
-# Added by EL - to remove at a later date!
-android/
-ios/
-__tests__
