@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Container, Header, Title, Subtitle, Content, Button, Left, Right, Body, Icon, Item, Input } from 'native-base';
 import Navigation from './Navigation';
 
@@ -50,7 +50,6 @@ export default class PuzzleList extends Component {
                 </Header>
                 <View style={styles.container}>
                     <Content>
-                        
                     </Content>
                 </View>
             </Container>

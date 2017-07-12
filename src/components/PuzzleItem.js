@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Container, Header, Title, Subtitle, Content, Button, Left, Right, Body, Icon, Item, Input } from 'native-base';
 import Navigation from './Navigation';
 
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class PuzzleList extends Component {
+export default class PuzzleItem extends Component {
     render() {
         return (
             <Container>
@@ -44,27 +44,14 @@ export default class PuzzleList extends Component {
                     </Left>
                     <Body>
                         <Title>CryptED</Title>
-                        <Subtitle>Cryptography</Subtitle>
+                        <Subtitle>Puzzle #x</Subtitle>
                     </Body>
                     <Right />
                 </Header>
                 <View style={styles.container}>
                     <Content>
-                        <Text style={styles.title}>Caesar ciphers</Text>
-                        <Text style={styles.puzzle}>
-                            QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
-                        </Text>
-                        <Item>
-                            <Input placeholder="Solution" />
-                        </Item>
-                        <Button full>
-                            <Text style={styles.button}>Submit</Text>
-                        </Button>
-                        <TouchableOpacity>
-                            <Text style={styles.more}>
-                                Learn more about Caesar ciphers...
-                            </Text>
-                        </TouchableOpacity>
+                        <Text style={styles.title}>Title</Text>
+                        <Text style={styles.puzzle}>Puzzle text</Text>
                     </Content>
                 </View>
             </Container>
