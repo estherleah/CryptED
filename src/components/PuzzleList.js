@@ -44,27 +44,13 @@ export default class PuzzleList extends Component {
                     </Left>
                     <Body>
                         <Title>CryptED</Title>
-                        <Subtitle>Cryptography</Subtitle>
+                        <Subtitle>Puzzles</Subtitle>
                     </Body>
                     <Right />
                 </Header>
                 <View style={styles.container}>
                     <Content>
-                        <Text style={styles.welcome}>Caesar ciphers</Text>
-                        <Text style={styles.instructions}>
-                            QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
-                        </Text>
-                        <Item>
-                            <Input placeholder="Solution" />
-                        </Item>
-                        <Button full>
-                            <Text style={styles.button}>Submit</Text>
-                        </Button>
-                        <TouchableOpacity>
-                            <Text style={styles.more}>
-                                Learn more about Caesar ciphers...
-                            </Text>
-                        </TouchableOpacity>
+                        
                     </Content>
                 </View>
             </Container>

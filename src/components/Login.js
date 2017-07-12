@@ -1,42 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-import { MKTextField, MKButton } from 'react-native-material-kit';
+import { Container, Header, Title, Subtitle, Content, Button, Left, Right, Body, Icon, Item, Form, Input } from 'native-base';
+import { StyleSheet, View, Text,  ActivityIndicator } from 'react-native';
 import firebase from 'firebase';
-
-// Create login button.
-const LoginButton = MKButton.coloredButton()
-    .withText('LOGIN')
-    .build();
+import Navigation from './Navigation';
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    field: {
-        width: 250,
-        height: 40,
+        paddingBottom: 20,
     },
     button: {
-        marginTop: 20,
+        color: 'white',
     },
     error: {
-        marginTop: 15,
-        fontSize: 16,
         color: 'red',
-        alignSelf: 'center',
+        textAlign: 'center',
     },
 });
 
@@ -86,33 +66,49 @@ export default class Login extends Component {
     renderLoader() {
         return (this.state.loading) ? 
             <ActivityIndicator size='large' /> :
-            <LoginButton onPress={this.onButtonPress.bind(this)} />;
+            (<Button full onPress={this.onButtonPress.bind(this)}>
+                <Text style={styles.button}>Login</Text>
+            </Button>);
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <Text style={styles.welcome}>Log in or create an account</Text>
-                <MKTextField
-                    text={this.state.email} 
-                    onTextChange={email => this.setState({email})} 
-                    textInputStyle={styles.field} 
-                    placeholder={'Email'} 
-                />
-                <MKTextField
-                    text={this.state.password} 
-                    onTextChange={password => this.setState({password})} 
-                    textInputStyle={styles.field} 
-                    placeholder={'Password'} 
-                    password={true}
-                />
-                <Text style={styles.error}>
-                    {this.state.error}
-                </Text>
-                <View style={styles.button}>
-                    {this.renderLoader()}
-                </View>
-            </View>
+            <Container>
+                <Header>
+                    <Left />
+                    <Body>
+                        <Title>CryptED</Title>
+                        <Subtitle>Login</Subtitle>
+                    </Body>
+                    <Right />
+                </Header>
+                <Content>
+                    <Text style={styles.welcome}>Log in or create an account</Text>
+                    <Form>
+                        <Item>
+                            <Input 
+                                text={this.state.email} 
+                                onTextChange={email => this.setState({email})} 
+                                placeholder="Email" 
+                            />
+                        </Item>
+                        <Item>
+                            <Input 
+                                text={this.state.password} 
+                                onTextChange={password => this.setState({password})} 
+                                placeholder="Password" 
+                                secureTextEntry={true} 
+                            />
+                        </Item>
+                    </Form>
+                    <Text style={styles.error}>
+                        {this.state.error}
+                    </Text>
+                    <View>
+                        {this.renderLoader()}
+                    </View>
+                </Content>
+            </Container>
         );
     }
 }
