@@ -1,0 +1,39 @@
+{
+    "puzzles": {
+        "puzzle-1": {
+            "id": 1,
+            "category": "",
+            "problem": "",
+            "solution": "",
+            "notes": "",
+            "additional-info": "",
+            "solved": {
+                "user-1": true
+            }
+        },
+        "puzzle-2": {
+            "id": 2,
+            "category": "",
+            "problem": "",
+            "solution": "",
+            "notes": "",
+            "additional-info": "",
+            "solved": {
+                "user-1": true,
+                "user-2": true
+            }
+        }
+    },
+    "members": {
+        "user-1": {
+            "id": 1,
+            "name": "Fred Bloggs",
+            "email": "test@test.com"
+        },
+        "user-2": {
+            "id": 2,
+            "name": "John Doe",
+            "email": "john@doe.com"
+        }
+    }
+}
