@@ -2,9 +2,10 @@
     "puzzles": {
         "puzzle-1": {
             "id": 1,
-            "category": "",
-            "problem": "",
-            "solution": "",
+            "category": "Vigenère Cipher",
+            "rating": "medium",
+            "problem": "ATTACK AT DAWN",
+            "solution": "LXFOPV EF RNHR",
             "notes": "",
             "additional-info": "",
             "solved": {
@@ -13,9 +14,10 @@
         },
         "puzzle-2": {
             "id": 2,
-            "category": "",
-            "problem": "",
-            "solution": "",
+            "category": "Caesar Cipher",
+            "rating": "easy",
+            "problem": "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD",
+            "solution": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
             "notes": "",
             "additional-info": "",
             "solved": {
@@ -28,12 +30,14 @@
         "user-1": {
             "id": 1,
             "name": "Fred Bloggs",
-            "email": "test@test.com"
+            "email": "test@test.com",
+            "score": 3
         },
         "user-2": {
             "id": 2,
             "name": "John Doe",
-            "email": "john@doe.com"
+            "email": "john@doe.com",
+            "score": 1
         }
     }
 }
