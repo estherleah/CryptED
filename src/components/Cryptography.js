@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { Container, Header, Title, Subtitle, Content, Button, Left, Right, Body, Icon, Item, Input } from 'native-base';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Header, Icon, FormInput, Button } from 'react-native-elements';
 import Navigation from './Navigation';
 
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -18,13 +19,13 @@ const styles = StyleSheet.create({
         margin: 10,
         paddingBottom: 20,
     },
-    puzzle: {
+    body: {
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
     },
     button: {
-        color: 'white',
+        padding: 20,
     },
     more: {
         textAlign: 'center',
@@ -32,42 +33,33 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class PuzzleList extends Component {
+export default class Cryptography extends Component {
     render() {
         return (
-            <Container>
-                <Header>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>CryptED</Title>
-                        <Subtitle>Cryptography</Subtitle>
-                    </Body>
-                    <Right />
-                </Header>
-                <View style={styles.container}>
-                    <Content>
-                        <Text style={styles.title}>Caesar ciphers</Text>
-                        <Text style={styles.puzzle}>
-                            QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
-                        </Text>
-                        <Item>
-                            <Input placeholder="Solution" />
-                        </Item>
-                        <Button full>
-                            <Text style={styles.button}>Submit</Text>
-                        </Button>
-                        <TouchableOpacity>
-                            <Text style={styles.more}>
-                                Learn more about Caesar ciphers...
-                            </Text>
-                        </TouchableOpacity>
-                    </Content>
-                </View>
-            </Container>
+            <View style={styles.container}>
+                <Header 
+                    backgroundColor='#567FDE'
+                    leftComponent={<Icon 
+                            name='menu' 
+                            color='#fff' 
+                            onPress={() => this.props.navigation.navigate("DrawerOpen")} 
+                        />}
+                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 26 } }} 
+                />
+                <Text style={styles.title}>Caesar ciphers</Text>
+                 <Text style={styles.body}>
+                     QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD
+                </Text>
+                <FormInput 
+                    placeholder={'Solution'} 
+                />
+                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' />
+                <TouchableOpacity>
+                    <Text style={styles.more}>
+                        Learn more about Caesar ciphers...
+                    </Text>
+                </TouchableOpacity>
+            </View>
         );
     }
 }

@@ -1,10 +1,12 @@
 import { DrawerNavigator } from 'react-navigation';
-import PuzzleList from './PuzzleList';
 import Cryptography from './Cryptography';
+import PuzzleList from './PuzzleList';
 
 const Navigation = DrawerNavigator({
-    Puzzles: { screen: PuzzleList },
     Cryptography: { screen: Cryptography },
+    Puzzles: { screen: PuzzleList },
+}, {
+    drawerWidth: 300,
 });
 
 export default Navigation;

@@ -1,58 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { Container, Header, Title, Subtitle, Content, Button, Left, Right, Body, Icon, Item, Input } from 'native-base';
+import { StyleSheet, Text, View } from 'react-native';
+import { Header, Icon } from 'react-native-elements';
 import Navigation from './Navigation';
 
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-        paddingLeft: 20,
-        paddingRight: 20,
     },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
-        paddingBottom: 20,
     },
     instructions: {
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
     },
-    button: {
-        color: 'white',
-    },
-    more: {
-        textAlign: 'center',
-        marginTop: 45,
-    },
 });
 
 export default class PuzzleList extends Component {
     render() {
         return (
-            <Container>
-                <Header>
-                    <Left>
-                        <Button transparent onPress={() => this.props.navigation.navigate("DrawerOpen")}>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>CryptED</Title>
-                        <Subtitle>Puzzles</Subtitle>
-                    </Body>
-                    <Right />
-                </Header>
-                <View style={styles.container}>
-                    <Content>
-                    </Content>
-                </View>
-            </Container>
+            <View style={styles.container}>
+                <Header 
+                    backgroundColor='#567FDE'
+                    leftComponent={<Icon 
+                            name='menu' 
+                            color='#fff' 
+                            onPress={() => this.props.navigation.navigate("DrawerOpen")} 
+                        />}
+                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 26 } }} 
+                />
+                <Text style={styles.welcome}>Puzzle list page</Text>
+            </View>
         );
     }
 }

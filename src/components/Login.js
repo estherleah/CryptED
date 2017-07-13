@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
-import { Container, Header, Title, Subtitle, Content, Button, Left, Right, Body, Icon, Item, Form, Input } from 'native-base';
-import { StyleSheet, View, Text,  ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { Header, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
-import Navigation from './Navigation';
 
+// Styles
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
-        paddingBottom: 20,
     },
-    button: {
-        color: 'white',
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
+    form: {
+        height: 60,
+        width: 300,
     },
     error: {
         color: 'red',
+        fontSize: 20,
         textAlign: 'center',
+        margin: 10,
     },
 });
 
@@ -66,49 +79,36 @@ export default class Login extends Component {
     renderLoader() {
         return (this.state.loading) ? 
             <ActivityIndicator size='large' /> :
-            (<Button full onPress={this.onButtonPress.bind(this)}>
-                <Text style={styles.button}>Login</Text>
-            </Button>);
+            <Button large backgroundColor='#567FDE' raised title='Login' onPress={this.onButtonPress.bind(this)} />;
     }
 
     render() {
         return (
-            <Container>
-                <Header>
-                    <Left />
-                    <Body>
-                        <Title>CryptED</Title>
-                        <Subtitle>Login</Subtitle>
-                    </Body>
-                    <Right />
-                </Header>
-                <Content>
-                    <Text style={styles.welcome}>Log in or create an account</Text>
-                    <Form>
-                        <Item>
-                            <Input 
-                                text={this.state.email} 
-                                onTextChange={email => this.setState({email})} 
-                                placeholder="Email" 
-                            />
-                        </Item>
-                        <Item>
-                            <Input 
-                                text={this.state.password} 
-                                onTextChange={password => this.setState({password})} 
-                                placeholder="Password" 
-                                secureTextEntry={true} 
-                            />
-                        </Item>
-                    </Form>
-                    <Text style={styles.error}>
-                        {this.state.error}
-                    </Text>
-                    <View>
-                        {this.renderLoader()}
-                    </View>
-                </Content>
-            </Container>
+            <View style={styles.container}>
+                <Header backgroundColor='#567FDE'
+                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 26 } }} 
+                />
+                <Text style={styles.welcome}>Log in or create an account</Text>
+                <FormInput 
+                    style={styles.form} 
+                    onChangeText={email => this.setState({email})}
+                    textInputRef={this.state.email}  
+                    placeholder={'Email'} 
+                />
+                <FormInput 
+                    style={styles.form} 
+                    onChangeText={password => this.setState({password})}
+                    textInputRef={this.state.password}  
+                    placeholder={'Password'} 
+                    secureTextEntry={true} 
+                />
+                <Text style={styles.error}>
+                    {this.state.error}
+                </Text>
+                <View>
+                    {this.renderLoader()}
+                </View>
+            </View>
         );
     }
 }
