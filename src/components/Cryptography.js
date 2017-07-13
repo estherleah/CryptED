@@ -45,6 +45,10 @@ export default class Cryptography extends Component {
                             onPress={() => this.props.navigation.navigate("DrawerOpen")} 
                         />}
                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 26 } }} 
+                    rightComponent={<Icon 
+                            name='settings' 
+                            color='#fff' 
+                        />}
                 />
                 <Text style={styles.title}>Caesar ciphers</Text>
                  <Text style={styles.body}>

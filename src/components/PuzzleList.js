@@ -35,6 +35,10 @@ export default class PuzzleList extends Component {
                             onPress={() => this.props.navigation.navigate("DrawerOpen")} 
                         />}
                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 26 } }} 
+                    rightComponent={<Icon 
+                            name='settings' 
+                            color='#fff' 
+                        />}                    
                 />
                 <Text style={styles.welcome}>Puzzle list page</Text>
             </View>
