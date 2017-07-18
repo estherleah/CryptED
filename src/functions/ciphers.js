@@ -27,6 +27,7 @@ export const caesar = (plaintext) => {
     return ciphertext;
 }
 
+
 export const atbash = (plaintext) => {
     // output
     var ciphertext = "";
@@ -59,7 +60,7 @@ export const atbash = (plaintext) => {
     return ciphertext;
 }
 
-// NB: this function assumes the key is all in lowercase
+
 export const vigenere = (plaintext, key) => {
     // output
     var ciphertext = "";
@@ -73,11 +74,11 @@ export const vigenere = (plaintext, key) => {
             var unicode = plaintext.charCodeAt(i);
             // uppercase
             if ((unicode >= 65) && (unicode <= 90)) {
-                c = String.fromCharCode(((unicode - 65 + (key.charCodeAt(j) - 97)) % 26) + 65);
+                c = String.fromCharCode(((unicode - 65 + (key.toLowerCase().charCodeAt(j) - 97)) % 26) + 65);
             }
             // lowercase
             else if ((unicode >= 97) && (unicode <= 122)) {
-                c = String.fromCharCode(((unicode - 97 + (key.charCodeAt(j) - 97)) % 26) + 97);
+                c = String.fromCharCode(((unicode - 97 + (key.toLowerCase().charCodeAt(j) - 97)) % 26) + 97);
             }
             // increment j - position in key
             j = (j + 1) % key.length;
