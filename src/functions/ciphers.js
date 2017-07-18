@@ -58,3 +58,32 @@ export const atbash = (plaintext) => {
     }
     return ciphertext;
 }
+
+// NB: this function assumes the key is all in lowercase
+export const vigenere = (plaintext, key) => {
+    // output
+    var ciphertext = "";
+
+    // go through plaintext one character at a time
+    for (var i = 0, j = 0; i < plaintext.length; i++) {
+        var c = plaintext[i];
+        // check if it is a letter
+        if (c.match(/[a-z]/i)) {
+            // get unicode value
+            var unicode = plaintext.charCodeAt(i);
+            // uppercase
+            if ((unicode >= 65) && (unicode <= 90)) {
+                c = String.fromCharCode(((unicode - 65 + (key.charCodeAt(j) - 97)) % 26) + 65);
+            }
+            // lowercase
+            else if ((unicode >= 97) && (unicode <= 122)) {
+                c = String.fromCharCode(((unicode - 97 + (key.charCodeAt(j) - 97)) % 26) + 97);
+            }
+            // increment j - position in key
+            j = (j + 1) % key.length;
+        }
+        // append to ciphertext
+        ciphertext += c;
+    }
+    return ciphertext;
+}
