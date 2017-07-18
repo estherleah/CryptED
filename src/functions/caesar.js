@@ -1,6 +1,6 @@
-function caesar(plaintext) {
+export const caesar = (plaintext) => {
     // output
-    var ciphertext = "Ciphertext: ";
+    var ciphertext = "";
 
     // pick random number between 1 and 25 as the shift value
     var shift = Math.floor((Math.random() * 25) + 1);
@@ -26,14 +26,3 @@ function caesar(plaintext) {
     }
     return ciphertext;
 }
-
-// var plaintext = "Hello World!";
-
-// console.log(caesar(plaintext));
-// var response = prompt("Plaintext:");
-
-// if (response.toLowerCase() == plaintext.toLowerCase()) {
-//     console.log(plaintext + " is correct!");
-// } else {
-//     console.log("Please try again");
-// }
