@@ -8,7 +8,7 @@ import firebase from 'firebase';
 // Styles
 const styles = StyleSheet.create({
     header: {
-        height: 75,
+        height: 50,
         width: '100%',
     },
     button: {

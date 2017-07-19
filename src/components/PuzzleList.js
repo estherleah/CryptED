@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ListView } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Puzzle from './Puzzle';
@@ -22,6 +23,14 @@ const styles = StyleSheet.create({
         color: '#333333',
         marginBottom: 5,
     },
+    list: {
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: '#F5FCFF',
+    },
+    subtitle: {
+        fontWeight: 'normal',
+    },
 });
 
 class PuzzleList extends Component {
@@ -37,13 +46,18 @@ class PuzzleList extends Component {
         return (
             <View style={styles.container}>
                 <AppHeader />
-                <ListView 
-                    enableEmptySections={true} 
-                    dataSource={this.dataSource}
-                    renderRow={(rowData) =>
-                        <Puzzle puzzles={rowData} />
-                    }
-                />
+                <List containerStyle={styles.list}>
+                    <ListView 
+                        dataSource={this.dataSource} 
+                        renderRow={(rowData) =>
+                            <ListItem 
+                                title={rowData.category}
+                                subtitle={rowData.problem}
+                                subtitleStyle={styles.subtitle}
+                            />
+                        } 
+                    />
+                </List>
             </View>
         );
     }
