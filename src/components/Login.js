@@ -86,7 +86,7 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
                 <Header backgroundColor='#567FDE'
-                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 26 } }} 
+                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                 />
                 <Text style={styles.welcome}>Log in or create an account</Text>
                 <FormInput 

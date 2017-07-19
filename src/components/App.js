@@ -39,9 +39,9 @@ export default class App extends Component {
             apiKey: "AIzaSyBG8ASDzhtL0y2aek6Id65nTJqZAkbEUVo",
             authDomain: "crypted-b0db8.firebaseapp.com",
             databaseURL: "https://crypted-b0db8.firebaseio.com",
-            projectId: "crypted-b0db8",
+            // projectId: "crypted-b0db8",
             storageBucket: "crypted-b0db8.appspot.com",
-            messagingSenderId: "413084766892"
+            // messagingSenderId: "413084766892"
         });
 
         firebase.auth().onAuthStateChanged((user) => {
