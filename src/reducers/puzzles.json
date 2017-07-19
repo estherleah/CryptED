@@ -1,0 +1,20 @@
+{
+    "puzzle-1": {
+        "id": 1,
+        "category": "Vigenère Cipher",
+        "rating": "medium",
+        "problem": "LXFOPV EF RNHR",
+        "solution": "ATTACK AT DAWN",
+        "notes": "",
+        "additional-info": ""
+    },
+    "puzzle-2": {
+        "id": 2,
+        "category": "Caesar Cipher",
+        "rating": "easy",
+        "problem": "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD",
+        "solution": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+        "notes": "",
+        "additional-info": ""
+    }
+}

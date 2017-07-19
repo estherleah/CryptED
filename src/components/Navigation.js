@@ -6,20 +6,20 @@ import PuzzleList from './PuzzleList';
 import Settings from './Settings';
 
 const Navigation = DrawerNavigator({
-    Cryptography: {
-        screen: Cryptography,
-        navigationOptions: {
-            drawerLabel : 'Cryptography',
-            drawerIcon: () => 
-                (<Icon name='key-variant' type='material-community' />),
-        }
-    },
     Puzzles: {
         screen: PuzzleList,
         navigationOptions: {
             drawerLabel : 'Puzzles',
             drawerIcon: () => 
                 (<Icon name='list' />),
+        }
+    },
+    Cryptography: {
+        screen: Cryptography,
+        navigationOptions: {
+            drawerLabel : 'Cryptography',
+            drawerIcon: () => 
+                (<Icon name='key-variant' type='material-community' />),
         }
     },
     Settings: {
