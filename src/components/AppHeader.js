@@ -11,19 +11,27 @@ const styles = StyleSheet.create({
         height: 75,
         width: '100%',
     },
+    button: {
+        alignSelf: 'flex-end',
+        justifyContent: 'flex-end',
+        backgroundColor: '#F5FCFF',
+    },
 });
 
 class AppHeader extends Component {
+    // Initial state of toggle showOptions
     state = {
         showOptions: false,
     };
 
+    // Toggles the options buttons.
     toggleOptions() {
         this.state.showOptions ?
             this.setState({ showOptions: false }):
             this.setState({ showOptions: true });
     }
 
+    // Sign out of the application.
     logout() {
         firebase.auth().signOut();
         this.setState({
@@ -31,12 +39,14 @@ class AppHeader extends Component {
         });
     }
 
+    // Render sign out button if toggle is enabled.
     renderOptions() {
         return (this.state.showOptions) ? 
             <Button 
-                containerViewStyle={{alignItems: 'flex-end'}}
+                buttonStyle={styles.button} 
+                material-community 
+                icon={{name: 'logout', type: 'material-community', color: '#333'}} 
                 color='#333333'
-                backgroundColor='#F5FCFF' 
                 title='Sign out' 
                 onPress={this.logout.bind(this)} 
             /> :

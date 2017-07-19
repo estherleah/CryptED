@@ -18,6 +18,7 @@ import Login from './Login';
 import Navigation from './Navigation';
 import reducers from '../reducers/Reducer';
 
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
 const store = createStore(reducers, applyMiddleware(Thunk));
 
 export default class App extends Component {
-
+    // Initial state before login.
     state = { loggedIn: null };
 
     // Connect to firebase. Do this before the component is mounted.
