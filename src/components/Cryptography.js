@@ -7,11 +7,9 @@ import AppHeader from './AppHeader';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-        paddingLeft: 20,
-        paddingRight: 20,
     },
     title: {
         fontSize: 20,
