@@ -4,6 +4,7 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Puzzle from './Puzzle';
+import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 
 // Styles
 const styles = StyleSheet.create({
@@ -52,7 +53,14 @@ class PuzzleList extends Component {
                         renderRow={(rowData) =>
                             <ListItem 
                                 title={rowData.category}
-                                subtitle={rowData.problem}
+                                subtitle={
+                                    (rowData.type === 'caesar') ? 
+                                        caesar(rowData.solution) :
+                                        ((rowData.type === 'vigenere') ?
+                                            vigenere(rowData.solution, rowData.key) :
+                                            atbash(rowData.solution)
+                                        )
+                                }
                                 subtitleStyle={styles.subtitle}
                             />
                         } 

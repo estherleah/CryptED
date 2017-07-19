@@ -2,8 +2,10 @@
     "puzzle-1": {
         "id": 1,
         "category": "Vigenère Cipher",
+        "type": "vigenere",
         "rating": "medium",
-        "problem": "LXFOPV EF RNHR",
+        "problem": "",
+        "key": "abc",
         "solution": "ATTACK AT DAWN",
         "notes": "",
         "additional-info": ""
@@ -11,9 +13,33 @@
     "puzzle-2": {
         "id": 2,
         "category": "Caesar Cipher",
+        "type": "caesar",
         "rating": "easy",
-        "problem": "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD",
+        "problem": "",
+        "key": "",
         "solution": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+        "notes": "",
+        "additional-info": ""
+    },
+    "puzzle-3": {
+        "id": 3,
+        "category": "Caesar Cipher",
+        "type": "caesar",
+        "rating": "easy",
+        "problem": "",
+        "key": "",
+        "solution": "HELLO WORLD",
+        "notes": "",
+        "additional-info": ""
+    },
+    "puzzle-4": {
+        "id": 4,
+        "category": "Atbash Cipher",
+        "type": "atbash",
+        "rating": "easy",
+        "problem": "",
+        "key": "",
+        "solution": "CAT",
         "notes": "",
         "additional-info": ""
     }
