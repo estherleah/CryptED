@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     list: {
-        flex: 1,
-        flexDirection: 'row',
+        width: '100%',
         backgroundColor: '#F5FCFF',
     },
     subtitle: {

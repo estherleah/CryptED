@@ -41,6 +41,14 @@ export default class Login extends Component {
         error: '',
         loading: false,
     };
+
+    // Ensures application is logged out before login screen is rendered.
+    componentWillMount() {
+        firebase.auth().signOut();
+        this.setState({
+            loggedIn: false,
+        });
+    }
     
     // Method for what happens when press the login button.
     onButtonPress() {
