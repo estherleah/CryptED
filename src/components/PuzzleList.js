@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import Navigation from './Navigation';
+import firebase from 'firebase';
 
 // Styles
 const styles = StyleSheet.create({
@@ -24,6 +25,13 @@ const styles = StyleSheet.create({
 });
 
 export default class PuzzleList extends Component {
+    logout() {
+        firebase.auth().signOut();
+        this.setState({
+            loggedIn: false,
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -36,9 +44,11 @@ export default class PuzzleList extends Component {
                         />}
                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                     rightComponent={<Icon 
-                            name='settings' 
+                            name='logout' 
+                            type='material-community' 
                             color='#fff' 
-                        />}                    
+                            onPress = {this.logout.bind(this)}
+                        />}
                 />
                 <Text style={styles.welcome}>Puzzle list page</Text>
             </View>

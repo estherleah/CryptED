@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Header, Icon, FormInput, Button } from 'react-native-elements';
 import Navigation from './Navigation';
+import firebase from 'firebase';
 
 // Styles
 const styles = StyleSheet.create({
@@ -34,6 +35,14 @@ const styles = StyleSheet.create({
 });
 
 export default class Cryptography extends Component {
+
+    logout() {
+        firebase.auth().signOut();
+        this.setState({
+            loggedIn: false,
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -46,8 +55,10 @@ export default class Cryptography extends Component {
                         />}
                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                     rightComponent={<Icon 
-                            name='settings' 
+                            name='logout' 
+                            type='material-community' 
                             color='#fff' 
+                            onPress = {this.logout.bind(this)}
                         />}
                 />
                 <Text style={styles.title}>Caesar ciphers</Text>
