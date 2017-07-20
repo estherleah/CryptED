@@ -36,7 +36,7 @@ export const createNewPuzzle = ({ problem, solution, notes }) => {
 };
 
 // Load the logic puzzles from the database.
-export const loadInitialLogicPuzzles = () => {
+export const loadLogicPuzzles = () => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/logic`)
@@ -47,7 +47,7 @@ export const loadInitialLogicPuzzles = () => {
 };
 
 // Load the cryptography puzzles from the database.
-export const loadInitialCryptoPuzzles = () => {
+export const loadCryptographyPuzzles = () => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/cryptography`)

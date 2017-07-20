@@ -30,20 +30,20 @@ export default (state = initialState, action) => {
                 ...state,
                 detailView: true,
                 puzzleSelected: action.payload,
-            }
+            };
             
         case 'NONE_SELECTED':
             return {
                 ...state,
                 detailView: false,
                 puzzleSelected: null,
-            }
+            };
 
         case 'FORM_UPDATE':
             return {
                 ...state,
                 [action.payload.prop]: action.payload.value,
-            }
+            };
 
         case 'NEW_PUZZLE':
             return {
@@ -51,13 +51,13 @@ export default (state = initialState, action) => {
                 problem: '',
                 solution: '',
                 notes: '',
-            }
+            };
 
         case 'ADD_PUZZLE':
             return {
                 ...state,
                 ...action.newPuzzle,
-            }
+            };
             
         default:
             return state;

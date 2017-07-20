@@ -11,7 +11,7 @@ const Navigation = DrawerNavigator({
     CryptographyPuzzles: {
         screen: PuzzleList,
         navigationOptions: {
-            drawerLabel: 'Cryptography challenges',
+            drawerLabel: 'Cryptography puzzles',
             drawerIcon: () => 
                 (<Icon name='key-variant' type='material-community' />),
         }
@@ -21,7 +21,7 @@ const Navigation = DrawerNavigator({
         navigationOptions: {
             drawerLabel: 'Logic puzzles',
             drawerIcon: () => 
-                (<Icon name='key-variant' type='material-community' />),
+                (<Icon name='puzzle-piece' type='font-awesome' />),
         }
     },
     AddPuzzle: {

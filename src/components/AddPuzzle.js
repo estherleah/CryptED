@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import AppHeader from './AppHeader';
+import LogicPuzzles from './LogicPuzzles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -31,11 +32,12 @@ const styles = StyleSheet.create({
 });
 
 class AddPuzzle extends Component {
-
+    // Method for what happens when press the add button.
+    // TODO: validate that there is text in both the problem and solution fields.
     onAddPress() {
         const { problem, solution, notes } = this.props;
         this.props.createNewPuzzle({problem, solution, notes});
-        this.props.navigation.navigate('PuzzleList');
+        this.props.navigation.navigate('LogicPuzzles');
     }
 
     render() {

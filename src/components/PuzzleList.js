@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 class PuzzleList extends Component {
     // Executes before component mounts.
     componentWillMount() {
-        this.props.loadInitialCryptoPuzzles();
+        this.props.loadCryptographyPuzzles();
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
@@ -53,6 +53,7 @@ class PuzzleList extends Component {
                 <AppHeader />
                 <List containerStyle={styles.list}>
                     <ListView 
+                        enableEmptySections
                         dataSource={this.dataSource} 
                         renderRow={(rowData) =>
                             <ListItem 

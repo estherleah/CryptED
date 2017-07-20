@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView, Alert } from 'react-native';
+import { StyleSheet, Text, View, ListView } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 class LogicPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
-        this.props.loadInitialLogicPuzzles();
+        this.props.loadLogicPuzzles();
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
@@ -54,6 +54,7 @@ class LogicPuzzles extends Component {
                 <AppHeader />
                 <List containerStyle={styles.list}>
                     <ListView 
+                        enableEmptySections
                         dataSource={this.dataSource} 
                         renderRow={(rowData) =>
                             <ListItem 

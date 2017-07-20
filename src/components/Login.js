@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import { Header, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
 
@@ -93,29 +93,31 @@ export default class Login extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Header backgroundColor='#567FDE'
-                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
-                />
-                <Text style={styles.welcome}>Log in or create an account</Text>
-                <FormInput 
-                    style={styles.form} 
-                    onChangeText={email => this.setState({email})}
-                    textInputRef={this.state.email}  
-                    placeholder={'Email'} 
-                />
-                <FormInput 
-                    style={styles.form} 
-                    onChangeText={password => this.setState({password})}
-                    textInputRef={this.state.password}  
-                    placeholder={'Password'} 
-                    secureTextEntry={true} 
-                />
-                <Text style={styles.error}>
-                    {this.state.error}
-                </Text>
-                <View>
-                    {this.renderLoader()}
-                </View>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Header backgroundColor='#567FDE'
+                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                    />
+                    <Text style={styles.welcome}>Log in or create an account</Text>
+                    <FormInput 
+                        style={styles.form} 
+                        onChangeText={email => this.setState({email})}
+                        textInputRef={this.state.email}  
+                        placeholder={'Email'} 
+                    />
+                    <FormInput 
+                        style={styles.form} 
+                        onChangeText={password => this.setState({password})}
+                        textInputRef={this.state.password}  
+                        placeholder={'Password'} 
+                        secureTextEntry={true} 
+                    />
+                    <Text style={styles.error}>
+                        {this.state.error}
+                    </Text>
+                    <View>
+                        {this.renderLoader()}
+                    </View>
+                </ScrollView>
             </View>
         );
     }

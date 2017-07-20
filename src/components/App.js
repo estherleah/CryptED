@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
 const store = createStore(reducers, applyMiddleware(Thunk));
 
 export default class App extends Component {
+    // Added to remove timer warning when using firebase.
+    constructor() {
+        super();
+        console.ignoredYellowBox = [
+            'Setting a timer'
+        ];
+    }
+
     // Initial state before login.
     state = { loggedIn: null };
 
