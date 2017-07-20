@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 import * as actions from '../actions';
@@ -12,7 +12,10 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
-        marginTop: 20,
+    },
+    header: {
+        height: 50,
+        width: '100%',
     },
     title: {
         fontSize: 20,
@@ -39,6 +42,17 @@ class Puzzle extends Component {
     render() {
         return(
             <View style={styles.container}>
+                <View style={styles.header}>
+                    <Header 
+                        backgroundColor='#567FDE'
+                        leftComponent={<Icon 
+                            name='arrow-back' 
+                            color='#fff' 
+                            onPress={() => this.props.noneSelected()} 
+                        />} 
+                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                    />
+                </View>
                 <Text style={styles.title}>{this.props.puzzle.category}</Text>
                 <Text style={styles.body}>
                     {(this.props.puzzle.type === 'caesar') ? 

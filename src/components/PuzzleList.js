@@ -46,27 +46,29 @@ class PuzzleList extends Component {
     renderInitialView() {
         return (this.props.detailView) ?
             <Puzzle />:
-            <List containerStyle={styles.list}>
-                <ListView 
-                    dataSource={this.dataSource} 
-                    renderRow={(rowData) =>
-                        <ListItem 
-                            title={rowData.category}
-                            subtitleStyle={styles.subtitle}
-                            onPress={() => this.props.selectPuzzle(rowData)}
-                        />
-                    } 
-                />
-            </List>
+            <View style={styles.container}>
+                <AppHeader />
+                <List containerStyle={styles.list}>
+                    <ListView 
+                        dataSource={this.dataSource} 
+                        renderRow={(rowData) =>
+                            <ListItem 
+                                title={rowData.category}
+                                subtitleStyle={styles.subtitle}
+                                onPress={() => this.props.selectPuzzle(rowData)}
+                            />
+                        } 
+                    />
+                </List>
+            </View>
     }
 
     render() {
         return (
-            <View style={styles.container}>
-                <AppHeader />
+            <View style={{flex: 1}}>
                 {this.renderInitialView()}
             </View>
-        )
+        );
     }
 }
 

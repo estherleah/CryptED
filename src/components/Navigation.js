@@ -10,15 +10,7 @@ const Navigation = DrawerNavigator({
     Puzzles: {
         screen: PuzzleList,
         navigationOptions: {
-            drawerLabel: 'Puzzle list',
-            drawerIcon: () => 
-                (<Icon name='list' />),
-        }
-    },
-    Cryptography: {
-        screen: Cryptography,
-        navigationOptions: {
-            drawerLabel: 'Cryptography',
+            drawerLabel: 'Challenges',
             drawerIcon: () => 
                 (<Icon name='key-variant' type='material-community' />),
         }
