@@ -2,16 +2,34 @@ import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import PuzzleList from './PuzzleList';
+import LogicPuzzles from './LogicPuzzles';
+import AddPuzzle from './AddPuzzle';
 import Settings from './Settings';
 import Login from './Login';
 
 const Navigation = DrawerNavigator({
-    Puzzles: {
+    CryptographyPuzzles: {
         screen: PuzzleList,
         navigationOptions: {
-            drawerLabel: 'Challenges',
+            drawerLabel: 'Cryptography challenges',
             drawerIcon: () => 
                 (<Icon name='key-variant' type='material-community' />),
+        }
+    },
+    LogicPuzzles: {
+        screen: LogicPuzzles,
+        navigationOptions: {
+            drawerLabel: 'Logic puzzles',
+            drawerIcon: () => 
+                (<Icon name='key-variant' type='material-community' />),
+        }
+    },
+    AddPuzzle: {
+        screen: AddPuzzle,
+        navigationOptions: {
+            drawerLabel: 'Add puzzle',
+            drawerIcon: () => 
+                (<Icon name='plus' type='font-awesome' />),
         }
     },
     Settings: {

@@ -56,10 +56,10 @@ class Puzzle extends Component {
                 <Text style={styles.title}>{this.props.puzzle.category}</Text>
                 <Text style={styles.body}>
                     {(this.props.puzzle.type === 'caesar') ? 
-                        caesar(this.props.puzzle.solution) :
+                        caesar(this.props.puzzle.plaintext) :
                         ((this.props.puzzle.type === 'vigenere') ?
-                            vigenere(this.props.puzzle.solution, this.props.puzzle.key) :
-                            atbash(this.props.puzzle.solution)
+                            vigenere(this.props.puzzle.plaintext, this.props.puzzle.key) :
+                            atbash(this.props.puzzle.plaintext)
                     )}
                 </Text>
                 <FormInput 

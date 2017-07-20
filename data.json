@@ -1,43 +1,60 @@
 {
     "puzzles": {
-        "puzzle-1": {
-            "id": 1,
-            "category": "Vigenère Cipher",
-            "rating": "medium",
-            "problem": "LXFOPV EF RNHR",
-            "solution": "ATTACK AT DAWN",
-            "notes": "",
-            "additional-info": "",
-            "solved": {
-                "user-1": true
+        "cryptography": {
+            "puzzle-1": {
+                "id": 1,
+                "category": "Vigenère Cipher",
+                "type": "vigenere",
+                "rating": "medium",
+                "plaintext": "ATTACK AT DAWN",
+                "key": "abc",
+                "notes": "",
+                "additional-info": "",
+                "solved": {
+                }
+            },
+            "puzzle-2": {
+                "id": 2,
+                "category": "Caesar Cipher",
+                "type": "caesar",
+                "rating": "easy",
+                "plaintext": "HELLO WORLD",
+                "key": "",
+                "notes": "",
+                "additional-info": "",
+                "solved": {
+                }
+            },
+            "puzzle-3": {
+                "id": 3,
+                "category": "Caesar Cipher",
+                "type": "caesar",
+                "rating": "medium",
+                "plaintext": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+                "key": "",
+                "notes": "",
+                "additional-info": "",
+                "solved": {
+                }
+            },
+            "puzzle-4": {
+                "id": 4,
+                "category": "Atbash Cipher",
+                "type": "atbash",
+                "rating": "easy",
+                "plaintext": "CAT",
+                "key": "",
+                "notes": "",
+                "additional-info": "",
+                "solved": {
+                }
             }
         },
-        "puzzle-2": {
-            "id": 2,
-            "category": "Caesar Cipher",
-            "rating": "easy",
-            "problem": "QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD",
-            "solution": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
-            "notes": "",
-            "additional-info": "",
-            "solved": {
-                "user-1": true,
-                "user-2": true
-            }
+        "logic": {
+
         }
     },
     "members": {
-        "user-1": {
-            "id": 1,
-            "name": "Fred Bloggs",
-            "email": "test@test.com",
-            "score": 3
-        },
-        "user-2": {
-            "id": 2,
-            "name": "John Doe",
-            "email": "john@doe.com",
-            "score": 1
-        }
+
     }
 }

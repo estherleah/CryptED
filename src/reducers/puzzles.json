@@ -6,7 +6,7 @@
         "rating": "medium",
         "problem": "",
         "key": "abc",
-        "solution": "ATTACK AT DAWN",
+        "plaintext": "ATTACK AT DAWN",
         "notes": "",
         "additional-info": ""
     },
@@ -17,7 +17,7 @@
         "rating": "easy",
         "problem": "",
         "key": "",
-        "solution": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+        "plaintext": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
         "notes": "",
         "additional-info": ""
     },
@@ -28,7 +28,7 @@
         "rating": "easy",
         "problem": "",
         "key": "",
-        "solution": "HELLO WORLD",
+        "plaintext": "HELLO WORLD",
         "notes": "",
         "additional-info": ""
     },
@@ -39,7 +39,7 @@
         "rating": "easy",
         "problem": "",
         "key": "",
-        "solution": "CAT",
+        "plaintext": "CAT",
         "notes": "",
         "additional-info": ""
     }
