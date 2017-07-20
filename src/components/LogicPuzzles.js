@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 class LogicPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
-        this.props.loadInitialPuzzles();
+        this.props.loadInitialLogicPuzzles();
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.

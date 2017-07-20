@@ -37,14 +37,16 @@ const styles = StyleSheet.create({
 class PuzzleList extends Component {
     // Executes before component mounts.
     componentWillMount() {
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1!== r2,
-        });
-        this.dataSource = ds.cloneWithRows(this.props.puzzles);
+        this.props.loadInitialCryptoPuzzles();
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
     renderInitialView() {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1!== r2,
+        });
+        this.dataSource = ds.cloneWithRows(this.props.puzzles);
+        
         return (this.props.detailView) ?
             <Cryptography />:
             <View style={styles.container}>

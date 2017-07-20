@@ -35,13 +35,24 @@ export const createNewPuzzle = ({ problem, solution, notes }) => {
     };
 };
 
-// Load the puzzles from the database.
-export const loadInitialPuzzles = () => {
+// Load the logic puzzles from the database.
+export const loadInitialLogicPuzzles = () => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/logic`)
         .on('value', snapshot => {
             dispatch({ type: 'LOGIC_FETCH', payload: snapshot.val() });
+        });
+    };
+};
+
+// Load the cryptography puzzles from the database.
+export const loadInitialCryptoPuzzles = () => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/cryptography`)
+        .on('value', snapshot => {
+            dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: snapshot.val() });
         });
     };
 };

@@ -1,8 +1,6 @@
-import puzzles from './puzzles.json';
-
 // Initial state
 const initialState = {
-    puzzles,
+    puzzles: [],
     logicpuzzles: [],
     detailView: false,
     puzzleSelected: null,
@@ -19,6 +17,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 logicpuzzles: action.payload,
+            };
+
+        case 'CRYPTOGRAPHY_FETCH':
+            return {
+                ...state,
+                puzzles: action.payload,
             };
 
         case 'SELECTED_PUZZLE':
