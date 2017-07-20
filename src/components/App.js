@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     },
 });
 
+// Store
 const store = createStore(reducers, applyMiddleware(Thunk));
 
 export default class App extends Component {

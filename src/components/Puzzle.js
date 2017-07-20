@@ -76,6 +76,7 @@ class Puzzle extends Component {
     }
 }
 
+// Passing the state components to the props.
 const mapStateToProps = (state) => {
     return {
         puzzle: state.puzzleSelected,

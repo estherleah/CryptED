@@ -43,6 +43,7 @@ class PuzzleList extends Component {
         this.dataSource = ds.cloneWithRows(this.props.puzzles);
     }
 
+    // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
     renderInitialView() {
         return (this.props.detailView) ?
             <Puzzle />:

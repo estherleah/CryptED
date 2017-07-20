@@ -1,7 +1,6 @@
 import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import Cryptography from './Cryptography';
 import PuzzleList from './PuzzleList';
 import Settings from './Settings';
 import Login from './Login';
