@@ -45,7 +45,7 @@ class PuzzleList extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        this.dataSource = ds.cloneWithRows(this.props.puzzles);
+        this.dataSource = ds.cloneWithRows(this.props.cryptoPuzzles);
         
         return (this.props.detailView) ?
             <Cryptography />:
@@ -79,7 +79,7 @@ class PuzzleList extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     return {
-        puzzles: state.puzzles,
+        cryptoPuzzles: state.cryptoPuzzles,
         detailView: state.detailView,
     };
 }

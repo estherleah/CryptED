@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ListView } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Logic from './Logic';
@@ -46,7 +45,7 @@ class LogicPuzzles extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        this.dataSource = ds.cloneWithRows(this.props.logicpuzzles);
+        this.dataSource = ds.cloneWithRows(this.props.logicPuzzles);
 
         return (this.props.detailView) ?
             <Logic />:
@@ -79,12 +78,8 @@ class LogicPuzzles extends Component {
 
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
-    // so get an array instead of an object of objects
-    const logicpuzzles = _.map(state.logicpuzzles, (val, uid) => {
-        return { ...val, uid };
-    });
     return {
-        logicpuzzles,
+        logicPuzzles: state.logicPuzzles,
         detailView: state.detailView,
     };
 }
