@@ -41,7 +41,7 @@ export const loadInitialPuzzles = () => {
     return (dispatch) => {
         firebase.database().ref(`/puzzles/logic`)
         .on('value', snapshot => {
-            dispatch({ type: 'INITIAL_FETCH', payload: snapshot.val() });
+            dispatch({ type: 'LOGIC_FETCH', payload: snapshot.val() });
         });
     };
 };

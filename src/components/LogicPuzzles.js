@@ -4,7 +4,7 @@ import { List, ListItem } from 'react-native-elements';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
-import Puzzle from './Puzzle';
+import Logic from './Logic';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 import * as actions from '../actions';
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class PuzzleList extends Component {
+class LogicPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
         this.props.loadInitialPuzzles();
@@ -46,10 +46,10 @@ class PuzzleList extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        this.dataSource = ds.cloneWithRows(this.props.puzzles);
+        this.dataSource = ds.cloneWithRows(this.props.logicpuzzles);
 
         return (this.props.detailView) ?
-            <Puzzle />:
+            <Logic />:
             <View style={styles.container}>
                 <AppHeader />
                 <List containerStyle={styles.list}>
@@ -57,9 +57,9 @@ class PuzzleList extends Component {
                         dataSource={this.dataSource} 
                         renderRow={(rowData) =>
                             <ListItem 
-                                title={rowData.category}
+                                title={rowData.problem}
                                 subtitleStyle={styles.subtitle}
-                                onPress={() => this.props.selectPuzzle(rowData)}
+                                onPress={() => this.props.selectPuzzle(rowData)} 
                             />
                         } 
                     />
@@ -79,13 +79,13 @@ class PuzzleList extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     // so get an array instead of an object of objects
-    const puzzles = _.map(state.puzzles, (val) => {
-        return { ...val };
+    const logicpuzzles = _.map(state.logicpuzzles, (val, uid) => {
+        return { ...val, uid };
     });
     return {
-        puzzles,
+        logicpuzzles,
         detailView: state.detailView,
     };
 }
 
-export default connect(mapStateToProps, actions)(PuzzleList);
+export default connect(mapStateToProps, actions)(LogicPuzzles);

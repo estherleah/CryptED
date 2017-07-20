@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import AppHeader from './AppHeader';
 import { connect } from 'react-redux';
@@ -41,24 +41,26 @@ class AddPuzzle extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <AppHeader />
-                <Text style={styles.title}>Add your own puzzle</Text>
-                <FormInput 
-                    placeholder={'Problem'} 
-                    value={this.props.problem} 
-                    onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
-                />
-                <FormInput 
-                    placeholder={'Solution'} 
-                    value={this.props.solution} 
-                    onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
-                />
-                <FormInput 
-                    placeholder={'Notes'} 
-                    value={this.props.notes} 
-                    onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 
-                />
-                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <AppHeader />
+                    <Text style={styles.title}>Add your own puzzle</Text>
+                    <FormInput 
+                        placeholder={'Problem'} 
+                        value={this.props.problem} 
+                        onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
+                    />
+                    <FormInput 
+                        placeholder={'Solution'} 
+                        value={this.props.solution} 
+                        onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
+                    />
+                    <FormInput 
+                        placeholder={'Notes'} 
+                        value={this.props.notes} 
+                        onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 
+                    />
+                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
+                    </ScrollView>
             </View>
         );
     }

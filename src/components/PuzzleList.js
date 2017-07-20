@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView, Alert } from 'react-native';
+import { StyleSheet, Text, View, ListView } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
-import Puzzle from './Puzzle';
+import Cryptography from './Cryptography';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 import * as actions from '../actions';
 
@@ -46,7 +46,7 @@ class PuzzleList extends Component {
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
     renderInitialView() {
         return (this.props.detailView) ?
-            <Puzzle />:
+            <Cryptography />:
             <View style={styles.container}>
                 <AppHeader />
                 <List containerStyle={styles.list}>

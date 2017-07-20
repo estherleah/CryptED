@@ -3,6 +3,7 @@ import puzzles from './puzzles.json';
 // Initial state
 const initialState = {
     puzzles,
+    logicpuzzles: [],
     detailView: false,
     puzzleSelected: null,
     problem: '',
@@ -14,10 +15,10 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
 
-        case 'INITIAL_FETCH':
+        case 'LOGIC_FETCH':
             return {
                 ...state,
-                puzzles: action.payload,
+                logicpuzzles: action.payload,
             };
 
         case 'SELECTED_PUZZLE':
