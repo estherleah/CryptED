@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class PuzzleList extends Component {
+class CryptographyPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
         this.props.loadCryptographyPuzzles();
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps, actions)(PuzzleList);
+export default connect(mapStateToProps, actions)(CryptographyPuzzles);

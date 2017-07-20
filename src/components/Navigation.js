@@ -1,7 +1,7 @@
 import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import PuzzleList from './PuzzleList';
+import CryptographyPuzzles from './CryptographyPuzzles';
 import LogicPuzzles from './LogicPuzzles';
 import AddPuzzle from './AddPuzzle';
 import Settings from './Settings';
@@ -9,7 +9,7 @@ import Login from './Login';
 
 const Navigation = DrawerNavigator({
     CryptographyPuzzles: {
-        screen: PuzzleList,
+        screen: CryptographyPuzzles,
         navigationOptions: {
             drawerLabel: 'Cryptography puzzles',
             drawerIcon: () => 
@@ -40,7 +40,7 @@ const Navigation = DrawerNavigator({
                 (<Icon name='settings' />),
         }
     },
-    Login: {
+    Logout: {
         screen: Login,
         navigationOptions: {
             drawerLabel: 'Log out',
