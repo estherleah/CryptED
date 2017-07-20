@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView } from 'react-native';
+import { StyleSheet, Text, View, ListView, Alert } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Puzzle from './Puzzle';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
+import * as actions from '../actions';
 
 // Styles
 const styles = StyleSheet.create({
@@ -39,40 +40,42 @@ class PuzzleList extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        this.dataSource = ds.cloneWithRows(this.props.puzzles)
+        this.dataSource = ds.cloneWithRows(this.props.puzzles);
+    }
+
+    renderInitialView() {
+        return (this.props.detailView) ?
+            <Puzzle />:
+            <List containerStyle={styles.list}>
+                <ListView 
+                    dataSource={this.dataSource} 
+                    renderRow={(rowData) =>
+                        <ListItem 
+                            title={rowData.category}
+                            subtitleStyle={styles.subtitle}
+                            onPress={() => this.props.selectPuzzle(rowData)}
+                        />
+                    } 
+                />
+            </List>
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <AppHeader />
-                <List containerStyle={styles.list}>
-                    <ListView 
-                        dataSource={this.dataSource} 
-                        renderRow={(rowData) =>
-                            <ListItem 
-                                title={rowData.category}
-                                subtitle={
-                                    (rowData.type === 'caesar') ? 
-                                        caesar(rowData.solution) :
-                                        ((rowData.type === 'vigenere') ?
-                                            vigenere(rowData.solution, rowData.key) :
-                                            atbash(rowData.solution)
-                                        )
-                                }
-                                subtitleStyle={styles.subtitle}
-                            />
-                        } 
-                    />
-                </List>
+                {this.renderInitialView()}
             </View>
-        );
+        )
     }
 }
 
-// Passing the state.puzzles to the prop puzzles.
+// Passing the state components to the props.
 const mapStateToProps = (state) => {
-    return { puzzles: state.puzzles };
+    return {
+        puzzles: state.puzzles,
+        detailView: state.detailView,
+    };
 }
 
-export default connect(mapStateToProps)(PuzzleList);
+export default connect(mapStateToProps, actions)(PuzzleList);
