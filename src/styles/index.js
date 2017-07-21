@@ -24,6 +24,8 @@ export default styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
     },
     button: {
         margin: 20,
