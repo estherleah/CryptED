@@ -9,7 +9,7 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import firebase from 'firebase';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -17,16 +17,7 @@ import Thunk from 'redux-thunk';
 import Login from './Login';
 import Navigation from './Navigation';
 import reducers from '../reducers/Reducer';
-
-// Styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-});
+import styles from '../styles';
 
 // Store
 const store = createStore(reducers, applyMiddleware(Thunk));

@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import Navigation from './Navigation';
-
-// Styles
-const styles = StyleSheet.create({
-    header: {
-        height: 50,
-        width: '100%',
-    },
-});
+import styles from '../styles';
 
 class AppHeader extends Component {
     render() {

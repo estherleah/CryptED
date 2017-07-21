@@ -1,39 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, ScrollView } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import { Header, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
-
-// Styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    header: {
-        height: 50,
-        width: '100%',
-    },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        paddingBottom: 20,
-        paddingTop: 20,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    error: {
-        color: 'red',
-        fontSize: 16,
-        textAlign: 'center',
-        margin: 10,
-    },
-});
+import styles from '../styles';
 
 export default class Login extends Component {
     // Initial state
@@ -89,35 +58,37 @@ export default class Login extends Component {
     renderLoader() {
         return (this.state.loading) ? 
             <ActivityIndicator size='large' /> :
-            <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Login' onPress={this.onButtonPress.bind(this)} />;
+            <Button raised backgroundColor='#567FDE' title='Login' onPress={this.onButtonPress.bind(this)} />;
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
-                    <Header backgroundColor='#567FDE'
-                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.header}>
+                        <Header backgroundColor='#567FDE'
+                            centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                        />
+                    </View>
+                    <Text style={styles.title}>Log in or create an account</Text>
+                    <FormInput 
+                        onChangeText={email => this.setState({email})}
+                        textInputRef={this.state.email}  
+                        placeholder={'Email'} 
                     />
-                </View>
-                <Text style={styles.title}>Log in or create an account</Text>
-                <FormInput 
-                    onChangeText={email => this.setState({email})}
-                    textInputRef={this.state.email}  
-                    placeholder={'Email'} 
-                />
-                <FormInput 
-                    onChangeText={password => this.setState({password})}
-                    textInputRef={this.state.password}  
-                    placeholder={'Password'} 
-                    secureTextEntry={true} 
-                />
-                <Text style={styles.error}>
-                    {this.state.error}
-                </Text>
-                <View style={{width: '100%'}}>
-                    {this.renderLoader()}
-                </View>
+                    <FormInput 
+                        onChangeText={password => this.setState({password})}
+                        textInputRef={this.state.password}  
+                        placeholder={'Password'} 
+                        secureTextEntry={true} 
+                    />
+                    <Text style={styles.error}>
+                        {this.state.error}
+                    </Text>
+                    <View style={{width: '100%'}}>
+                        {this.renderLoader()}
+                    </View>
+                </ScrollView>
             </View>
         );
     }

@@ -1,38 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ListView } from 'react-native';
+import { Text, View, ListView } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Logic from './Logic';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 import * as actions from '../actions';
-
-// Styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    list: {
-        width: '100%',
-        backgroundColor: '#F5FCFF',
-    },
-    subtitle: {
-        fontWeight: 'normal',
-    },
-});
+import styles from '../styles';
 
 class LogicPuzzles extends Component {
     // Executes before component mounts.

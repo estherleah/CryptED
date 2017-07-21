@@ -1,38 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 import * as actions from '../actions';
-
-// Styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    header: {
-        height: 50,
-        width: '100%',
-    },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        paddingBottom: 20,
-        paddingTop: 20,
-    },
-    body: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    button: {
-        margin: 20,
-    },
-});
+import styles from '../styles';
 
 class Logic extends Component {
     render() {

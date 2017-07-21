@@ -1,35 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import AppHeader from './AppHeader';
 import LogicPuzzles from './LogicPuzzles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-
-// Styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    title: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-        paddingBottom: 20,
-        paddingTop: 20,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    button: {
-        margin: 20,
-    },
-});
+import styles from '../styles';
 
 class AddPuzzle extends Component {
     // Method for what happens when press the add button.
