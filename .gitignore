@@ -54,3 +54,4 @@ fastlane/screenshots
 
 # Visual Studio Code
 .vscode/
+jsconfig.json
