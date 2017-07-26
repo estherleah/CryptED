@@ -10,7 +10,7 @@ class Cryptography extends Component {
     // Initial state
     state = { modalVisible: false };
 
-    // 
+    // Toggles the modal with additional info.
     setModalVisible(visible) {
         this.setState({
             modalVisible: visible,

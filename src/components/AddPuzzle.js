@@ -50,7 +50,7 @@ class AddPuzzle extends Component {
                                 <Button disabled raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
                         }
                     </View>
-                    </ScrollView>
+                </ScrollView>
             </View>
         );
     }
