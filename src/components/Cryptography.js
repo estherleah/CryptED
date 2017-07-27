@@ -36,13 +36,14 @@ class Cryptography extends Component {
     }
 
     // What happens when submit a solution.
-    // TODO: add true to solvedBy under that puzzle, add score to user's score.
+    // TODO: check if already solved that puzzle.
     onSubmit() {
         const { solution } = this.state;
         const { puzzle } = this.props;
         // check to see if correct solution
         if (this.state.solution.toLowerCase() === this.props.puzzle.plaintext.toLowerCase()) {
             this.props.cryptographyPuzzleSolved(this.props.puzzle.id);
+            this.props.updateScore(this.props.puzzle.rating + this.props.score, this.props.puzzle.id);
             this.props.noneSelected();
         } else {
             Alert.alert("Incorrect", "Please try again");
@@ -113,6 +114,7 @@ class Cryptography extends Component {
 const mapStateToProps = (state) => {
     return {
         puzzle: state.puzzleSelected,
+        score: state.score,
     };
 };
 

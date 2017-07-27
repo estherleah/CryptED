@@ -57,13 +57,48 @@ export const loadCryptographyPuzzles = () => {
     };
 };
 
+// Load the user's score from the database.
+export const loadScore = () => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/score`)
+        .on('value', snapshot => {
+            dispatch({ type: 'SCORE_FETCH', payload: snapshot.val() });
+        });
+    };
+};
+
+// Write to the database when puzzle is solved.
 export const cryptographyPuzzleSolved = (id) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/cryptography/${id}/solvedBy/${currentUser.uid}`)
         .set(true)
+        firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
+        .set(true)
         .then(() => {
             dispatch({ type: 'PUZZLE_SOLVED' });
         });
     };
-}
+};
+
+// Update the score when a puzzle is solved.
+export const updateScore = (score, id) => {
+    const { currentUser } = firebase.auth();
+    var alreadySolved;
+    // check if the puzzle has already been solved
+    firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
+    .once('value').then(function(snapshot) {
+        alreadySolved = snapshot.hasChild(id);
+    });
+    // only update the score if the puzzle has not already been solved
+    if (!alreadySolved) {
+        return (dispatch) => {
+            firebase.database().ref(`/users/${currentUser.uid}/score`)
+            .set(score)
+            .then(() => {
+                dispatch({ type: 'UPDATE_SCORE', payload: score });
+            });
+        };
+    };
+};

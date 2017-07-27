@@ -8,6 +8,7 @@ const initialState = {
     solution: '',
     notes: '',
     loadingPuzzles: false,
+    score: 0,
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +24,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 cryptoPuzzles: action.payload,
+            };
+
+        case 'SCORE_FETCH':
+            return {
+                ...state,
+                score: action.payload,
             };
 
         case 'SELECTED_PUZZLE':
@@ -62,6 +69,12 @@ export default (state = initialState, action) => {
         case 'PUZZLE_SOLVED':
             return {
                 ...state,
+            };
+
+        case 'UPDATE_SCORE':
+            return {
+                ...state,
+                score: action.payload,
             };
             
         default:
