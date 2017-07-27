@@ -11,6 +11,7 @@ import styles from '../styles';
 class CryptographyPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
+        this.props.loadUserID();
         this.props.loadScore();
         this.props.loadCryptographyPuzzles();
     }
@@ -33,6 +34,7 @@ class CryptographyPuzzles extends Component {
                         renderRow={(rowData) =>
                             <ListItem 
                                 title={rowData.category}
+                                subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(rowData).contains(this.props.uid) ? 'Solved' : '')}
                                 subtitleStyle={styles.subtitle}
                                 onPress={() => this.props.selectPuzzle(rowData)}
                             />
@@ -56,6 +58,7 @@ const mapStateToProps = (state) => {
     return {
         cryptoPuzzles: state.cryptoPuzzles,
         detailView: state.detailView,
+        uid: state.uid,
     };
 }
 

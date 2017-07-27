@@ -9,6 +9,7 @@ const initialState = {
     notes: '',
     loadingPuzzles: false,
     score: 0,
+    uid: '',
 };
 
 export default (state = initialState, action) => {
@@ -25,6 +26,12 @@ export default (state = initialState, action) => {
                 ...state,
                 cryptoPuzzles: action.payload,
             };
+
+        case 'USER_FETCH':
+            return {
+                ...state,
+                uid: action.payload,
+            }
 
         case 'SCORE_FETCH':
             return {

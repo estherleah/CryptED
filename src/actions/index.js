@@ -68,6 +68,15 @@ export const loadScore = () => {
     };
 };
 
+// Load the userID.
+export const loadUserID = () => {
+    const { currentUser } = firebase.auth();
+    return {
+        type: 'USER_FETCH',
+        payload: currentUser.uid,
+    };
+};
+
 // Write to the database when puzzle is solved.
 export const cryptographyPuzzleSolved = (id) => {
     const { currentUser } = firebase.auth();
