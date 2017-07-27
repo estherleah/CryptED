@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Modal } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
@@ -8,13 +8,38 @@ import styles from '../styles';
 
 class Cryptography extends Component {
     // Initial state
-    state = { modalVisible: false };
+    state = {
+        ciphertext: '',
+        solution: '',
+        modalVisible: false,
+    };
+
+    // Executes before component mounts.
+    // Sets ciphertext so it does not change as the state changes.
+    componentWillMount() {
+        {(this.props.puzzle.type === 'caesar') ? 
+            cipher = caesar(this.props.puzzle.plaintext) :
+            ((this.props.puzzle.type === 'vigenere') ?
+                cipher = vigenere(this.props.puzzle.plaintext, this.props.puzzle.key) :
+                cipher = atbash(this.props.puzzle.plaintext)
+        )}
+        this.setState({
+            ciphertext: cipher,
+        })
+    }
 
     // Toggles the modal with additional info.
     setModalVisible(visible) {
         this.setState({
             modalVisible: visible,
         });
+    }
+
+    onSubmit() {
+        const { solution } = this.state;
+        (this.state.solution.toLowerCase() === this.props.puzzle.plaintext.toLowerCase()) ?
+            Alert.alert("Correct", this.state.solution + " is the correct solution") :
+            Alert.alert("Incorrect", "Please try again");
     }
 
     render() {
@@ -34,17 +59,14 @@ class Cryptography extends Component {
                     </View>
                     <Text style={styles.title}>{this.props.puzzle.category}</Text>
                     <Text style={styles.body}>
-                        {(this.props.puzzle.type === 'caesar') ? 
-                            caesar(this.props.puzzle.plaintext) :
-                            ((this.props.puzzle.type === 'vigenere') ?
-                                vigenere(this.props.puzzle.plaintext, this.props.puzzle.key) :
-                                atbash(this.props.puzzle.plaintext)
-                        )}
+                        {this.state.ciphertext}
                     </Text>
                     <FormInput 
+                        onChangeText={solution => this.setState({solution})}
+                        textInputRef={this.state.solution}  
                         placeholder={'Solution'} 
                     />
-                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' />
+                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
                     <Modal
                         visible={this.state.modalVisible}
                         onRequestClose={() => {this.setModalVisible(!this.state.modalVisible)}}
