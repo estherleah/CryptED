@@ -58,6 +58,11 @@ export default (state = initialState, action) => {
                 ...state,
                 ...action.newPuzzle,
             };
+
+        case 'PUZZLE_SOLVED':
+            return {
+                ...state,
+            };
             
         default:
             return state;

@@ -56,3 +56,14 @@ export const loadCryptographyPuzzles = () => {
         });
     };
 };
+
+export const cryptographyPuzzleSolved = (id) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/cryptography/${id}/solvedBy/${currentUser.uid}`)
+        .set(true)
+        .then(() => {
+            dispatch({ type: 'PUZZLE_SOLVED' });
+        });
+    };
+}
