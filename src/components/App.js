@@ -11,18 +11,19 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import firebase from 'firebase';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, bindActionCreators } from 'redux';
+import { Provider, connect } from 'react-redux';
 import Thunk from 'redux-thunk';
 import Login from './Login';
 import Navigation from './Navigation';
 import reducers from '../reducers/Reducer';
+import * as actions from '../actions';
 import styles from '../styles';
 
 // Store
 const store = createStore(reducers, applyMiddleware(Thunk));
 
-export default class App extends Component {
+class App extends Component {
     // Added to remove timer warning when using firebase.
     constructor() {
         super();
@@ -50,10 +51,18 @@ export default class App extends Component {
         });
     }
 
+    // Load initial user data.
+    loadData() {
+        this.props.loadUser();
+        this.props.loadUserID();
+        this.props.loadScore();
+    }
+
     // Initial view of the application depending on if logged in or not.
     renderInitialView() {
         switch (this.state.loggedIn) {
             case true:
+                this.loadData();
                 return <Navigation />;
             case false:
                 return <Login />;
@@ -70,3 +79,13 @@ export default class App extends Component {
         );
     }
 }
+
+// Connect store with app so can load initial user data into store.
+const connectWithStore = (store, App) => {
+    var ConnectedApp = connect(null, actions)(App)
+    return function (props) {
+        return <ConnectedApp {...props} store={store} />
+    }
+}
+
+export default connectWithStore(store, App);
