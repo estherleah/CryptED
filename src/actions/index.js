@@ -74,8 +74,19 @@ export const loadScore = () => {
 export const loadUserID = () => {
     const { currentUser } = firebase.auth();
     return {
-        type: 'USER_FETCH',
+        type: 'USERID_FETCH',
         payload: currentUser.uid,
+    };
+};
+
+// Load the user data.
+export const loadUser = () => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/`)
+        .on('value', snapshot => {
+            dispatch({ type: 'USER_FETCH', payload: snapshot.val() });
+        });
     };
 };
 

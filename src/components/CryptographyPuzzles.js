@@ -11,6 +11,7 @@ import styles from '../styles';
 class CryptographyPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
+        this.props.loadUser();
         this.props.loadUserID();
         this.props.loadScore();
         this.props.loadCryptographyPuzzles();

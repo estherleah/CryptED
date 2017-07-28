@@ -60,6 +60,13 @@
     },
     "members": {
         "user-1": {
+            "admin": true,
+            "score": 0,
+            "solved": {
+            }
+        },
+        "user-2": {
+            "admin": false,
             "score": 0,
             "solved": {
             }

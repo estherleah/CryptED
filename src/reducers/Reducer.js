@@ -8,6 +8,7 @@ const initialState = {
     solution: '',
     notes: '',
     loadingPuzzles: false,
+    user: null,
     score: 0,
     uid: '',
 };
@@ -27,11 +28,17 @@ export default (state = initialState, action) => {
                 cryptoPuzzles: action.payload,
             };
 
-        case 'USER_FETCH':
+        case 'USERID_FETCH':
             return {
                 ...state,
                 uid: action.payload,
-            }
+            };
+
+        case 'USER_FETCH':
+            return {
+                ...state,
+                user: action.payload,
+            };
 
         case 'SCORE_FETCH':
             return {
