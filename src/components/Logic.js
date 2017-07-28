@@ -22,7 +22,7 @@ class Logic extends Component {
             // check if already solved the puzzle
             if (!JSON.stringify(this.props.puzzle).contains(this.props.uid)) {
                 this.props.logicPuzzleSolved(this.props.puzzle.id);
-                this.props.updateScore(2 + this.props.score, this.props.puzzle.id);
+                this.props.updateScore(this.props.puzzle.rating + this.props.score, this.props.puzzle.id);
             }
             Alert.alert("Correct", this.state.solution + " is the correct answer");
             this.props.noneSelected();

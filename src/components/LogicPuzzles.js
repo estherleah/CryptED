@@ -32,7 +32,7 @@ class LogicPuzzles extends Component {
                         renderRow={(rowData) =>
                             <ListItem 
                                 title={rowData.problem}
-                                subtitle={(JSON.stringify(rowData).contains(this.props.uid) ? 'Solved' : '')}
+                                subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(rowData).contains(this.props.uid) ? 'Solved' : '')}
                                 subtitleStyle={styles.subtitle}
                                 onPress={() => this.props.selectPuzzle(rowData)} 
                             />
