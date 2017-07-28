@@ -24,11 +24,13 @@ export const formUpdate = ({ prop, value }) => {
 };
 
 // Creating a new puzzle and adding it to the database.
-export const createNewPuzzle = ({ problem, solution, notes }) => {
+// TODO: allow user to add rating for new puzzle
+export const createNewPuzzle = ({ problem, solution, notes, rating=2 }) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/logic`)
-        .push({ problem, solution, notes })
+        var id = firebase.database().ref(`/puzzles/logic`).push().key;
+        firebase.database().ref(`/puzzles/logic/${id}`)
+        .update({ problem, solution, notes, id, rating })
         .then(() => {
             dispatch({ type: 'NEW_PUZZLE' });
         });
