@@ -55,7 +55,6 @@ class App extends Component {
     loadData() {
         this.props.loadUser();
         this.props.loadUserID();
-        this.props.loadScore();
     }
 
     // Initial view of the application depending on if logged in or not.

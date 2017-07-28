@@ -59,17 +59,6 @@ export const loadCryptographyPuzzles = () => {
     };
 };
 
-// Load the user's score from the database.
-export const loadScore = () => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/score`)
-        .on('value', snapshot => {
-            dispatch({ type: 'SCORE_FETCH', payload: snapshot.val() });
-        });
-    };
-};
-
 // Load the userID.
 export const loadUserID = () => {
     const { currentUser } = firebase.auth();

@@ -22,7 +22,7 @@ class Logic extends Component {
             // check if already solved the puzzle
             if (!JSON.stringify(this.props.puzzle).contains(this.props.uid)) {
                 this.props.logicPuzzleSolved(this.props.puzzle.id);
-                this.props.updateScore(this.props.puzzle.rating + this.props.score, this.props.puzzle.id);
+                this.props.updateScore(this.props.puzzle.rating + this.props.user.score, this.props.puzzle.id);
             }
             Alert.alert("Correct", this.state.solution + " is the correct answer");
             this.props.noneSelected();
@@ -66,7 +66,7 @@ class Logic extends Component {
 const mapStateToProps = (state) => {
     return {
         puzzle: state.puzzleSelected,
-        score: state.score,
+        user: state.user,
         uid: state.uid,
     };
 };
