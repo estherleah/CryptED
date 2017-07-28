@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, Alert } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
@@ -7,6 +7,30 @@ import * as actions from '../actions';
 import styles from '../styles';
 
 class Logic extends Component {
+    // Initial state
+    state = {
+        solution: '',
+    };
+
+    // What happens when submit a solution.
+    onSubmit() {
+        const { solution } = this.state;
+        const { puzzle } = this.props;
+        // check to see if correct solution
+        // TODO: need to check this in a better way e.g. if wording is slightly different...
+        if (this.state.solution.toLowerCase() === this.props.puzzle.solution.toLowerCase()) {
+            // check if already solved the puzzle
+            if (!JSON.stringify(this.props.puzzle).contains(this.props.uid)) {
+                this.props.logicPuzzleSolved(this.props.puzzle.id);
+                this.props.updateScore(2 + this.props.score, this.props.puzzle.id);
+            }
+            Alert.alert("Correct", this.state.solution + " is the correct answer");
+            this.props.noneSelected();
+        } else {
+            Alert.alert("Incorrect", "Please try again");
+        }
+    }
+
     render() {
         return(
             <View style={styles.container}>
@@ -27,9 +51,11 @@ class Logic extends Component {
                         {this.props.puzzle.problem}
                     </Text>
                     <FormInput 
+                        onChangeText={solution => this.setState({solution})}
+                        textInputRef={this.state.solution}  
                         placeholder={'Solution'} 
                     />
-                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' />
+                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
                 </ScrollView>
             </View>
         );
@@ -40,6 +66,8 @@ class Logic extends Component {
 const mapStateToProps = (state) => {
     return {
         puzzle: state.puzzleSelected,
+        score: state.score,
+        uid: state.uid,
     };
 };
 
