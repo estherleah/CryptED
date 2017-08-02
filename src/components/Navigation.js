@@ -46,7 +46,7 @@ const Navigation = DrawerNavigator({
             drawerLabel: 'Log out',
             drawerIcon: () => 
                 (<Icon name='logout' type='material-community' />),
-        },
+        }
     },
 }, {
     drawerWidth: 300,

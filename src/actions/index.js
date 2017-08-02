@@ -108,7 +108,7 @@ export const logicPuzzleSolved = (id) => {
 };
 
 // Update the score when a puzzle is solved.
-export const updateScore = (score, id) => {
+export const updateScore = (score) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/score`)
