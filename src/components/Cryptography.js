@@ -49,7 +49,7 @@ class Cryptography extends Component {
         // check to see if correct solution
         if (this.state.solution.toLowerCase() === this.props.puzzle.plaintext.toLowerCase()) {
             // check if already solved the puzzle
-            if (!JSON.stringify(this.props.puzzle).contains(this.props.uid)) {
+            if (!JSON.stringify(this.props.user.solved).contains(this.props.puzzle.id)) {
                 this.props.cryptographyPuzzleSolved(this.props.puzzle.id);
                 this.props.updateScore(this.props.puzzle.rating + this.props.user.score);
             }

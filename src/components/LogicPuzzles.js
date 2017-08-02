@@ -31,7 +31,7 @@ class LogicPuzzles extends Component {
                         renderRow={(rowData) =>
                             <ListItem 
                                 title={rowData.problem}
-                                subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(rowData).contains(this.props.uid) ? 'Solved' : '')}
+                                subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.id) ? 'Solved' : '')}
                                 subtitleStyle={styles.subtitle}
                                 onPress={() => this.props.selectPuzzle(rowData)} 
                             />
@@ -56,6 +56,7 @@ const mapStateToProps = (state) => {
         logicPuzzles: state.logicPuzzles,
         detailView: state.detailView,
         uid: state.uid,
+        user: state.user,
     };
 }
 

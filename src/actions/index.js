@@ -83,8 +83,6 @@ export const loadUser = () => {
 export const cryptographyPuzzleSolved = (id) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/cryptography/${id}/solvedBy/${currentUser.uid}`)
-        .set(true)
         firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
         .set(true)
         .then(() => {
@@ -97,8 +95,6 @@ export const cryptographyPuzzleSolved = (id) => {
 export const logicPuzzleSolved = (id) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/logic/${id}/solvedBy/${currentUser.uid}`)
-        .set(true)
         firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
         .set(true)
         .then(() => {
