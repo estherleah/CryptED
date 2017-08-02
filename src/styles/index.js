@@ -60,4 +60,9 @@ export default styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
+
+    // Settings page
+    badge: {
+        backgroundColor: '#567FDE',
+    },
 });

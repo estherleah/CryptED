@@ -41,6 +41,7 @@ class Settings extends Component {
                                 hideChevron={true} 
                                 title={rowData.name}
                                 leftIcon={{name: rowData.icon, type: rowData.iconType}}
+                                badge={{ value: rowData.value, containerStyle: styles.badge }}
                             />
                         } 
                     />
