@@ -66,7 +66,6 @@ const mapStateToProps = (state) => {
     return {
         puzzle: state.puzzleSelected,
         user: state.user,
-        uid: state.uid,
     };
 };
 

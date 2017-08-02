@@ -55,7 +55,6 @@ const mapStateToProps = (state) => {
     return {
         cryptoPuzzles: state.cryptoPuzzles,
         detailView: state.detailView,
-        uid: state.uid,
         user: state.user,
     };
 }

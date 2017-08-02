@@ -51,17 +51,11 @@ class App extends Component {
         });
     }
 
-    // Load initial user data.
-    loadData() {
-        this.props.loadUser();
-        this.props.loadUserID();
-    }
-
     // Initial view of the application depending on if logged in or not.
     renderInitialView() {
         switch (this.state.loggedIn) {
             case true:
-                this.loadData();
+                this.props.loadUser();
                 return <Navigation />;
             case false:
                 return <Login />;

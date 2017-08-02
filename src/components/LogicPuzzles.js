@@ -55,7 +55,6 @@ const mapStateToProps = (state) => {
     return {
         logicPuzzles: state.logicPuzzles,
         detailView: state.detailView,
-        uid: state.uid,
         user: state.user,
     };
 }

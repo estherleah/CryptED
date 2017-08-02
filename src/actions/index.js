@@ -27,10 +27,11 @@ export const formUpdate = ({ prop, value }) => {
 // TODO: allow user to add rating for new puzzle
 export const createNewPuzzle = ({ problem, solution, notes, rating=2 }) => {
     const { currentUser } = firebase.auth();
+    addedBy = currentUser.uid;
     return (dispatch) => {
         var id = firebase.database().ref(`/puzzles/logic`).push().key;
         firebase.database().ref(`/puzzles/logic/${id}`)
-        .update({ problem, solution, notes, id, rating })
+        .update({ problem, solution, notes, id, rating, addedBy })
         .then(() => {
             dispatch({ type: 'NEW_PUZZLE' });
         });
@@ -56,15 +57,6 @@ export const loadCryptographyPuzzles = () => {
         .on('value', snapshot => {
             dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: snapshot.val() });
         });
-    };
-};
-
-// Load the userID.
-export const loadUserID = () => {
-    const { currentUser } = firebase.auth();
-    return {
-        type: 'USERID_FETCH',
-        payload: currentUser.uid,
     };
 };
 
