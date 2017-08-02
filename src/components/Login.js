@@ -30,7 +30,14 @@ export default class Login extends Component {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(this.onAuthSuccess.bind(this))
             .catch(() => {
+                // create new user
                 firebase.auth().createUserWithEmailAndPassword(email, password)
+                    // add initial user data to database
+                    // TODO: admin user
+                    .then(function(firebaseUser) {
+                        firebase.database().ref(`/users/${firebaseUser.uid}/score`).set(0)
+                        firebase.database().ref(`/users/${firebaseUser.uid}/admin`).set(false)
+                    })
                     .then(this.onAuthSuccess.bind(this))
                     .catch(this.onAuthFailed.bind(this));
             });
