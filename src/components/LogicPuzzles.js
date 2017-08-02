@@ -4,7 +4,6 @@ import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Logic from './Logic';
-import { caesar, vigenere, atbash } from '../functions/ciphers.js';
 import * as actions from '../actions';
 import styles from '../styles';
 

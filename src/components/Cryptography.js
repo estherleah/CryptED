@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { caesar, vigenere, atbash } from '../functions/ciphers.js';
+import { caesar, vigenere, atbash } from '../actions/ciphers.js';
 import * as actions from '../actions';
 import styles from '../styles';
 
