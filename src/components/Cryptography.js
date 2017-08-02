@@ -17,12 +17,19 @@ class Cryptography extends Component {
     // Executes before component mounts.
     // Sets ciphertext so it does not change as the state changes.
     componentWillMount() {
-        {(this.props.puzzle.type === 'caesar') ? 
-            cipher = caesar(this.props.puzzle.plaintext) :
-            ((this.props.puzzle.type === 'vigenere') ?
-                cipher = vigenere(this.props.puzzle.plaintext, this.props.puzzle.key) :
-                cipher = atbash(this.props.puzzle.plaintext)
-        )}
+        switch (this.props.puzzle.type) {
+            case 'caesar':
+                cipher = caesar(this.props.puzzle.plaintext);
+                break;
+            case 'vigenere':
+                cipher = vigenere(this.props.puzzle.plaintext, this.props.puzzle.key);
+                break;
+            case 'atbash':
+                cipher = atbash(this.props.puzzle.plaintext);
+                break;    
+            default:
+                cipher = this.props.puzzle.ciphertext;
+        }
         this.setState({
             ciphertext: cipher,
         })
