@@ -70,6 +70,7 @@ export default styles = StyleSheet.create({
     // Settings page
     badge: {
         backgroundColor: '#567FDE',
+        marginRight: 7,
     },
 
     // Add puzzle page

@@ -22,7 +22,8 @@ class Settings extends Component {
                         hideChevron={true} 
                         title='Admin'
                         leftIcon={{name: 'user', type: 'evilicon'}}
-                        badge={{ value: JSON.stringify(this.props.user.admin), containerStyle: styles.badge }}
+                        switchButton={true}
+                        switched={this.props.user.admin}
                     />
                 </List>
             </View>
