@@ -69,4 +69,10 @@ export default styles = StyleSheet.create({
     badge: {
         backgroundColor: '#567FDE',
     },
+
+    // Add puzzle page
+    picker: {
+        marginLeft: 20,
+        marginRight: 20,
+    },
 });

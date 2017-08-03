@@ -25,7 +25,7 @@ export const formUpdate = ({ prop, value }) => {
 
 // Creating a new puzzle and adding it to the database.
 // TODO: allow user to add rating for new puzzle
-export const createNewPuzzle = ({ problem, solution, notes, rating=2 }) => {
+export const createNewPuzzle = ({ problem, solution, notes, rating }) => {
     const { currentUser } = firebase.auth();
     addedBy = currentUser.uid;
     return (dispatch) => {

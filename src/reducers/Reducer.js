@@ -7,6 +7,7 @@ const initialState = {
     problem: '',
     solution: '',
     notes: '',
+    rating: 1,
     loadingPuzzles: false,
     user: null,
 };
@@ -58,6 +59,7 @@ export default (state = initialState, action) => {
                 problem: '',
                 solution: '',
                 notes: '',
+                rating: null,
             };
 
         case 'ADD_PUZZLE':
