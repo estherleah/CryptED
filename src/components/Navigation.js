@@ -2,6 +2,7 @@ import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import CryptographyPuzzles from './CryptographyPuzzles';
+import CryptographyHistory from './CryptographyHistory';
 import LogicPuzzles from './LogicPuzzles';
 import AddPuzzle from './AddPuzzle';
 import Settings from './Settings';
@@ -14,6 +15,14 @@ const Navigation = DrawerNavigator({
             drawerLabel: 'Cryptography puzzles',
             drawerIcon: () => 
                 (<Icon name='key-variant' type='material-community' />),
+        }
+    },
+    CryptographyHistory: {
+        screen: CryptographyHistory,
+        navigationOptions: {
+            drawerLabel: 'History of cryptography',
+            drawerIcon: () => 
+                (<Icon name='history' type='material-community' />),
         }
     },
     LogicPuzzles: {
@@ -29,7 +38,7 @@ const Navigation = DrawerNavigator({
         navigationOptions: {
             drawerLabel: 'Add puzzle',
             drawerIcon: () => 
-                (<Icon name='plus' type='font-awesome' />),
+                (<Icon name='plus' type='octicon' />),
         }
     },
     Settings: {
@@ -37,7 +46,7 @@ const Navigation = DrawerNavigator({
         navigationOptions: {
             drawerLabel: 'Settings',
             drawerIcon: () => 
-                (<Icon name='settings' />),
+                (<Icon name='settings' type='material-community' />),
         }
     },
     Logout: {

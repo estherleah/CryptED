@@ -101,7 +101,7 @@ class Cryptography extends Component {
                                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                 />
                             </View>
-                            <ScrollView style={styles.content}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
                                 <Text style={styles.title}>{this.props.puzzle.category}</Text>
                                 <Text>{this.props.puzzle.notes}</Text>
                             </ScrollView>

@@ -31,6 +31,11 @@ export default styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
+    content: {
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 20,
+    },
     button: {
         margin: 20,
     },
@@ -59,10 +64,7 @@ export default styles = StyleSheet.create({
     more: {
         textAlign: 'center',
         marginTop: 45,
-    },
-    content: {
-        paddingLeft: 20,
-        paddingRight: 20,
+        paddingBottom: 20,
     },
 
     // Settings page
