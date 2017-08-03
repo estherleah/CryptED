@@ -19,7 +19,7 @@ class AddPuzzle extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
                     <Text style={styles.title}>Add your own puzzle</Text>
                     <FormInput 

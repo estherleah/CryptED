@@ -6,12 +6,16 @@ export default styles = StyleSheet.create({
     //
     container: {
         flex: 1,
+        flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     header: {
         height: 70,
+        width: '100%',
+    },
+    scroll: {
         width: '100%',
     },
     title: {

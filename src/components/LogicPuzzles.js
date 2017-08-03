@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ListView } from 'react-native';
+import { Text, View, ListView, ScrollView } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
@@ -23,21 +23,23 @@ class LogicPuzzles extends Component {
         return (this.props.detailView) ?
             <Logic />:
             <View style={styles.container}>
-                <AppHeader />
-                <List containerStyle={styles.list}>
-                    <ListView 
-                        enableEmptySections
-                        dataSource={this.dataSource} 
-                        renderRow={(rowData) =>
-                            <ListItem 
-                                title={rowData.problem}
-                                subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.id) ? 'Solved' : '')}
-                                subtitleStyle={styles.subtitle}
-                                onPress={() => this.props.selectPuzzle(rowData)} 
-                            />
-                        } 
-                    />
-                </List>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                    <AppHeader />
+                    <List containerStyle={styles.list}>
+                        <ListView 
+                            enableEmptySections
+                            dataSource={this.dataSource} 
+                            renderRow={(rowData) =>
+                                <ListItem 
+                                    title={rowData.problem}
+                                    subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.id) ? 'Solved' : '')}
+                                    subtitleStyle={styles.subtitle}
+                                    onPress={() => this.props.selectPuzzle(rowData)} 
+                                />
+                            } 
+                        />
+                    </List>
+                </ScrollView>
             </View>
     }
 
