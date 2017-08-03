@@ -48,11 +48,11 @@ class AddPuzzle extends Component {
                         selectedValue={this.props.rating}
                         onValueChange={value => this.props.formUpdate({ prop: 'rating', value })}
                     >
-                        <Picker.Item label="Very easy" value='1' />
-                        <Picker.Item label="Easy" value='2' />
-                        <Picker.Item label="Medium" value='3' />
-                        <Picker.Item label="Hard" value='4' />
-                        <Picker.Item label="Very hard" value='5' />
+                        <Picker.Item label="Very easy" value={1} />
+                        <Picker.Item label="Easy" value={2} />
+                        <Picker.Item label="Medium" value={3} />
+                        <Picker.Item label="Hard" value={4} />
+                        <Picker.Item label="Very hard" value={5} />
                     </Picker>
                     <View>
                         {
