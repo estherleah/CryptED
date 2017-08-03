@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ListView } from 'react-native';
+import { Text, View } from 'react-native';
 import { List, ListItem, Icon, Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
