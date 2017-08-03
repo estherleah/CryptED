@@ -2,6 +2,7 @@ import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import CryptographyPuzzles from './CryptographyPuzzles';
+import CyberSecurityPuzzles from './CyberSecurityPuzzles';
 import CryptographyHistory from './CryptographyHistory';
 import LogicPuzzles from './LogicPuzzles';
 import AddPuzzle from './AddPuzzle';
@@ -15,6 +16,14 @@ const Navigation = DrawerNavigator({
             drawerLabel: 'Cryptography puzzles',
             drawerIcon: () => 
                 (<Icon name='key-variant' type='material-community' />),
+        }
+    },
+    CyberSecurityPuzzles: {
+        screen: CyberSecurityPuzzles,
+        navigationOptions: {
+            drawerLabel: 'Cybersecurity puzzles',
+            drawerIcon: () => 
+                (<Icon name='security' />),
         }
     },
     CryptographyHistory: {
