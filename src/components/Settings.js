@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { List, ListItem, Icon, Badge } from 'react-native-elements';
+import { Text, View, Alert } from 'react-native';
+import { List, ListItem, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import * as actions from '../actions';
 import styles from '../styles';
 
 class Settings extends Component {
+    // Method for when toggle the admin switch.
+    // TODO: confirmation before changing admin status
+    onAdminToggle() {
+        this.props.changeAdmin(!this.props.user.admin);
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -24,6 +30,7 @@ class Settings extends Component {
                         leftIcon={{name: 'user', type: 'evilicon'}}
                         switchButton={true}
                         switched={this.props.user.admin}
+                        onSwitch={this.onAdminToggle.bind(this)}
                     />
                 </List>
             </View>

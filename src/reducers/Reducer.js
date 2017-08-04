@@ -78,6 +78,12 @@ export default (state = initialState, action) => {
                 ...state,
                 score: action.payload,
             };
+
+        case 'CHANGE_ADMIN':
+            return {
+                ...state,
+                admin: action.payload,
+            };
             
         default:
             return state;

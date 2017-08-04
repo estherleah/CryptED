@@ -106,3 +106,15 @@ export const updateScore = (score) => {
         });
     };
 };
+
+// Change the admin status of a user.
+export const changeAdmin = (admin) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/admin`)
+        .set(admin)
+        .then(() => {
+            dispatch({ type: 'CHANGE_ADMIN', payload: admin });
+        });
+    };
+};
