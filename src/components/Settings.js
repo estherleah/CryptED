@@ -7,10 +7,38 @@ import * as actions from '../actions';
 import styles from '../styles';
 
 class Settings extends Component {
+    // Initial state
+    state = { adminUser: this.props.user.admin };
+
     // Method for when toggle the admin switch.
-    // TODO: confirmation before changing admin status
     onAdminToggle() {
-        this.props.changeAdmin(!this.props.user.admin);
+        this.setState({ adminUser: !this.state.adminUser });
+        // user is already an admin and wants to remove admin status
+        if (this.props.user.admin) {
+            Alert.alert(
+                'Confirmation',
+                'Are you sure you no longer wish to be an admin?',
+                [
+                    {text: 'Cancel', onPress: () => this.setState({adminUser: true}), style: 'cancel'},
+                    {text: 'OK', onPress: () => this.props.changeAdmin(!this.props.user.admin)},
+                ],
+                { onDismiss:() => this.setState({adminUser: true}) }
+            )
+        }
+        // user wants to become an admin
+        // TODO: checking before becomes admin (e.g. checking age)
+        else {
+            Alert.alert(
+                'Confirmation',
+                'Are you sure you would like to be an admin?',
+                [
+                    {text: 'Cancel', onPress: () => this.setState({adminUser: false}), style: 'cancel'},
+                    {text: 'OK', onPress: () => this.props.changeAdmin(!this.props.user.admin)},
+                ],
+                { onDismiss:() => this.setState({adminUser: false}) }
+            )
+        }
+        //this.props.changeAdmin(!this.props.user.admin);
     }
 
     render() {
@@ -29,7 +57,7 @@ class Settings extends Component {
                         title='Admin'
                         leftIcon={{name: 'user', type: 'evilicon'}}
                         switchButton={true}
-                        switched={this.props.user.admin}
+                        switched={this.state.adminUser}
                         onSwitch={this.onAdminToggle.bind(this)}
                     />
                 </List>
