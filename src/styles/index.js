@@ -47,6 +47,12 @@ export default styles = StyleSheet.create({
     subtitle: {
         fontWeight: 'normal',
     },
+    error: {
+        color: 'red',
+        fontSize: 16,
+        textAlign: 'center',
+        margin: 10,
+    },
 
     //
     // PAGE SPECIFIC STYLES
@@ -78,5 +84,9 @@ export default styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         borderWidth: 0,
+    },
+    errorList: {
+        color: 'red',
+        textAlign: 'center',
     },
 });

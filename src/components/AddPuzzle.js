@@ -82,7 +82,7 @@ class AddPuzzle extends Component {
                     <View>
                         {
                             (this.state.errors.length != 0) ?
-                                this.state.errors.map((error, index) => <Text key={index}>{error}</Text>) :
+                                this.state.errors.map((error, index) => <Text style={styles.errorList} key={index}>{error}</Text>) :
                                 null
                         }
                     </View>
