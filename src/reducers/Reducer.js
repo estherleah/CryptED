@@ -7,7 +7,7 @@ const initialState = {
     problem: '',
     solution: '',
     notes: '',
-    rating: 1,
+    rating: 0,
     loadingPuzzles: false,
     user: null,
 };
@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
                 problem: '',
                 solution: '',
                 notes: '',
-                rating: 1, // change back to rating: null after changed rating field to compulsory
+                rating: 0,
             };
 
         case 'ADD_PUZZLE':
