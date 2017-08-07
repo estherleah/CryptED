@@ -81,9 +81,19 @@ export default styles = StyleSheet.create({
 
     // Add puzzle page
     select: {
-        marginLeft: 10,
-        marginRight: 10,
+        marginLeft: 20,
+        marginRight: 20,
         borderWidth: 0,
+        borderBottomWidth: 1,
+        borderColor: 'gray',
+        width: '100%' - 40,
+    },
+    selectOptions: {
+        backgroundColor : '#F5FCFF',
+        width: '90%',
+        height: 200,
+        alignSelf: 'center',
+        borderColor: 'lightgray',
     },
     errorList: {
         color: 'red',

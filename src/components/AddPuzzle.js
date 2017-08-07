@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
-import { FormInput, FormValidationMessage, Button } from 'react-native-elements';
+import { FormInput, Button } from 'react-native-elements';
 import { Select, Option } from "react-native-chooser";
 import AppHeader from './AppHeader';
 import LogicPuzzles from './LogicPuzzles';
@@ -19,7 +19,7 @@ class AddPuzzle extends Component {
         const { problem, solution, notes, rating } = this.props;
         // reset state so no errors
         this.setState({ errors: [] });
-        // array to store errors.
+        // array to store errors
         let formErrors = [];
         // check if valid - if not valid then add an error
         if (this.props.problem.length == 0) {
@@ -70,7 +70,8 @@ class AddPuzzle extends Component {
                         defaultText  = 'Level' 
                         style = {styles.select} 
                         backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
-                        optionListStyle = {{backgroundColor : '#F5FCFF'}} 
+                        optionListStyle = {styles.selectOptions} 
+                        indicator = 'down'
                     >
                         <Option value = {1}>Very easy</Option>
                         <Option value = {2}>Easy</Option>
@@ -80,11 +81,9 @@ class AddPuzzle extends Component {
                     </Select>
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
                     <View>
-                        {
-                            (this.state.errors.length != 0) ?
-                                this.state.errors.map((error, index) => <Text style={styles.errorList} key={index}>{error}</Text>) :
-                                null
-                        }
+                        {(this.state.errors.length != 0) ?
+                            this.state.errors.map((error, index) => <Text style={styles.errorList} key={index}>{error}</Text>) :
+                            null}
                     </View>
                 </ScrollView>
             </View>
