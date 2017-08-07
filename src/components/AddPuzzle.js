@@ -71,7 +71,8 @@ class AddPuzzle extends Component {
                         style = {styles.select} 
                         backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
                         optionListStyle = {styles.selectOptions} 
-                        indicator = 'down'
+                        indicator = 'down' 
+                        indicatorColor = 'gray'
                     >
                         <Option value = {1}>Very easy</Option>
                         <Option value = {2}>Easy</Option>
