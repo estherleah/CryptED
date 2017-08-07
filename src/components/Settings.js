@@ -38,7 +38,6 @@ class Settings extends Component {
                 { onDismiss:() => this.setState({adminUser: false}) }
             )
         }
-        //this.props.changeAdmin(!this.props.user.admin);
     }
 
     render() {
