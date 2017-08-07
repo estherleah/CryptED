@@ -74,8 +74,9 @@ export default styles = StyleSheet.create({
     },
 
     // Add puzzle page
-    picker: {
-        marginLeft: 20,
-        marginRight: 20,
+    select: {
+        marginLeft: 10,
+        marginRight: 10,
+        borderWidth: 0,
     },
 });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, Picker } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { FormInput, FormValidationMessage, Button } from 'react-native-elements';
+import {Select, Option} from "react-native-chooser";
 import AppHeader from './AppHeader';
 import LogicPuzzles from './LogicPuzzles';
 import { connect } from 'react-redux';
@@ -9,7 +10,7 @@ import styles from '../styles';
 
 class AddPuzzle extends Component {
     // Method for what happens when press the add button.
-    // TODO: validate that there is text in both the problem and solution fields.
+    // TODO: validate that there is text in both the problem and solution fields. Also validate level.
     onAddPress() {
         const { problem, solution, notes, rating } = this.props;
         this.props.createNewPuzzle({problem, solution, notes, rating});
@@ -43,17 +44,21 @@ class AddPuzzle extends Component {
                         value={this.props.notes} 
                         onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 
                     />
-                    <Picker
-                        style={styles.picker}
-                        selectedValue={this.props.rating}
-                        onValueChange={value => this.props.formUpdate({ prop: 'rating', value })}
+                    <Select
+                        onSelect = {value => this.props.formUpdate({ prop: 'rating', value })} 
+                        selectedValue={this.props.rating} 
+                        selected = {this.props.rating}
+                        defaultText  = 'Level' 
+                        style = {styles.select} 
+                        backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                        optionListStyle = {{backgroundColor : '#F5FCFF'}} 
                     >
-                        <Picker.Item label="Very easy" value={1} />
-                        <Picker.Item label="Easy" value={2} />
-                        <Picker.Item label="Medium" value={3} />
-                        <Picker.Item label="Hard" value={4} />
-                        <Picker.Item label="Very hard" value={5} />
-                    </Picker>
+                        <Option value = {1}>Very easy</Option>
+                        <Option value = {2}>Easy</Option>
+                        <Option value = {3}>Medium</Option>
+                        <Option value = {4}>Hard</Option>
+                        <Option value = {5}>Very hard</Option>
+                    </Select>
                     <View>
                         {
                             (this.props.problem.length != 0  && this.props.solution.length != 0) ?

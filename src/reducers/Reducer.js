@@ -59,7 +59,7 @@ export default (state = initialState, action) => {
                 problem: '',
                 solution: '',
                 notes: '',
-                rating: null,
+                rating: 1, // change back to rating: null after changed rating field to compulsory
             };
 
         case 'ADD_PUZZLE':
