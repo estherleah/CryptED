@@ -40,7 +40,6 @@ export const createNewPuzzle = ({ problem, solution, notes, rating }) => {
 
 // Load the logic puzzles from the database.
 export const loadLogicPuzzles = () => {
-    const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/logic`)
         .on('value', snapshot => {
@@ -51,11 +50,20 @@ export const loadLogicPuzzles = () => {
 
 // Load the cryptography puzzles from the database.
 export const loadCryptographyPuzzles = () => {
-    const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/cryptography`)
         .on('value', snapshot => {
             dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: snapshot.val() });
+        });
+    };
+};
+
+// Load the cybersecurity puzzles from the database.
+export const loadCyberSecurityPuzzles = () => {
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/cybersecurity`)
+        .on('value', snapshot => {
+            dispatch({ type: 'CYBERSECURITY_FETCH', payload: snapshot.val() });
         });
     };
 };
@@ -67,6 +75,18 @@ export const loadUser = () => {
         firebase.database().ref(`/users/${currentUser.uid}/`)
         .on('value', snapshot => {
             dispatch({ type: 'USER_FETCH', payload: snapshot.val() });
+        });
+    };
+};
+
+// Write to the database when cybersecurity puzzle is solved.
+export const cyberSecurityPuzzleSolved = (id) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
+        .set(true)
+        .then(() => {
+            dispatch({ type: 'PUZZLE_SOLVED' });
         });
     };
 };

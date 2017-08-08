@@ -1,6 +1,7 @@
 // Initial state
 const initialState = {
     cryptoPuzzles: [],
+    cyberPuzzles: [],
     logicPuzzles: [],
     detailView: false,
     puzzleSelected: null,
@@ -26,6 +27,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 cryptoPuzzles: action.payload,
+            };
+
+        case 'CYBERSECURITY_FETCH':
+            return {
+                ...state,
+                cyberPuzzles: action.payload,
             };
 
         case 'USER_FETCH':
