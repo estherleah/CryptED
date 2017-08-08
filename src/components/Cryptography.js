@@ -63,7 +63,7 @@ class Cryptography extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
                         <Header 
                             backgroundColor='#567FDE'

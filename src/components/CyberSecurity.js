@@ -47,7 +47,9 @@ class CyberSecurity extends Component {
                         />
                     </View>
                     <Text style={styles.title}>Cyber Security Puzzle</Text>
-                    <Text style={styles.body}>{this.props.puzzle.problem}</Text> 
+                    <Text style={styles.body}>
+                        {this.props.puzzle.problem}
+                    </Text>
                     {(this.props.puzzle.type == 'text') ? 
                         <View>
                             <FormInput 
@@ -58,10 +60,10 @@ class CyberSecurity extends Component {
                         </View> : 
                         <View>
                             <View style={styles.content}>
-                                <Text>A: {this.props.puzzle.options.A}</Text>
-                                <Text>B: {this.props.puzzle.options.B}</Text>
-                                <Text>C: {this.props.puzzle.options.C}</Text>
-                                <Text>D: {this.props.puzzle.options.D}</Text>
+                                <Text>A:  {this.props.puzzle.options.A}</Text>
+                                <Text>B:  {this.props.puzzle.options.B}</Text>
+                                <Text>C:  {this.props.puzzle.options.C}</Text>
+                                <Text>D:  {this.props.puzzle.options.D}</Text>
                             </View>
                             <Select
                                 onSelect = {value => this.setState({solution: value})} 

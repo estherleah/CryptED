@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, Alert } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
+import { Select, Option } from "react-native-chooser";
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import styles from '../styles';
@@ -33,7 +34,7 @@ class Logic extends Component {
     render() {
         return(
             <View style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
                         <Header 
                             backgroundColor='#567FDE'
@@ -49,11 +50,39 @@ class Logic extends Component {
                     <Text style={styles.body}>
                         {this.props.puzzle.problem}
                     </Text>
-                    <FormInput 
-                        onChangeText={solution => this.setState({solution})}
-                        textInputRef={this.state.solution}  
-                        placeholder={'Solution'} 
-                    />
+                    {(this.props.puzzle.type == 'text') ? 
+                        <View>
+                            <FormInput 
+                                onChangeText={solution => this.setState({solution})}
+                                textInputRef={this.state.solution}  
+                                placeholder={'Solution'} 
+                            />
+                        </View> : 
+                        <View>
+                            <View style={styles.content}>
+                                <Text>A:  {this.props.puzzle.options.A}</Text>
+                                <Text>B:  {this.props.puzzle.options.B}</Text>
+                                <Text>C:  {this.props.puzzle.options.C}</Text>
+                                <Text>D:  {this.props.puzzle.options.D}</Text>
+                            </View>
+                            <Select
+                                onSelect = {value => this.setState({solution: value})} 
+                                selectedValue={this.state.solution} 
+                                selected = {this.state.solution} 
+                                defaultText  = 'Solution' 
+                                style = {styles.select} 
+                                backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                                optionListStyle = {styles.selectOptions} 
+                                indicator = 'down' 
+                                indicatorColor = 'gray'
+                            >
+                                <Option value = 'A'>Option A</Option>
+                                <Option value = 'B'>Option B</Option>
+                                <Option value = 'C'>Option C</Option>
+                                <Option value = 'D'>Option D</Option>
+                            </Select>
+                        </View>
+                    }
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
                 </ScrollView>
             </View>
