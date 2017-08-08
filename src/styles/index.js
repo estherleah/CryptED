@@ -99,4 +99,12 @@ export default styles = StyleSheet.create({
         color: 'red',
         textAlign: 'center',
     },
+
+    // Leaderboard page
+    row: {
+        padding: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
+        textAlign: 'center',
+    },
 });

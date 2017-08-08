@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, ListView } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import * as actions from '../actions';
@@ -27,19 +26,18 @@ class Leaderboard extends Component {
             <View style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
-                        <List containerStyle={styles.list}>
-                            <ListView 
-                                enableEmptySections
-                                dataSource={this.getData()} 
-                                renderRow={(rowData) =>
-                                    <ListItem 
-                                        hideChevron={true} 
-                                        title={rowData.name} 
-                                        badge={{ value: rowData.score, containerStyle: styles.badge }}
-                                    />
-                                } 
-                            />
-                        </List>
+                    <Text style={styles.title}>Top 10 scores</Text>
+                    <ListView 
+                        enableEmptySections
+                        dataSource={this.getData()} 
+                        renderRow={(rowData, sectionID, rowID) =>
+                            <View>
+                                <Text style={styles.row}>
+                                    {Number(rowID) + 1}. {rowData.name}: {rowData.score}
+                                </Text>
+                            </View>
+                        } 
+                    />
                 </ScrollView>
             </View>
         );
