@@ -13,6 +13,7 @@ class Leaderboard extends Component {
         this.props.loadScores();
     }
 
+    // Get the data for the top 10 scores.
     getData() {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
