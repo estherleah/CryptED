@@ -18,6 +18,7 @@ class AddPuzzle extends Component {
     // Method for what happens when press the add button. Validate input and add puzzle.
     onAddPress() {
         const { problem, solution, notes, rating, options } = this.props;
+        const type = this.state.type;
         // reset state so no errors
         this.setState({ errors: [] });
         // array to store errors
@@ -43,11 +44,11 @@ class AddPuzzle extends Component {
         if (formErrors.length == 0) {
             // if text puzzle
             if (this.state.type == 'text') {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options: []});
+                this.props.createNewPuzzle({problem, solution, notes, rating, options: [], type});
             }
             // if multiple choice puzzle
             else {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options});
+                this.props.createNewPuzzle({problem, solution, notes, rating, options, type});
             }
             this.props.navigation.navigate('LogicPuzzles');
         }
