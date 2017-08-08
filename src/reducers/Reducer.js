@@ -10,6 +10,7 @@ const initialState = {
     rating: 0,
     loadingPuzzles: false,
     user: null,
+    scores: [],
 };
 
 export default (state = initialState, action) => {
@@ -84,6 +85,12 @@ export default (state = initialState, action) => {
                 ...state,
                 admin: action.payload,
             };
+
+        case 'SCORES_FETCH':
+            return {
+                ...state,
+                scores: action.payload,
+            }
             
         default:
             return state;

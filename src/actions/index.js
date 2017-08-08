@@ -118,3 +118,30 @@ export const changeAdmin = (admin) => {
         });
     };
 };
+
+// Load the user scores from the database.
+// TODO: change to show name of user instead of key.
+export const loadScores = () => {
+    // initial array of scores
+    let userScores = [];
+    return (dispatch) => {
+        firebase.database().ref(`/users`)
+        .on('value', snapshot => {
+            // find each user's score
+            snapshot.forEach(data => {
+                user = data.key;
+                firebase.database().ref(`/users/${user}/score`)
+                .on('value', snapshot => {
+                    // add user's score to the array
+                    userScores.push({ name: user, score: snapshot.val() })
+                });
+            });
+            // sort the scores
+            userScores.sort((a, b) => {
+                return b.score - a.score;
+            });
+            // return 10 top scores
+            dispatch({ type: 'SCORES_FETCH', payload: userScores.slice(0, 10) });
+        });
+    };
+};

@@ -6,6 +6,7 @@ import CyberSecurityPuzzles from './CyberSecurityPuzzles';
 import CryptographyHistory from './CryptographyHistory';
 import LogicPuzzles from './LogicPuzzles';
 import AddPuzzle from './AddPuzzle';
+import Leaderboard from './Leaderboard';
 import Settings from './Settings';
 import Login from './Login';
 
@@ -48,6 +49,14 @@ const Navigation = DrawerNavigator({
             drawerLabel: 'Add puzzle',
             drawerIcon: () => 
                 (<Icon name='plus' type='octicon' />),
+        }
+    },
+    Leaderboard: {
+        screen: Leaderboard,
+        navigationOptions: {
+            drawerLabel: 'Leaderboard',
+            drawerIcon: () => 
+                (<Icon name='trophy' type='entypo' />),
         }
     },
     Settings: {
