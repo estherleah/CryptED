@@ -84,6 +84,7 @@ class AddPuzzle extends Component {
                         <Option value = 'multi'>Multiple choice</Option>
                     </Select>
                     <FormInput 
+                        multiline={true} 
                         placeholder={'Problem'} 
                         value={this.props.problem} 
                         onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
