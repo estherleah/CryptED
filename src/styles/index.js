@@ -104,10 +104,20 @@ export default styles = StyleSheet.create({
     },
 
     // Leaderboard page
-    row: {
-        padding: 5,
-        paddingLeft: 20,
-        paddingRight: 20,
+    scores: {
+        backgroundColor: '#567FDE',
+        color: 'white',
+        borderRadius: 30,
+        width: 30,
+        height: 30,
         textAlign: 'center',
+        marginRight: 5,
+        paddingTop: 5,
+    },
+    numbering: {
+        padding: 5,
+        paddingRight: 5,
+        fontSize: 16,
+        color: 'black',
     },
 });
