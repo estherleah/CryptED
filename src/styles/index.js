@@ -44,6 +44,9 @@ export default styles = StyleSheet.create({
         backgroundColor: '#F5FCFF',
         marginTop: 0,
     },
+    listItem: {
+        borderBottomColor: '#fafafa',
+    },
     subtitle: {
         fontWeight: 'normal',
     },

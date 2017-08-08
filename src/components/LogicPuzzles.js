@@ -31,6 +31,7 @@ class LogicPuzzles extends Component {
                             dataSource={this.dataSource} 
                             renderRow={(rowData) =>
                                 <ListItem 
+                                    containerStyle={styles.listItem} 
                                     title={rowData.problem}
                                     subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.id) ? 'Solved' : '')}
                                     subtitleStyle={styles.subtitle}

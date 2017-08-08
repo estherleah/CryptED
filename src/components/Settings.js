@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, Alert, ScrollView, Modal } from 'react-native';
 import { List, ListItem, Icon, Header } from 'react-native-elements';
-import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
+import Leaderboard from './Leaderboard';
 import * as actions from '../actions';
 import styles from '../styles';
 
@@ -70,12 +70,14 @@ class Settings extends Component {
                     <AppHeader />
                     <List containerStyle={styles.list}>
                         <ListItem 
+                            containerStyle={styles.listItem}
                             hideChevron={true} 
                             title='Score'
                             leftIcon={{name: 'trophy', type: 'evilicon'}}
                             badge={{ value: this.props.user.score, containerStyle: styles.badge }}
                         />
                         <ListItem 
+                            containerStyle={styles.listItem}
                             hideChevron={!this.props.user.admin} 
                             title={(this.props.user.admin) ? 'Admin options' : 'Admin'} 
                             leftIcon={{name: 'user', type: 'evilicon'}}
@@ -106,6 +108,7 @@ class Settings extends Component {
                             </View>
                             <List containerStyle={styles.list}>
                                 <ListItem 
+                                    containerStyle={styles.listItem}
                                     hideChevron={true} 
                                     title={'Admin status'} 
                                     leftIcon={{name: 'user', type: 'evilicon'}}
@@ -113,9 +116,16 @@ class Settings extends Component {
                                     switched={this.state.adminUser}
                                     onSwitch={this.onAdminToggle.bind(this)}
                                 />
+                                <ListItem 
+                                    containerStyle={styles.listItem}
+                                    title={'View scores'} 
+                                    leftIcon={{name: 'trophy', type: 'evilicon'}}
+                                />
                             </List>
                         </View>
                     </Modal>
+                    {/* End of modal */}
+
                 </ScrollView>
             </View>
         );

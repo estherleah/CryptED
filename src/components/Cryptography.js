@@ -85,6 +85,15 @@ class Cryptography extends Component {
                         placeholder={'Solution'} 
                     />
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
+                    <TouchableOpacity
+                        onPress={() => {this.setModalVisible(true)}}
+                    >
+                        <Text style={styles.more}>
+                            Learn more about {this.props.puzzle.type} ciphers...
+                        </Text>
+                    </TouchableOpacity>
+
+                    {/* Modal for more info on cipher */}
                     <Modal
                         visible={this.state.modalVisible}
                         onRequestClose={() => {this.setModalVisible(!this.state.modalVisible)}}
@@ -107,13 +116,8 @@ class Cryptography extends Component {
                             </ScrollView>
                         </View>
                     </Modal>
-                    <TouchableOpacity
-                        onPress={() => {this.setModalVisible(true)}}
-                    >
-                        <Text style={styles.more}>
-                            Learn more about {this.props.puzzle.type} ciphers...
-                        </Text>
-                    </TouchableOpacity>
+                    {/* End of modal */}
+                    
                 </ScrollView>
             </View>
         );
