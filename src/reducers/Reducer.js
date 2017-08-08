@@ -90,7 +90,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 scores: action.payload,
-            }
+            };
             
         default:
             return state;
