@@ -23,6 +23,14 @@ export const formUpdate = ({ prop, value }) => {
     };
 };
 
+// Updating the add puzzle solution options.
+export const optionsUpdate = ({ position, value }) => {
+    return {
+        type: 'OPTIONS_UPDATE',
+        payload: { position, value },
+    };
+};
+
 // Creating a new puzzle and adding it to the database.
 // TODO: allow user to add rating for new puzzle
 export const createNewPuzzle = ({ problem, solution, notes, rating }) => {

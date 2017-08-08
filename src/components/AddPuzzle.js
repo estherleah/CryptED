@@ -11,7 +11,8 @@ import styles from '../styles';
 class AddPuzzle extends Component {
     // Initial state
     state = {
-        errors: []
+        errors: [],
+        type: 'text',
     };
 
     // Method for what happens when press the add button. Validate input and add puzzle.
@@ -48,16 +49,76 @@ class AddPuzzle extends Component {
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
                     <Text style={styles.title}>Add your own puzzle</Text>
+                    <View>
+                        {(this.state.errors.length != 0) ?
+                            this.state.errors.map((error, index) => <Text style={styles.errorList} key={index}>{error}</Text>) :
+                            null}
+                    </View>
+                    <Select
+                        onSelect = {value => this.setState({type: value})} 
+                        selectedValue={this.state.type} 
+                        selected = {this.state.type} 
+                        defaultText  = 'Type' 
+                        style = {styles.select} 
+                        backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                        optionListStyle = {styles.selectOptions} 
+                        indicator = 'down' 
+                        indicatorColor = 'gray'
+                    >
+                        <Option value = 'text'>Text only</Option>
+                        <Option value = 'multi'>Multiple choice</Option>
+                    </Select>
                     <FormInput 
                         placeholder={'Problem'} 
                         value={this.props.problem} 
                         onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
                     />
-                    <FormInput 
-                        placeholder={'Solution'} 
-                        value={this.props.solution} 
-                        onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
-                    />
+                    {
+                        (this.state.type == 'text') ?
+                            <FormInput 
+                                placeholder={'Solution'} 
+                                value={this.props.solution} 
+                                onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
+                            /> :
+                            <View>
+                                <FormInput 
+                                    placeholder={'Solution option A'} 
+                                    value={this.props.options.A} 
+                                    onChangeText={value => this.props.optionsUpdate({ position: 'A', value })} 
+                                />
+                                <FormInput 
+                                    placeholder={'Solution option B'} 
+                                    value={this.props.options.B} 
+                                    onChangeText={value => this.props.optionsUpdate({ position: 'B', value })} 
+                                />
+                                <FormInput 
+                                    placeholder={'Solution option C'} 
+                                    value={this.props.options.C} 
+                                    onChangeText={value => this.props.optionsUpdate({ position: 'C', value })} 
+                                />
+                                <FormInput 
+                                    placeholder={'Solution option D'} 
+                                    value={this.props.options.D} 
+                                    onChangeText={value => this.props.optionsUpdate({ position: 'D', value })} 
+                                />
+                                <Select
+                                    onSelect = {value => this.props.formUpdate({ prop: 'solution', value })} 
+                                    selectedValue={this.props.solution} 
+                                    selected = {this.props.solution} 
+                                    defaultText  = 'Please select the correct solution' 
+                                    style = {styles.select} 
+                                    backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                                    optionListStyle = {styles.selectOptions} 
+                                    indicator = 'down' 
+                                    indicatorColor = 'gray'
+                                >
+                                    <Option value = 'A'>Option A</Option>
+                                    <Option value = 'B'>Option B</Option>
+                                    <Option value = 'C'>Option C</Option>
+                                    <Option value = 'D'>Option D</Option>
+                                </Select>
+                            </View>
+                    }
                     <FormInput 
                         placeholder={'Notes'} 
                         value={this.props.notes} 
@@ -81,11 +142,6 @@ class AddPuzzle extends Component {
                         <Option value = {5}>Very hard</Option>
                     </Select>
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
-                    <View>
-                        {(this.state.errors.length != 0) ?
-                            this.state.errors.map((error, index) => <Text style={styles.errorList} key={index}>{error}</Text>) :
-                            null}
-                    </View>
                 </ScrollView>
             </View>
         );
@@ -94,8 +150,8 @@ class AddPuzzle extends Component {
 
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
-    const { problem, solution, notes, rating } = state;
-    return { problem, solution, notes, rating };
+    const { problem, solution, notes, rating, options } = state;
+    return { problem, solution, notes, rating, options };
 }
 
 export default connect(mapStateToProps, actions)(AddPuzzle);

@@ -9,6 +9,12 @@ const initialState = {
     solution: '',
     notes: '',
     rating: 0,
+    options: {
+        A: '',
+        B: '',
+        C: '',
+        D: ''
+    },
     loadingPuzzles: false,
     user: null,
     scores: [],
@@ -61,6 +67,15 @@ export default (state = initialState, action) => {
                 [action.payload.prop]: action.payload.value,
             };
 
+        case 'OPTIONS_UPDATE':
+            return {
+                ...state,
+                options: {
+                    ...state.options,
+                    [action.payload.position]: action.payload.value,
+                },
+            };
+
         case 'NEW_PUZZLE':
             return {
                 ...state,
@@ -68,6 +83,12 @@ export default (state = initialState, action) => {
                 solution: '',
                 notes: '',
                 rating: 0,
+                options: {
+                    A: '',
+                    B: '',
+                    C: '',
+                    D: ''
+                },
             };
 
         case 'ADD_PUZZLE':
