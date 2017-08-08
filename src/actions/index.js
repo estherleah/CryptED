@@ -32,14 +32,13 @@ export const optionsUpdate = ({ position, value }) => {
 };
 
 // Creating a new puzzle and adding it to the database.
-// TODO: allow user to add rating for new puzzle
-export const createNewPuzzle = ({ problem, solution, notes, rating }) => {
+export const createNewPuzzle = ({ problem, solution, notes, rating, options }) => {
     const { currentUser } = firebase.auth();
     addedBy = currentUser.uid;
     return (dispatch) => {
         var id = firebase.database().ref(`/puzzles/logic`).push().key;
         firebase.database().ref(`/puzzles/logic/${id}`)
-        .update({ problem, solution, notes, id, rating, addedBy })
+        .update({ problem, solution, notes, id, rating, options, addedBy })
         .then(() => {
             dispatch({ type: 'NEW_PUZZLE' });
         });
