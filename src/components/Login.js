@@ -37,6 +37,7 @@ export default class Login extends Component {
                     .then(function(firebaseUser) {
                         firebase.database().ref(`/users/${firebaseUser.uid}/score`).set(0)
                         firebase.database().ref(`/users/${firebaseUser.uid}/admin`).set(false)
+                        firebase.database().ref(`/users/${firebaseUser.uid}/solved`).set('')
                     })
                     .then(this.onAuthSuccess.bind(this))
                     .catch(this.onAuthFailed.bind(this));
