@@ -20,7 +20,7 @@ class Logic extends Component {
         if (this.state.solution.toLowerCase() === this.props.puzzle.solution.toLowerCase()) {
             // check if already solved the puzzle
             if (!JSON.stringify(this.props.user.solved).contains(this.props.puzzle.id)) {
-                this.props.logicPuzzleSolved(this.props.puzzle.id);
+                this.props.puzzleSolved(this.props.puzzle.id);
                 this.props.updateScore(this.props.puzzle.rating + this.props.user.score);
             }
             Alert.alert("Correct", this.state.solution + " is the correct answer");

@@ -79,32 +79,8 @@ export const loadUser = () => {
     };
 };
 
-// Write to the database when cybersecurity puzzle is solved.
-export const cyberSecurityPuzzleSolved = (id) => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
-        .set(true)
-        .then(() => {
-            dispatch({ type: 'PUZZLE_SOLVED' });
-        });
-    };
-};
-
-// Write to the database when cryptography puzzle is solved.
-export const cryptographyPuzzleSolved = (id) => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
-        .set(true)
-        .then(() => {
-            dispatch({ type: 'PUZZLE_SOLVED' });
-        });
-    };
-};
-
-// Write to the database when logic puzzle is solved.
-export const logicPuzzleSolved = (id) => {
+// Write to the database when a puzzle is solved.
+export const puzzleSolved = (id) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)

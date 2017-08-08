@@ -50,12 +50,6 @@ export default styles = StyleSheet.create({
     subtitle: {
         fontWeight: 'normal',
     },
-    error: {
-        color: 'red',
-        fontSize: 16,
-        textAlign: 'center',
-        margin: 10,
-    },
 
     //
     // PAGE SPECIFIC STYLES
