@@ -61,9 +61,10 @@ export default styles = StyleSheet.create({
     selectOptions: {
         backgroundColor : '#F5FCFF',
         width: '90%',
-        height: 200,
-        alignSelf: 'center',
         borderColor: 'lightgray',
+    },
+    selectBackdrop: {
+        backgroundColor: 'rgba(245, 252, 255, 0.75)',
     },
 
     //

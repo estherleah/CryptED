@@ -70,13 +70,15 @@ class AddPuzzle extends Component {
                             null}
                     </View>
                     <Select
+                        transparent 
                         onSelect = {value => this.setState({type: value})} 
                         selectedValue={this.state.type} 
                         selected = {this.state.type} 
                         defaultText  = 'Type' 
                         style = {styles.select} 
-                        backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                        backdropStyle  = {styles.selectBackdrop} 
                         optionListStyle = {styles.selectOptions} 
+                        textStyle = {{marginLeft: -10}} 
                         indicator = 'down' 
                         indicatorColor = 'gray'
                     >
@@ -118,13 +120,15 @@ class AddPuzzle extends Component {
                                     onChangeText={value => this.props.optionsUpdate({ position: 'D', value })} 
                                 />
                                 <Select
+                                    transparent 
                                     onSelect = {value => this.props.formUpdate({ prop: 'solution', value })} 
                                     selectedValue={this.props.solution} 
                                     selected = {this.props.solution} 
                                     defaultText  = 'Please select the correct solution' 
                                     style = {styles.select} 
-                                    backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                                    backdropStyle  = {styles.selectBackdrop} 
                                     optionListStyle = {styles.selectOptions} 
+                                    textStyle = {{marginLeft: -10}} 
                                     indicator = 'down' 
                                     indicatorColor = 'gray'
                                 >
@@ -146,8 +150,9 @@ class AddPuzzle extends Component {
                         selected = {this.props.rating}
                         defaultText  = 'Level' 
                         style = {styles.select} 
-                        backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                        backdropStyle  = {styles.selectBackdrop} 
                         optionListStyle = {styles.selectOptions} 
+                        textStyle = {{marginLeft: -10}} 
                         indicator = 'down' 
                         indicatorColor = 'gray'
                     >

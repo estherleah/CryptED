@@ -66,13 +66,15 @@ class CyberSecurity extends Component {
                                 <Text>D:  {this.props.puzzle.options.D}</Text>
                             </View>
                             <Select
+                                transparent 
                                 onSelect = {value => this.setState({solution: value})} 
                                 selectedValue={this.state.solution} 
                                 selected = {this.state.solution} 
                                 defaultText  = 'Solution' 
                                 style = {styles.select} 
-                                backdropStyle  = {{backgroundColor : '#F5FCFF'}} 
+                                backdropStyle  = {styles.selectBackdrop} 
                                 optionListStyle = {styles.selectOptions} 
+                                textStyle = {{marginLeft: -10}} 
                                 indicator = 'down' 
                                 indicatorColor = 'gray'
                             >
