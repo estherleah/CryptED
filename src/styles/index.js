@@ -68,7 +68,9 @@ export default styles = StyleSheet.create({
     },
     radio: {
         alignItems: 'flex-start',
+        justifyContent: 'space-around',
         paddingLeft: 20,
+        paddingRight: 20,
     },
 
     //

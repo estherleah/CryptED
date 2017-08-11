@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
+import RadioForm from 'react-native-simple-radio-button';
 import AppHeader from './AppHeader';
 import LogicPuzzles from './LogicPuzzles';
 import { connect } from 'react-redux';
@@ -69,22 +70,18 @@ class AddPuzzle extends Component {
                             this.state.errors.map((error, index) => <Text style={styles.errorList} key={index}>{error}</Text>) :
                             null}
                     </View>
-                    <Select
-                        transparent 
-                        onSelect = {value => this.setState({type: value})} 
-                        selectedValue={this.state.type} 
-                        selected = {this.state.type} 
-                        defaultText  = 'Type' 
-                        style = {styles.select} 
-                        backdropStyle  = {styles.selectBackdrop} 
-                        optionListStyle = {styles.selectOptions} 
-                        textStyle = {{marginLeft: -10}} 
-                        indicator = 'down' 
-                        indicatorColor = 'gray'
-                    >
-                        <Option value = 'text'>Text only</Option>
-                        <Option value = 'multi'>Multiple choice</Option>
-                    </Select>
+                    <RadioForm 
+                        formHorizontal = {true}
+                        radio_props = {[
+                            {label: 'Text', value: 'text'},
+                            {label: 'Multiple choice', value: 'multi'}
+                        ]}
+                        initial = {0}
+                        onPress = {value => this.setState({type: value})} 
+                        buttonColor = '#567FDE' 
+                        buttonSize = {10} 
+                        style = {styles.radio} 
+                    />
                     <FormInput 
                         multiline={true} 
                         placeholder={'Problem'} 
@@ -144,7 +141,8 @@ class AddPuzzle extends Component {
                         value={this.props.notes} 
                         onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 
                     />
-                    <Select
+                    <Select 
+                        transparent 
                         onSelect = {value => this.props.formUpdate({ prop: 'rating', value })} 
                         selectedValue={this.props.rating} 
                         selected = {this.props.rating}
