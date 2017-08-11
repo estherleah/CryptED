@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
-import { Select, Option } from "react-native-chooser";
+import { Select, Option } from 'react-native-chooser';
 import AppHeader from './AppHeader';
 import LogicPuzzles from './LogicPuzzles';
 import { connect } from 'react-redux';

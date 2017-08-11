@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, ScrollView, Alert } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
-import { Select, Option } from "react-native-chooser";
+import RadioForm from 'react-native-simple-radio-button';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import styles from '../styles';
@@ -59,30 +59,24 @@ class CyberSecurity extends Component {
                             />
                         </View> : 
                         <View>
-                            <View style={styles.content}>
-                                <Text>A:  {this.props.puzzle.options.A}</Text>
-                                <Text>B:  {this.props.puzzle.options.B}</Text>
-                                <Text>C:  {this.props.puzzle.options.C}</Text>
-                                <Text>D:  {this.props.puzzle.options.D}</Text>
-                            </View>
-                            <Select
-                                transparent 
-                                onSelect = {value => this.setState({solution: value})} 
-                                selectedValue={this.state.solution} 
-                                selected = {this.state.solution} 
-                                defaultText  = 'Solution' 
-                                style = {styles.select} 
-                                backdropStyle  = {styles.selectBackdrop} 
-                                optionListStyle = {styles.selectOptions} 
-                                textStyle = {{marginLeft: -10}} 
-                                indicator = 'down' 
-                                indicatorColor = 'gray'
-                            >
-                                <Option value = 'A'>Option A</Option>
-                                <Option value = 'B'>Option B</Option>
-                                <Option value = 'C'>Option C</Option>
-                                <Option value = 'D'>Option D</Option>
-                            </Select>
+                            <RadioForm 
+                                radio_props = {[
+                                    {label: this.props.puzzle.options.A, value: 'A'},
+                                    {label: this.props.puzzle.options.B, value: 'B'},
+                                    {label: this.props.puzzle.options.C, value: 'C'},
+                                    {label: this.props.puzzle.options.D, value: 'D'},
+                                ]}
+                                initial = {
+                                    (this.state.solution == 'A') ? 0 : 
+                                        (this.state.solution == 'B') ? 1 :
+                                            (this.state.solution == 'C') ? 2 : 
+                                                (this.state.solution == 'D') ? 3 : -1
+                                }
+                                onPress = {value => this.setState({solution: value})} 
+                                buttonColor = '#567FDE' 
+                                buttonSize = {10} 
+                                style = {styles.radio} 
+                            />
                         </View>
                     }
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />

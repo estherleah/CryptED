@@ -66,6 +66,10 @@ export default styles = StyleSheet.create({
     selectBackdrop: {
         backgroundColor: 'rgba(245, 252, 255, 0.75)',
     },
+    radio: {
+        alignItems: 'flex-start',
+        paddingLeft: 20,
+    },
 
     //
     // PAGE SPECIFIC STYLES
