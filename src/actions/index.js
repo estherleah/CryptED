@@ -32,12 +32,12 @@ export const optionsUpdate = ({ position, value }) => {
 };
 
 // Creating a new puzzle and adding it to the database.
-export const createNewPuzzle = ({ problem, solution, notes, rating, options, type }) => {
+export const createNewPuzzle = ({ problem, solution, notes, rating, options, type, category }) => {
     const { currentUser } = firebase.auth();
     addedBy = currentUser.uid;
     return (dispatch) => {
-        var id = firebase.database().ref(`/puzzles/logic`).push().key;
-        firebase.database().ref(`/puzzles/logic/${id}`)
+        var id = firebase.database().ref(`/puzzles/${category}`).push().key;
+        firebase.database().ref(`/puzzles/${category}/${id}`)
         .update({ problem, solution, notes, id, rating, options, type, addedBy })
         .then(() => {
             dispatch({ type: 'NEW_PUZZLE' });

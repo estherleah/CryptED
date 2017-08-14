@@ -5,6 +5,7 @@ import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
 import AppHeader from './AppHeader';
 import LogicPuzzles from './LogicPuzzles';
+import CyberSecurityPuzzles from './CyberSecurityPuzzles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import styles from '../styles';
@@ -14,16 +15,21 @@ class AddPuzzle extends Component {
     state = {
         errors: [],
         type: 'text',
+        category: '',
     };
 
     // Method for what happens when press the add button. Validate input and add puzzle.
     onAddPress() {
         const { problem, solution, notes, rating, options } = this.props;
-        const type = this.state.type;
+        const { type, category } = this.state;
         // reset state so no errors
         this.setState({ errors: [] });
         // array to store errors
         let formErrors = [];
+        // check have picked a valid category
+        if (this.state.category == '') {
+            formErrors.push('Please select a category');
+        }
         // check if valid - if not valid then add an error
         if (this.props.problem.length == 0) {
             formErrors.push('Please enter a valid problem');
@@ -45,13 +51,16 @@ class AddPuzzle extends Component {
         if (formErrors.length == 0) {
             // if text puzzle
             if (this.state.type == 'text') {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options: [], type});
+                this.props.createNewPuzzle({problem, solution, notes, rating, options: [], type, category});
             }
             // if multiple choice puzzle
             else {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options, type});
+                this.props.createNewPuzzle({problem, solution, notes, rating, options, type, category});
             }
-            this.props.navigation.navigate('LogicPuzzles');
+            // navigate to list of puzzles of the category that was just added
+            (this.state.category == 'logic') ? 
+                this.props.navigation.navigate('LogicPuzzles') :
+                this.props.navigation.navigate('CyberSecurityPuzzles');
         }
         // if errors then add to the state
         else {
@@ -82,6 +91,22 @@ class AddPuzzle extends Component {
                         buttonSize = {10} 
                         style = {styles.radio} 
                     />
+                    <Select
+                        transparent 
+                        onSelect = {value => this.setState({category: value})} 
+                        selectedValue = {this.state.category} 
+                        selected = {this.state.category} 
+                        defaultText  = 'Please select a category' 
+                        style = {styles.select} 
+                        backdropStyle  = {styles.selectBackdrop} 
+                        optionListStyle = {[styles.selectOptions, {height: 80}]} 
+                        textStyle = {{marginLeft: -10}} 
+                        indicator = 'down' 
+                        indicatorColor = 'gray'
+                    >
+                        <Option value = 'cybersecurity'>Cyber security puzzle</Option>
+                        <Option value = 'logic'>Logic puzzle</Option>
+                    </Select>
                     <FormInput 
                         multiline={true} 
                         placeholder={'Problem'} 
@@ -123,12 +148,12 @@ class AddPuzzle extends Component {
                                 <Select
                                     transparent 
                                     onSelect = {value => this.props.formUpdate({ prop: 'solution', value })} 
-                                    selectedValue={this.props.solution} 
+                                    selectedValue = {this.props.solution} 
                                     selected = {this.props.solution} 
                                     defaultText  = 'Please select the correct solution' 
                                     style = {styles.select} 
                                     backdropStyle  = {styles.selectBackdrop} 
-                                    optionListStyle = {styles.selectOptions} 
+                                    optionListStyle = {[styles.selectOptions, {height: 160}]} 
                                     textStyle = {{marginLeft: -10}} 
                                     indicator = 'down' 
                                     indicatorColor = 'gray'
@@ -149,12 +174,12 @@ class AddPuzzle extends Component {
                     <Select 
                         transparent 
                         onSelect = {value => this.props.formUpdate({ prop: 'rating', value })} 
-                        selectedValue={this.props.rating} 
+                        selectedValue = {this.props.rating} 
                         selected = {this.props.rating}
                         defaultText  = 'Level' 
                         style = {styles.select} 
                         backdropStyle  = {styles.selectBackdrop} 
-                        optionListStyle = {styles.selectOptions} 
+                        optionListStyle = {[styles.selectOptions, {height: 200}]} 
                         textStyle = {{marginLeft: -10}} 
                         indicator = 'down' 
                         indicatorColor = 'gray'

@@ -57,6 +57,7 @@ export default styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'gray',
         width: '100%' - 40,
+        marginBottom: 5,
     },
     selectOptions: {
         backgroundColor : '#F5FCFF',
@@ -69,8 +70,7 @@ export default styles = StyleSheet.create({
     radio: {
         alignItems: 'flex-start',
         justifyContent: 'space-around',
-        paddingLeft: 20,
-        paddingRight: 20,
+        padding: 20,
     },
 
     //
