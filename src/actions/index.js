@@ -130,12 +130,18 @@ export const loadScores = () => {
     return (dispatch) => {
         firebase.database().ref(`/users`)
         .on('value', snapshot => {
-            // find each user's score
+            // find each user's name and score
             snapshot.forEach(data => {
-                user = data.key;
-                firebase.database().ref(`/users/${user}/score`)
+                uid = data.key;
+                // get user's name
+                firebase.database().ref(`users/${uid}/name`)
                 .on('value', snapshot => {
-                    // add user's score to the array
+                    user = snapshot.val()
+                });
+                // get user's score
+                firebase.database().ref(`/users/${uid}/score`)
+                .on('value', snapshot => {
+                    // add user's name and score to the array
                     userScores.push({ name: user, score: snapshot.val() })
                 });
             });
