@@ -1,5 +1,6 @@
-import React from 'react';
-import { DrawerNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
+import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import CryptographyPuzzles from './CryptographyPuzzles';
 import CyberSecurityPuzzles from './CyberSecurityPuzzles';
@@ -77,6 +78,7 @@ const Navigation = DrawerNavigator({
     },
 }, {
     drawerWidth: 300,
+    contentComponent: props => <ScrollView><DrawerItems {...props} /></ScrollView>,
 });
 
 export default Navigation;
