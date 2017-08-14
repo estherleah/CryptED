@@ -148,3 +148,22 @@ export const loadScores = () => {
         });
     };
 };
+
+// A new user is created.
+export const createNewUser = () => {
+    return {
+        type: 'NEW_USER',
+    };
+};
+
+// The new user has been created and the details have been added to the database.
+export const userCreated = (name) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/name`)
+        .set(name)
+        .then(() => {
+            dispatch({ type: 'USER_CREATED' });
+        });
+    };
+};

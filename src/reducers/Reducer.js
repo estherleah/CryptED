@@ -119,6 +119,18 @@ export default (state = initialState, action) => {
                 ...state,
                 scores: action.payload,
             };
+
+        case 'NEW_USER':
+            return {
+                ...state,
+                newUser: true,
+            };
+
+        case 'USER_CREATED':
+            return {
+                ...state,
+                newUser: false,
+            };
             
         default:
             return state;

@@ -16,6 +16,7 @@ import { Provider, connect } from 'react-redux';
 import Thunk from 'redux-thunk';
 import Login from './Login';
 import Navigation from './Navigation';
+import NewUser from './NewUser';
 import reducers from '../reducers/Reducer';
 import * as actions from '../actions';
 import styles from '../styles';
@@ -55,8 +56,12 @@ class App extends Component {
     renderInitialView() {
         switch (this.state.loggedIn) {
             case true:
-                this.props.loadUser();
-                return <Navigation />;
+                if (this.props.newUser) {
+                    return <NewUser />;
+                } else {
+                    this.props.loadUser();
+                    return <Navigation />;
+                }
             case false:
                 return <Login />;
             default:
@@ -73,9 +78,16 @@ class App extends Component {
     }
 }
 
+// Passing the state components to the props.
+const mapStateToProps = (state) => {
+    return {
+        newUser: state.newUser,
+    };
+}
+
 // Connect store with app so can load initial user data into store.
 const connectWithStore = (store, App) => {
-    var ConnectedApp = connect(null, actions)(App)
+    var ConnectedApp = connect(mapStateToProps, actions)(App)
     return function (props) {
         return <ConnectedApp {...props} store={store} />
     }

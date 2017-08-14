@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import { Header, Button, FormInput } from 'react-native-elements';
 import firebase from 'firebase';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 import styles from '../styles';
 
-export default class Login extends Component {
+class Login extends Component {
     // Initial state
     state = {
         email: '',
@@ -39,7 +41,7 @@ export default class Login extends Component {
                         firebase.database().ref(`/users/${firebaseUser.uid}/admin`).set(false)
                         firebase.database().ref(`/users/${firebaseUser.uid}/solved`).set('')
                     })
-                    .then(this.onAuthSuccess.bind(this))
+                    .then(this.onNewUserSuccess.bind(this))
                     .catch(this.onAuthFailed.bind(this));
             });
     }
@@ -52,6 +54,16 @@ export default class Login extends Component {
             error: '',
             loading: false,
         });
+    }
+
+    onNewUserSuccess() {
+        this.setState({
+            email: '',
+            password: '',
+            error: '',
+            loading: false,
+        });
+        this.props.createNewUser();
     }
 
     // If authorization fails, set the error and set loading to false.
@@ -101,3 +113,5 @@ export default class Login extends Component {
         );
     }
 }
+
+export default connect(null, actions)(Login);
