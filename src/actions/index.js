@@ -149,8 +149,8 @@ export const loadScores = () => {
             userScores.sort((a, b) => {
                 return b.score - a.score;
             });
-            // return top 10 scores
-            dispatch({ type: 'SCORES_FETCH', payload: userScores.slice(0, 10) });
+            // return scores
+            dispatch({ type: 'SCORES_FETCH', payload: userScores });
         });
     };
 };
