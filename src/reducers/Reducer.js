@@ -131,6 +131,12 @@ export default (state = initialState, action) => {
                 ...state,
                 newUser: false,
             };
+
+        case 'UPDATE_NAME':
+            return {
+                ...state,
+                name: action.payload,
+            };
             
         default:
             return state;

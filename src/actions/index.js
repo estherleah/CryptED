@@ -173,3 +173,15 @@ export const userCreated = (name) => {
         });
     };
 };
+
+// Change the user's name.
+export const changeName = (name) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/name`)
+        .set(name)
+        .then(() => {
+            dispatch({ type: 'UPDATE_NAME', payload: name});
+        });
+    };
+};

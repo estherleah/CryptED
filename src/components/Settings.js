@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Alert, ScrollView, Modal } from 'react-native';
-import { List, ListItem, Icon, Header } from 'react-native-elements';
+import { List, ListItem, Icon, Header, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import Leaderboard from './Leaderboard';
@@ -12,6 +12,8 @@ class Settings extends Component {
     state = {
         adminUser: this.props.user.admin,
         adminVisible: false,
+        namePressed: false,
+        username: '',
     };
 
     // Method for when toggle the admin switch.
@@ -63,6 +65,11 @@ class Settings extends Component {
         }
     }
 
+    saveName() {
+        this.props.changeName(this.state.username);
+        this.setState({namePressed: false});
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -78,15 +85,51 @@ class Settings extends Component {
                         />
                         <ListItem 
                             containerStyle={styles.listItem}
+                            title={this.props.user.name}
+                            leftIcon={{name: 'user', type: 'evilicon'}}
+                            onPress={() => this.setState({namePressed: true})} 
+                        />
+                        <ListItem 
+                            containerStyle={styles.listItem}
                             hideChevron={!this.props.user.admin} 
                             title={(this.props.user.admin) ? 'Admin options' : 'Admin'} 
-                            leftIcon={{name: 'user', type: 'evilicon'}}
+                            leftIcon={(this.props.user.admin) ? {name: 'unlock', type: 'evilicon'} : {name: 'lock', type: 'evilicon'}}
                             switchButton={!this.props.user.admin}
                             switched={this.state.adminUser}
                             onSwitch={this.onAdminToggle.bind(this)}
                             onPress={this.onAdminPress.bind(this)}
                         />
                     </List>
+
+                    {/* Modal for changing username */}
+                    <Modal
+                        visible={this.state.namePressed}
+                        onRequestClose={() => this.setState({namePressed: false})}
+                        animationType='none'
+                    >
+                        <View style={styles.container}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                                <View style={styles.header}>
+                                    <Header 
+                                        backgroundColor='#567FDE'
+                                        leftComponent={<Icon 
+                                            name='arrow-back' 
+                                            color='#fff' 
+                                            onPress={() => this.setState({namePressed: false})} 
+                                        />} 
+                                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                                    />
+                                </View>
+                                <FormInput 
+                                    onChangeText={username => this.setState({username})}
+                                    textInputRef={this.state.username}
+                                    placeholder={'Change username'} 
+                                />
+                                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Save' onPress={this.saveName.bind(this)} />
+                            </ScrollView>
+                        </View>
+                    </Modal>
+                    {/* End of modal */}
 
                     {/* Modal for admin settings */}
                     <Modal
@@ -111,7 +154,7 @@ class Settings extends Component {
                                     containerStyle={styles.listItem}
                                     hideChevron={true} 
                                     title={'Admin status'} 
-                                    leftIcon={{name: 'user', type: 'evilicon'}}
+                                    leftIcon={{name: 'unlock', type: 'evilicon'}}
                                     switchButton={true}
                                     switched={this.state.adminUser}
                                     onSwitch={this.onAdminToggle.bind(this)}
