@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ScrollView } from 'react-native';
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
