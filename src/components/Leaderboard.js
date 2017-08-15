@@ -21,7 +21,7 @@ class Leaderboard extends Component {
         if (this.props.user.admin) {
             this.dataSource = ds.cloneWithRows(this.props.scores);
         } else {
-            this.dataSource = ds.cloneWithRows(this.props.scores.slice(0, 3));
+            this.dataSource = ds.cloneWithRows(this.props.scores.slice(0, 10));
         }
         return this.dataSource;
     }

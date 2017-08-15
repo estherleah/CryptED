@@ -65,6 +65,7 @@ class Settings extends Component {
         }
     }
 
+    // Save the new username entered by the user.
     saveName() {
         this.props.changeName(this.state.username);
         this.setState({namePressed: false});
