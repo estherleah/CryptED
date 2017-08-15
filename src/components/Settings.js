@@ -164,6 +164,7 @@ class Settings extends Component {
                                     containerStyle={styles.listItem}
                                     title={'View scores'} 
                                     leftIcon={{name: 'trophy', type: 'evilicon'}}
+                                    // TODO: admin can view all scores
                                 />
                             </List>
                         </View>

@@ -18,11 +18,7 @@ class Leaderboard extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        if (this.props.user.admin) {
-            this.dataSource = ds.cloneWithRows(this.props.scores);
-        } else {
-            this.dataSource = ds.cloneWithRows(this.props.scores.slice(0, 10));
-        }
+        this.dataSource = ds.cloneWithRows(this.props.scores.slice(0, 10));
         return this.dataSource;
     }
 
@@ -31,7 +27,7 @@ class Leaderboard extends Component {
             <View style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
-                    <Text style={styles.title}>{(this.props.user.admin) ? 'Scoreboard' : 'Top 10 scores'}</Text>                  
+                    <Text style={styles.title}>Top 10 scores</Text>                  
                     <ListView 
                         enableEmptySections
                         dataSource={this.getData()} 
