@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Alert, ScrollView, Modal } from 'react-native';
+import { Text, View, Alert, ScrollView, Modal, ListView } from 'react-native';
 import { List, ListItem, Icon, Header, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
@@ -14,7 +14,15 @@ class Settings extends Component {
         adminVisible: false,
         namePressed: false,
         username: '',
+        viewScores: false,
     };
+
+    // Executes before component mounts.
+    componentWillMount() {
+        if (this.props.user.admin) {
+            this.props.loadScores();
+        }
+    }
 
     // Method for when toggle the admin switch.
     onAdminToggle() {
@@ -67,8 +75,19 @@ class Settings extends Component {
 
     // Save the new username entered by the user.
     saveName() {
-        this.props.changeName(this.state.username);
-        this.setState({namePressed: false});
+        if (this.state.username.length != 0) {
+            this.props.changeName(this.state.username);
+            this.setState({namePressed: false});
+        }
+    }
+
+    // Get the data for the top 10 scores.
+    getData() {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1!== r2,
+        });
+        this.dataSource = ds.cloneWithRows(this.props.scores);
+        return this.dataSource;
     }
 
     render() {
@@ -121,10 +140,11 @@ class Settings extends Component {
                                         centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                     />
                                 </View>
+                                <Text style={styles.title}>Change name</Text>
                                 <FormInput 
                                     onChangeText={username => this.setState({username})}
                                     textInputRef={this.state.username}
-                                    placeholder={'Change username'} 
+                                    placeholder={this.props.user.name} 
                                 />
                                 <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Save' onPress={this.saveName.bind(this)} />
                             </ScrollView>
@@ -164,9 +184,46 @@ class Settings extends Component {
                                     containerStyle={styles.listItem}
                                     title={'View scores'} 
                                     leftIcon={{name: 'trophy', type: 'evilicon'}}
-                                    // TODO: admin can view all scores
+                                    onPress={() => this.setState({viewScores: true})}
                                 />
                             </List>
+                        </View>
+                    </Modal>
+                    {/* End of modal */}
+
+                    {/* Modal for viewing all scores */}
+                    <Modal
+                        visible={this.state.viewScores}
+                        onRequestClose={() => this.setState({viewScores: false})}
+                        animationType='none'
+                    >
+                        <View style={styles.container}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                                <View style={styles.header}>
+                                    <Header 
+                                        backgroundColor='#567FDE'
+                                        leftComponent={<Icon 
+                                            name='arrow-back' 
+                                            color='#fff' 
+                                            onPress={() => this.setState({viewScores: false})} 
+                                        />} 
+                                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                                    />
+                                </View>
+                                <Text style={styles.title}>Scoreboard</Text>
+                                <ListView 
+                                    enableEmptySections
+                                    dataSource={this.getData()} 
+                                    renderRow={(rowData, sectionID, rowID) =>
+                                        <ListItem 
+                                            containerStyle={styles.listItem} 
+                                            rightIcon={<Text style={styles.scores}>{rowData.score}</Text>}
+                                            title={rowData.name} 
+                                            leftIcon={<Text style={styles.numbering}>{Number(rowID) + 1}.</Text>}
+                                        />
+                                    } 
+                                />
+                            </ScrollView>
                         </View>
                     </Modal>
                     {/* End of modal */}
@@ -181,6 +238,7 @@ class Settings extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user,
+        scores: state.scores,
     };
 }
 
