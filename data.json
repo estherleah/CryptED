@@ -8,9 +8,7 @@
                 "rating": 4,
                 "plaintext": "ATTACK AT DAWN",
                 "key": "abc",
-                "notes": "",
-                "solvedBy": {
-                }
+                "notes": ""
             },
             "puzzle-2": {
                 "id": "puzzle-2",
@@ -19,9 +17,7 @@
                 "rating": 2,
                 "plaintext": "HELLO WORLD",
                 "key": "",
-                "notes": "This works by shifting each letter in the message (the plaintext) along by a fixed amount (known as the shift value) to produce the ciphertext. For example, if the shift value was 3 then the word “HELLO” would become “KHOOR”, with each letter shifted 3 to the right. \n\nIt can be deciphered by shifting each letter in the ciphertext “KHOOR” -3 (i.e. shifting each letter 3 to the left) to return the plaintext “HELLO”. \n\nEven without knowing the shift value Caesar ciphers can be broken either by trying out each of the 26 possible options for the shift value or using frequency analysis. Frequency analysis is looking at the frequency of the letters that occur in the ciphertext and comparing it to the frequency of letters in the English language. \n\nThis method is named after Julius Caesar who used it in his correspondence.",
-                "solvedBy": {
-                }
+                "notes": "This works by shifting each letter in the message (the plaintext) along by a fixed amount (known as the shift value) to produce the ciphertext. For example, if the shift value was 3 then the word “HELLO” would become “KHOOR”, with each letter shifted 3 to the right. \n\nIt can be deciphered by shifting each letter in the ciphertext “KHOOR” -3 (i.e. shifting each letter 3 to the left) to return the plaintext “HELLO”. \n\nEven without knowing the shift value Caesar ciphers can be broken either by trying out each of the 26 possible options for the shift value or using frequency analysis. Frequency analysis is looking at the frequency of the letters that occur in the ciphertext and comparing it to the frequency of letters in the English language. \n\nThis method is named after Julius Caesar who used it in his correspondence."
             },
             "puzzle-3": {
                 "id": "puzzle-3",
@@ -30,9 +26,7 @@
                 "rating": 4,
                 "plaintext": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
                 "key": "",
-                "notes": "This works by shifting each letter in the message (the plaintext) along by a fixed amount (known as the shift value) to produce the ciphertext. For example, if the shift value was 3 then the word “HELLO” would become “KHOOR”, with each letter shifted 3 to the right. \n\nIt can be deciphered by shifting each letter in the ciphertext “KHOOR” -3 (i.e. shifting each letter 3 to the left) to return the plaintext “HELLO”. \n\nEven without knowing the shift value Caesar ciphers can be broken either by trying out each of the 26 possible options for the shift value or using frequency analysis. Frequency analysis is looking at the frequency of the letters that occur in the ciphertext and comparing it to the frequency of letters in the English language. \n\nThis method is named after Julius Caesar who used it in his correspondence.",
-                "solvedBy": {
-                }
+                "notes": "This works by shifting each letter in the message (the plaintext) along by a fixed amount (known as the shift value) to produce the ciphertext. For example, if the shift value was 3 then the word “HELLO” would become “KHOOR”, with each letter shifted 3 to the right. \n\nIt can be deciphered by shifting each letter in the ciphertext “KHOOR” -3 (i.e. shifting each letter 3 to the left) to return the plaintext “HELLO”. \n\nEven without knowing the shift value Caesar ciphers can be broken either by trying out each of the 26 possible options for the shift value or using frequency analysis. Frequency analysis is looking at the frequency of the letters that occur in the ciphertext and comparing it to the frequency of letters in the English language. \n\nThis method is named after Julius Caesar who used it in his correspondence."
             },
             "puzzle-4": {
                 "id": "puzzle-4",
@@ -41,31 +35,73 @@
                 "rating": 1,
                 "plaintext": "CAT",
                 "key": "",
-                "notes": "The Atbash cipher works by substituting every ‘a’ with a ‘z’, every ‘b’ with a ‘y’ etc. For example, “CAT” would become “XZG”. \n\nThe name comes from the Hebrew alphabet, from the names of the first, last, second and second-to-last letters (Aleph-Tav-Bet-Shin).",
-                "solvedBy": {
-                }
+                "notes": "The Atbash cipher works by substituting every ‘a’ with a ‘z’, every ‘b’ with a ‘y’ etc. For example, “CAT” would become “XZG”. \n\nThe name comes from the Hebrew alphabet, from the names of the first, last, second and second-to-last letters (Aleph-Tav-Bet-Shin)."
             }
         },
         "logic": {
-            "puzzle-1": {
-                "id": "puzzle-1",
+            "logicpuzzle-1": {
+                "id": "logicpuzzle-1",
                 "problem": "testing",
                 "solution": "testing",
                 "rating": 1,
                 "notes": "",
-                "solvedBy": {
-                }
+                "type": "text",
+                "addedBy": "uid-1"
+            },
+            "logicpuzzle-2": {
+                "id": "logicpuzzle-2",
+                "problem": "testing",
+                "solution": "B",
+                "options": {
+                    "A": "option A",
+                    "B": "option B",
+                    "C": "option C",
+                    "D": "option D"
+                },
+                "rating": 3,
+                "notes": "",
+                "type": "multi",
+                "addedBy": "uid-1"
+            }
+        },
+        "cybersecurity": {
+            "cyber-1": {
+                "id": "cyber-1",
+                "problem": "testing",
+                "solution": "testing",
+                "rating": 1,
+                "notes": "",
+                "type": "text",
+                "addedBy": "uid-1"
+            },
+            "cyber-2": {
+                "id": "cyber-2",
+                "problem": "testing",
+                "solution": "B",
+                "options": {
+                    "A": "option A",
+                    "B": "option B",
+                    "C": "option C",
+                    "D": "option D"
+                },
+                "rating": 3,
+                "notes": "",
+                "type": "multi",
+                "addedBy": "uid-1"
             }
         }
     },
     "members": {
         "user-1": {
             "admin": true,
-            "score": 0,
+            "score": 3,
             "solved": {
+                "puzzle-2": true,
+                "cyber-1": true
             }
         },
         "user-2": {
+            "name": "Fred Bloggs",
             "admin": false,
             "score": 0,
             "solved": {
