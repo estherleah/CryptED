@@ -18,6 +18,7 @@ const initialState = {
     loadingPuzzles: false,
     user: null,
     scores: [],
+    newUser: false,
 };
 
 export default (state = initialState, action) => {
