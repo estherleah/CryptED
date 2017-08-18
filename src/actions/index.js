@@ -166,6 +166,9 @@ export const createNewUser = () => {
 export const userCreated = (name) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/score`).set(0)
+        firebase.database().ref(`/users/${currentUser.uid}/admin`).set(false)
+        firebase.database().ref(`/users/${currentUser.uid}/solved`).set('')
         firebase.database().ref(`/users/${currentUser.uid}/name`)
         .set(name)
         .then(() => {
