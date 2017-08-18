@@ -163,14 +163,14 @@ export const createNewUser = () => {
 };
 
 // The new user has been created and the details have been added to the database.
+// TODO: if refresh before info is saved => error
 export const userCreated = (name) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/score`).set(0)
         firebase.database().ref(`/users/${currentUser.uid}/admin`).set(false)
         firebase.database().ref(`/users/${currentUser.uid}/solved`).set('')
-        firebase.database().ref(`/users/${currentUser.uid}/name`)
-        .set(name)
+        firebase.database().ref(`/users/${currentUser.uid}/name`).set(name)
         .then(() => {
             dispatch({ type: 'USER_CREATED' });
         });
