@@ -11,6 +11,7 @@ class CryptographyPuzzles extends Component {
     // Executes before component mounts.
     componentWillMount() {
         this.props.loadCryptographyPuzzles();
+        {(this.props.user == null) ? this.props.createNewUser() : null}
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
