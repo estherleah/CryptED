@@ -50,7 +50,6 @@ class NewUser extends Component {
                         date={this.state.date} 
                         mode="date"
                         placeholder="Date of birth" 
-                        format="DD-MM-YYYY" 
                         confirmBtnText="Confirm" 
                         cancelBtnText="Cancel" 
                         onDateChange={date => this.setState({date})}
@@ -69,7 +68,7 @@ class NewUser extends Component {
                             },
                         }} 
                         maxDate={new Date()}
-                        minDate="01-01-1900"
+                        minDate="1900-01-01"
                     />
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Save' onPress={this.onButtonPress.bind(this)} />
                 </ScrollView>

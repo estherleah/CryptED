@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Alert, ScrollView, Modal, ListView } from 'react-native';
 import { List, ListItem, Icon, Header, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import AppHeader from './AppHeader';
 import Leaderboard from './Leaderboard';
 import * as actions from '../actions';
@@ -22,6 +23,11 @@ class Settings extends Component {
         if (this.props.user.admin) {
             this.props.loadScores();
         }
+    }
+
+    // Uses moment.js to calculate the current age of the user
+    getAge(dob) {
+        return moment().diff(dob, 'years', false);
     }
 
     // Method for when toggle the admin switch.
@@ -108,6 +114,13 @@ class Settings extends Component {
                             title={this.props.user.name}
                             leftIcon={{name: 'user', type: 'evilicon'}}
                             onPress={() => this.setState({namePressed: true})} 
+                        />
+                        <ListItem 
+                            containerStyle={styles.listItem}
+                            hideChevron={true} 
+                            title='Age'
+                            leftIcon={{name: 'calendar', type: 'evilicon'}}
+                            badge={{ value: this.getAge(this.props.user.dob), containerStyle: styles.badge }}
                         />
                         <ListItem 
                             containerStyle={styles.listItem}
