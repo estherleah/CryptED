@@ -24,8 +24,10 @@ class NewUser extends Component {
     // Method for what happens when press the save button.
     onButtonPress() {
         const { name, date } = this.state;
-        if (date != '') {
+        if (date != '' && name != '') {
             this.props.userCreated(name, date);
+        } else {
+            alert("Please fill out your name and date of birth")
         }
     }
 
