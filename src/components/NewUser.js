@@ -7,6 +7,14 @@ import * as actions from '../actions';
 import styles from '../styles';
 
 class NewUser extends Component {
+    // Added to remove timer warning when using firebase.
+    constructor() {
+        super();
+        console.ignoredYellowBox = [
+            'Setting a timer'
+        ];
+    }
+    
     // Initial state
     state = {
         name: '',
