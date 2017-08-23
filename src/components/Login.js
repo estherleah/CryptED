@@ -35,7 +35,6 @@ class Login extends Component {
                 // create new user
                 firebase.auth().createUserWithEmailAndPassword(email, password)
                     // add initial user data to database
-                    // TODO: admin user
                     .then(this.onNewUserSuccess.bind(this))
                     .catch(this.onAuthFailed.bind(this));
             });

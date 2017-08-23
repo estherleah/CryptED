@@ -123,7 +123,6 @@ export const changeAdmin = (admin) => {
 };
 
 // Load the user scores from the database.
-// TODO: change to show name of user instead of key
 export const loadScores = () => {
     // initial array of scores
     let userScores = [];

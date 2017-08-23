@@ -47,23 +47,30 @@ class Settings extends Component {
                     }},
                 ],
                 { onDismiss: () => this.setState({adminUser: true}) }
-            )
+            );
         }
         // user wants to become an admin
-        // TODO: checking before becomes admin (e.g. checking age)
         else {
-            Alert.alert(
-                'Confirmation',
-                'Are you sure you would like to be an admin?',
-                [
-                    {text: 'Cancel', onPress: () => this.setState({adminUser: false}), style: 'cancel'},
-                    {text: 'OK', onPress: () => {
-                        this.props.changeAdmin(!this.props.user.admin);
-                        this.setState({adminUser: true});
-                    }},
-                ],
-                { onDismiss: () => this.setState({adminUser: false}) }
-            )
+            // can only become admin if over 18
+            if (this.getAge(this.props.user.dob) > 18) {
+                Alert.alert(
+                    'Confirmation',
+                    'Are you sure you would like to be an admin?',
+                    [
+                        {text: 'Cancel', onPress: () => this.setState({adminUser: false}), style: 'cancel'},
+                        {text: 'OK', onPress: () => {
+                            this.props.changeAdmin(!this.props.user.admin);
+                            this.setState({adminUser: true});
+                            // need to load scores as was not done previously
+                            this.props.loadScores();
+                        }},
+                    ],
+                    { onDismiss: () => this.setState({adminUser: false}) }
+                );
+            } else {
+                Alert.alert('Sorry', 'You cannot become an admin unless you are 18 or over.');
+                this.setState({adminUser: false});
+            }
         }
     }
 
