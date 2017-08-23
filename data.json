@@ -38,61 +38,62 @@
                 "notes": "The Atbash cipher works by substituting every ‘a’ with a ‘z’, every ‘b’ with a ‘y’ etc. For example, “CAT” would become “XZG”. \n\nThe name comes from the Hebrew alphabet, from the names of the first, last, second and second-to-last letters (Aleph-Tav-Bet-Shin)."
             }
         },
-        "logic": {
-            "logicpuzzle-1": {
-                "id": "logicpuzzle-1",
-                "problem": "testing",
-                "solution": "testing",
-                "rating": 1,
-                "notes": "",
-                "type": "text",
-                "addedBy": "uid-1"
-            },
-            "logicpuzzle-2": {
-                "id": "logicpuzzle-2",
-                "problem": "testing",
-                "solution": "B",
-                "options": {
-                    "A": "option A",
-                    "B": "option B",
-                    "C": "option C",
-                    "D": "option D"
-                },
-                "rating": 3,
-                "notes": "",
-                "type": "multi",
-                "addedBy": "uid-1"
-            }
-        },
         "cybersecurity": {
             "cyber-1": {
                 "id": "cyber-1",
-                "problem": "testing",
-                "solution": "testing",
+                "problem": "Test cyber question.",
+                "solution": "Testing",
+                "rating": 1,
+                "notes": "",
+                "type": "text",
+                "addedBy": "user-1"
+            },
+            "cyber-2": {
+                "id": "cyber-2",
+                "problem": "Test cyber multiple choice question.",
+                "solution": "B",
+                "options": {
+                    "A": "Option A",
+                    "B": "Option B",
+                    "C": "Option C",
+                    "D": "Option D"
+                },
+                "rating": 3,
+                "notes": "",
+                "type": "multi",
+                "addedBy": "user-1"
+            }
+        },
+        "logic": {
+            "logic-1": {
+                "id": "logic-1",
+                "problem": "Test logic question",
+                "solution": "Testing",
                 "rating": 1,
                 "notes": "",
                 "type": "text",
                 "addedBy": "uid-1"
             },
-            "cyber-2": {
-                "id": "cyber-2",
-                "problem": "testing",
-                "solution": "B",
+            "logic-2": {
+                "id": "logic-2",
+                "problem": "Testing logic multiple choice question.",
+                "solution": "D",
                 "options": {
-                    "A": "option A",
-                    "B": "option B",
-                    "C": "option C",
-                    "D": "option D"
+                    "A": "Option A",
+                    "B": "Option B",
+                    "C": "Option C",
+                    "D": "Option D"
                 },
                 "rating": 3,
                 "notes": "",
                 "type": "multi",
-                "addedBy": "uid-1"
+                "addedBy": "user-1"
             }
         }
     },
     "members": {
         "user-1": {
+            "name": "Fred Bloggs",
             "admin": true,
             "score": 3,
             "solved": {
@@ -101,11 +102,10 @@
             }
         },
         "user-2": {
-            "name": "Fred Bloggs",
+            "name": "John Doe",
             "admin": false,
             "score": 0,
-            "solved": {
-            }
+            "solved": ""
         }
     }
 }
