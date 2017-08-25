@@ -89,6 +89,7 @@ class Login extends Component {
                         onChangeText={email => this.setState({email})}
                         textInputRef={this.state.email}  
                         placeholder={'Email'} 
+                        keyboardType={'email-address'}
                     />
                     <FormInput 
                         onChangeText={password => this.setState({password})}

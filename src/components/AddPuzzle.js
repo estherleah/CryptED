@@ -109,6 +109,8 @@ class AddPuzzle extends Component {
                     </Select>
                     <FormInput 
                         multiline={true} 
+                        numberOfLines={5}
+                        autoCapitalize={'sentences'}
                         placeholder={'Problem'} 
                         value={this.props.problem} 
                         onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
