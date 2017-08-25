@@ -60,6 +60,10 @@ class App extends Component {
                     return <NewUser />;
                 } else {
                     this.props.loadUser();
+                    // load puzzles so available if then lose internet connection
+                    this.props.loadCryptographyPuzzles();
+                    this.props.loadCyberSecurityPuzzles();
+                    this.props.loadLogicPuzzles();
                     return <Navigation />;
                 }
             case false:
