@@ -72,7 +72,7 @@ class App extends Component {
     render() {
         return (
             <Provider store={store} style={styles.container}>
-                    {this.renderInitialView()}
+                {this.renderInitialView()}
             </Provider>
         );
     }
@@ -86,6 +86,7 @@ const mapStateToProps = (state) => {
 }
 
 // Connect store with app so can load initial user data into store.
+// see https://github.com/reactjs/react-redux/issues/390
 const connectWithStore = (store, App) => {
     var ConnectedApp = connect(mapStateToProps, actions)(App)
     return function (props) {
