@@ -47,30 +47,42 @@ export const createNewPuzzle = ({ problem, solution, notes, rating, options, typ
 
 // Load the logic puzzles from the database.
 export const loadLogicPuzzles = () => {
+    let logicPuzzles = [];
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/logic`)
+        firebase.database().ref(`/puzzles/logic`).orderByChild('rating')
         .on('value', snapshot => {
-            dispatch({ type: 'LOGIC_FETCH', payload: snapshot.val() });
+            snapshot.forEach((child) => {
+                logicPuzzles.push(child.val())
+            })
+            dispatch({ type: 'LOGIC_FETCH', payload: logicPuzzles });
         });
     };
 };
 
 // Load the cryptography puzzles from the database.
 export const loadCryptographyPuzzles = () => {
+    let cryptoPuzzles = [];
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/cryptography`)
+        firebase.database().ref(`/puzzles/cryptography`).orderByChild('rating')
         .on('value', snapshot => {
-            dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: snapshot.val() });
+            snapshot.forEach((child) => {
+                cryptoPuzzles.push(child.val())
+            })
+            dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: cryptoPuzzles });
         });
     };
 };
 
 // Load the cybersecurity puzzles from the database.
 export const loadCyberSecurityPuzzles = () => {
+    let cyberPuzzles = [];
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/cybersecurity`)
+        firebase.database().ref(`/puzzles/cybersecurity`).orderByChild('rating')
         .on('value', snapshot => {
-            dispatch({ type: 'CYBERSECURITY_FETCH', payload: snapshot.val() });
+            snapshot.forEach((child) => {
+                cyberPuzzles.push(child.val())
+            })
+            dispatch({ type: 'CYBERSECURITY_FETCH', payload: cyberPuzzles });
         });
     };
 };
@@ -152,7 +164,7 @@ export const loadScores = () => {
             dispatch({ type: 'SCORES_FETCH', payload: userScores });
         });
     };
-};
+ };
 
 // A new user is created.
 export const createNewUser = () => {
