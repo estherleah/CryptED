@@ -52,7 +52,7 @@ class Settings extends Component {
         // user wants to become an admin
         else {
             // can only become admin if over 18
-            if (this.getAge(this.props.user.dob) > 18) {
+            if (this.getAge(this.props.user.dob) >= 18) {
                 Alert.alert(
                     'Confirmation',
                     'Are you sure you would like to be an admin?',
