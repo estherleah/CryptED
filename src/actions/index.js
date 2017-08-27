@@ -222,11 +222,14 @@ export const createNewUser = () => {
 export const userCreated = (name, date) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/score`).set(0)
-        firebase.database().ref(`/users/${currentUser.uid}/admin`).set(false)
-        firebase.database().ref(`/users/${currentUser.uid}/solved`).set('')
-        firebase.database().ref(`/users/${currentUser.uid}/name`).set(name)
-        firebase.database().ref(`/users/${currentUser.uid}/dob`).set(date)
+        firebase.database().ref(`/users/${currentUser.uid}`)
+        .set({
+            score: 0,
+            admin: false,
+            solved: '',
+            name,
+            date
+        })
         .then(() => {
             dispatch({ type: 'USER_CREATED' });
         });
@@ -237,6 +240,11 @@ export const userCreated = (name, date) => {
 export const changeName = (name) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
+        // if on leaderboard, change user's name on leaderboard
+        if(firebase.database().ref(`/scores/`).child(currentUser.uid)) {
+            firebase.database().ref(`/scores/${currentUser.uid}/name`)
+            .set(name)
+        }
         firebase.database().ref(`/users/${currentUser.uid}/name`)
         .set(name)
         .then(() => {
