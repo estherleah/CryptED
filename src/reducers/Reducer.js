@@ -17,6 +17,7 @@ const initialState = {
     },
     loadingPuzzles: false,
     user: null,
+    topScores: [],
     scores: [],
     newUser: false,
 };
@@ -119,6 +120,18 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 scores: action.payload,
+            };
+
+        case 'LEADERBOARD_FETCH':
+            return {
+                ...state,
+                topScores: action.payload,
+            };
+
+        case 'UPDATE_LEADERBOARD':
+            return {
+                ...state,
+                topScores: action.payload,
             };
 
         case 'NEW_USER':

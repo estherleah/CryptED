@@ -10,7 +10,7 @@ import firebase from 'firebase';
 class Leaderboard extends Component {
     // Executes before component mounts.
     componentWillMount() {
-        this.props.loadScores();
+        this.props.loadTopScores();
     }
 
     // Get the data for the top 10 scores.
@@ -18,7 +18,7 @@ class Leaderboard extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        this.dataSource = ds.cloneWithRows(this.props.scores.slice(0, 10));
+        this.dataSource = ds.cloneWithRows(this.props.topScores);
         return this.dataSource;
     }
 
@@ -49,7 +49,7 @@ class Leaderboard extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     return {
-        scores: state.scores,
+        topScores: state.topScores,
         user: state.user,
     };
 }

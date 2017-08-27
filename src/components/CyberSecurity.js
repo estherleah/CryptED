@@ -12,6 +12,11 @@ class CyberSecurity extends Component {
         solution: '',
     };
 
+    // Executes before component mounts.
+    componentWillMount() {
+        this.props.loadTopScores();
+    }
+
     // What happens when submit a solution.
     onSubmit() {
         const { solution } = this.state;
@@ -21,8 +26,55 @@ class CyberSecurity extends Component {
         if (this.state.solution.toLowerCase() === this.props.puzzle.solution.toLowerCase()) {
             // check if already solved the puzzle
             if (!JSON.stringify(this.props.user.solved).contains(this.props.puzzle.id)) {
+                let newScore = this.props.user.score + this.props.puzzle.rating;
                 this.props.puzzleSolved(this.props.puzzle.id);
-                this.props.updateScore(this.props.puzzle.rating + this.props.user.score);
+                this.props.updateScore(newScore);
+                
+                // check if need to update leaderboard
+                let leaderboard = this.props.topScores;
+                // check if leaderboard has less than 10 users
+                if (leaderboard.length < 10) {
+                    // add to leaderboard
+                    leaderboard.push({deletionKey: this.props.user.uid, name: this.props.user.name, score: newScore});
+                    // sort the leaderboard
+                    leaderboard.sort((a, b) => {
+                        return b.score - a.score;
+                    });
+                    // add to database and store
+                    this.props.addUserToLeaderboard(null, this.props.user.name, newScore, leaderboard);
+                }
+                else {
+                    // check if score qualifies a place on the leaderboard
+                    lowest = leaderboard[9];
+                    if (newScore > lowest.score) {
+                        // check if already on the leaderboard
+                        if (JSON.stringify(this.props.topScores).contains(this.props.user.name)) {
+                            // change the score in the leaderboard
+                            leaderboard.forEach((person) => {
+                                if (person.name == this.props.user.name) {
+                                    person.score == newScore;
+                                }
+                            }, this);
+                            // sort the leaderboard
+                            leaderboard.sort((a, b) => {
+                                return b.score - a.score;
+                            });
+                            // add to database and store
+                            this.props.updateUserOnLeaderboard(newScore, leaderboard);
+                        }
+                        else {
+                            // change the lowest person on leaderboard to current user
+                            leaderboard.pop();
+                            leaderboard.push({deletionKey: this.props.user.uid, name: this.props.user.name, score: newScore});
+                            // sort the leaderboard
+                            leaderboard.sort((a, b) => {
+                                return b.score - a.score;
+                            });
+                            // add to database and store
+                            this.props.addUserToLeaderboard(lowest.deletionKey, this.props.user.name, newScore, leaderboard);
+                        }
+                    }
+                }
             }
             Alert.alert("Correct", this.state.solution + " is the correct answer");
             this.props.noneSelected();
@@ -91,6 +143,7 @@ const mapStateToProps = (state) => {
     return {
         puzzle: state.puzzleSelected,
         user: state.user,
+        topScores: state.topScores,
     };
 };
 

@@ -1,0 +1,33 @@
+// TODO: enable reading of user scores
+{
+    "rules": {
+        // puzzle data can be read by all authenticated users
+        "puzzles": {
+            ".read": "auth != null",
+            ".write": "auth != null"
+        },
+        // user data
+        "users": {
+            // admin can read user data to get the scores
+            ".read": "root.child('users').child(auth.uid).child('admin').val() === true",
+            // otherwise a user can only read their own data
+            "$uid": {
+            ".read": "auth.uid === $uid",
+            ".write": "auth.uid === $uid"
+            }
+        },
+        // top scores can be read by all authenticated users
+        "scores": {
+            ".read": "auth != null",
+            ".write": "auth != null"
+        }
+    }
+}
+
+// default security rules
+// {
+//   "rules": {
+//     ".read": "auth != null",
+//     ".write": "auth != null"
+//   }
+// }

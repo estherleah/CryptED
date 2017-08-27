@@ -122,6 +122,29 @@ export const updateScore = (score) => {
     };
 };
 
+export const updateUserOnLeaderboard = (score, topScores) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/scores/${currentUser.uid}/score`)
+        .set(score)
+        .then(() => {
+            dispatch({ type: 'UPDATE_LEADERBOARD', payload: topScores });
+        });
+    };
+};
+
+export const addUserToLeaderboard = (toRemove, name, score, topScores) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/scores/${toRemove}`).remove()
+        firebase.database().ref(`/scores/${currentUser.uid}`)
+        .set({name, score})
+        .then(() => {
+            dispatch({ type: 'UPDATE_LEADERBOARD', payload: topScores });
+        });
+    };
+}
+
 // Change the admin status of a user.
 export const changeAdmin = (admin) => {
     const { currentUser } = firebase.auth();
@@ -133,6 +156,27 @@ export const changeAdmin = (admin) => {
         });
     };
 };
+
+// Load the top scores for the leaderboard.
+export const loadTopScores = () => {
+    let topScores = [];
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/scores/`)
+        .on('value', snapshot => {
+            snapshot.forEach((child) => {
+                deletionKey = child.key;
+                name = child.val().name;
+                score = child.val().score
+                topScores.push({deletionKey, name, score})
+            })
+            topScores.sort((a, b) => {
+                return b.score - a.score;
+            });
+            dispatch({ type: 'LEADERBOARD_FETCH', payload: topScores });
+        });
+    };
+}
 
 // Load the user scores from the database.
 export const loadScores = () => {
