@@ -5,6 +5,7 @@
             ".read": "auth != null",
             ".write": "auth != null",
             "logic": {
+                ".indexOn": "rating",
                 "$id": {
                     "rating": {
                         ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
@@ -24,6 +25,7 @@
                 }
             },
             "cybersecurity": {
+                ".indexOn": "rating",
                 "$id": {
                     "rating": {
                         ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
@@ -43,6 +45,7 @@
                 }
             },
             "cryptography": {
+                ".indexOn": "rating",
                 "$id": {
                     "rating": {
                         ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
