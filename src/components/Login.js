@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, ScrollView, Modal } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView, Modal, TouchableOpacity } from 'react-native';
 import { Header, Button, FormInput, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
@@ -25,6 +25,7 @@ class Login extends Component {
         date: '',
         loading: false,
         newUser: false,
+        forgot: false,
     };
 
     // Ensures application is logged out before login screen is rendered.
@@ -97,13 +98,30 @@ class Login extends Component {
         });
     }
 
+    onForgotPassword() {
+        const { email } = this.state;
+        firebase.auth().sendPasswordResetEmail(email)
+        .then(() => {
+            this.setState({forgot: false});
+            alert("Message sent")
+        })
+        .catch((error) => console.log(error));
+    }
+
     // Add the loader to show that it is loading.
     renderLoader() {
         return (this.state.loading) ? 
             <ActivityIndicator size='large' /> :
             <View>
                 <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Login' onPress={this.onLoginPress.bind(this)} />
-                <Button raised backgroundColor='#567FDE' title='Sign up' onPress={this.onSignUpPress.bind(this)} />
+                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Sign up' onPress={this.onSignUpPress.bind(this)} />
+                <TouchableOpacity
+                    onPress={() => {this.setState({forgot: true})}}
+                >
+                    <Text style={styles.forgot}>
+                        Forgot password?
+                    </Text>
+                </TouchableOpacity>
             </View>;
     }
 
@@ -205,6 +223,39 @@ class Login extends Component {
                                     <View>
                                         <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Sign up' onPress={this.onButtonPress.bind(this)} />
                                     </View>}
+                            </ScrollView>
+                        </View>
+                    </Modal>
+                    {/* End of modal */}
+
+                    {/* Modal for forgot password */}
+                    <Modal
+                        visible={this.state.forgot}
+                        onRequestClose={() => this.setState({forgot: false})}
+                        animationType='none'
+                    >
+                        <View style={styles.container}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                                <View style={styles.header}>
+                                    <Header 
+                                        backgroundColor='#567FDE'
+                                        leftComponent={<Icon 
+                                            name='arrow-back' 
+                                            color='#fff' 
+                                            onPress={() => this.setState({forgot: false})} 
+                                        />} 
+                                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                                    />
+                                </View>
+                                <Text style={styles.title}>Password reset</Text>
+                                <Text style={styles.forgot}>Please enter your email address to receive a password reset link</Text>
+                                <FormInput 
+                                    onChangeText={email => this.setState({email})}
+                                    textInputRef={this.state.email}  
+                                    placeholder={'Email'} 
+                                    keyboardType={'email-address'}
+                                />
+                                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Reset' onPress={this.onForgotPassword.bind(this)} />
                             </ScrollView>
                         </View>
                     </Modal>

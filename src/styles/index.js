@@ -84,6 +84,13 @@ export default styles = StyleSheet.create({
         textAlign: 'center',
         margin: 10,
     },
+    forgot: {
+        textAlign: 'center',
+        marginTop: 15,
+        paddingBottom: 20,
+        paddingLeft: 10,
+        paddingRight: 10,
+    },
     
     // Cryptography page
     more: {
