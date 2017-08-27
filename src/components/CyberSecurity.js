@@ -48,7 +48,7 @@ class CyberSecurity extends Component {
                     lowest = leaderboard[9];
                     if (newScore > lowest.score) {
                         // check if already on the leaderboard
-                        if (JSON.stringify(this.props.topScores).contains(this.props.user.name)) {
+                        if (JSON.stringify(this.props.topScores).contains(this.props.user.uid)) {
                             // change the score in the leaderboard
                             leaderboard.forEach((person) => {
                                 if (person.name == this.props.user.name) {
