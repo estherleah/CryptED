@@ -16,7 +16,6 @@ import { Provider, connect } from 'react-redux';
 import Thunk from 'redux-thunk';
 import Login from './Login';
 import Navigation from './Navigation';
-import NewUser from './NewUser';
 import reducers from '../reducers/Reducer';
 import * as actions from '../actions';
 import styles from '../styles';
@@ -56,16 +55,12 @@ class App extends Component {
     renderInitialView() {
         switch (this.state.loggedIn) {
             case true:
-                if (this.props.newUser) {
-                    return <NewUser />;
-                } else {
-                    this.props.loadUser();
-                    // load puzzles so available if then lose internet connection
-                    this.props.loadCryptographyPuzzles();
-                    this.props.loadCyberSecurityPuzzles();
-                    this.props.loadLogicPuzzles();
-                    return <Navigation />;
-                }
+                this.props.loadUser();
+                // load puzzles so available if then lose internet connection
+                this.props.loadCryptographyPuzzles();
+                this.props.loadCyberSecurityPuzzles();
+                this.props.loadLogicPuzzles();
+                return <Navigation />;
             case false:
                 return <Login />;
             default:

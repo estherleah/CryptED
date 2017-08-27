@@ -19,7 +19,6 @@ const initialState = {
     user: null,
     topScores: [],
     scores: [],
-    newUser: false,
 };
 
 export default (state = initialState, action) => {
@@ -132,18 +131,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 topScores: action.payload,
-            };
-
-        case 'NEW_USER':
-            return {
-                ...state,
-                newUser: true,
-            };
-
-        case 'USER_CREATED':
-            return {
-                ...state,
-                newUser: false,
             };
 
         case 'UPDATE_NAME':

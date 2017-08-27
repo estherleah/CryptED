@@ -212,32 +212,6 @@ export const loadScores = () => {
     };
  };
 
-// A new user is created.
-export const createNewUser = () => {
-    return {
-        type: 'NEW_USER',
-    };
-};
-
-// The new user has been created and the details have been added to the database.
-// TODO: if refresh before info is saved => error
-export const userCreated = (name, date) => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}`)
-        .set({
-            score: 0,
-            admin: false,
-            solved: '',
-            name,
-            date
-        })
-        .then(() => {
-            dispatch({ type: 'USER_CREATED' });
-        });
-    };
-};
-
 // Change the user's name.
 export const changeName = (name) => {
     const { currentUser } = firebase.auth();
