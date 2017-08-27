@@ -1,10 +1,66 @@
-// TODO: enable reading of user scores
 {
     "rules": {
         // puzzle data can be read by all authenticated users
         "puzzles": {
             ".read": "auth != null",
-            ".write": "auth != null"
+            ".write": "auth != null",
+            "logic": {
+                "$id": {
+                    "rating": {
+                        ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
+                    },
+                    "problem": {
+                        ".validate": "newData.isString()"
+                    },
+                    "solution": {
+                        ".validate": "newData.isString()"
+                    },
+                    "type": {
+                        ".validate": "newData.isString() && (newData.val() == 'text' || newData.val() == 'multi')"
+                    },
+                    "notes": {
+                        ".validate": "newData.isString()"
+                    }
+                }
+            },
+            "cybersecurity": {
+                "$id": {
+                    "rating": {
+                        ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
+                    },
+                    "problem": {
+                        ".validate": "newData.isString()"
+                    },
+                    "solution": {
+                        ".validate": "newData.isString()"
+                    },
+                    "type": {
+                        ".validate": "newData.isString() && (newData.val() == 'text' || newData.val() == 'multi')"
+                    },
+                    "notes": {
+                        ".validate": "newData.isString()"
+                    }
+                }
+            },
+            "cryptography": {
+                "$id": {
+                    "rating": {
+                        ".validate": "newData.isNumber() && newData.val() >= 1 && newData.val() <= 5"
+                    },
+                    "plaintext": {
+                        ".validate": "newData.isString()"
+                    },
+                    "key": {
+                        ".validate": "newData.isString()"
+                    },
+                    "type": {
+                        ".validate": "newData.isString() && (newData.val() == 'caesar' || newData.val() == 'vigenere' || newData.val() == 'atbash')"
+                    },
+                    "notes": {
+                        ".validate": "newData.isString()"
+                    }
+                }
+            }
         },
         // user data
         "users": {
@@ -12,14 +68,34 @@
             ".read": "root.child('users').child(auth.uid).child('admin').val() === true",
             // otherwise a user can only read their own data
             "$uid": {
-            ".read": "auth.uid === $uid",
-            ".write": "auth.uid === $uid"
+                ".read": "auth.uid === $uid",
+                ".write": "auth.uid === $uid",
+                "name": {
+                    ".validate": "newData.isString() && newData.val().length <= 25"
+                },
+                "score": {
+                    ".validate": "newData.isNumber()"
+                },
+                "admin": {
+                    ".validate": "newData.isBoolean()"
+                },
+                "dob": {
+                    ".validate": "newData.isString() && newData.val().matches(/^(19|20)[0-9][0-9][-\\/. ](0[1-9]|1[012])[-\\/. ](0[1-9]|[12][0-9]|3[01])$/)"
+                }
             }
         },
         // top scores can be read by all authenticated users
         "scores": {
             ".read": "auth != null",
-            ".write": "auth != null"
+            ".write": "auth != null",
+            "$id": {
+                "name": {
+                    ".validate": "newData.isString() && newData.val().length <= 25"
+                },
+                "score": {
+                    ".validate": "newData.isNumber()"
+                }
+            }
         }
     }
 }
