@@ -122,6 +122,7 @@ export const updateScore = (score) => {
     };
 };
 
+// Update user's score if user already on leaderboard.
 export const updateUserOnLeaderboard = (score, topScores) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
@@ -133,6 +134,7 @@ export const updateUserOnLeaderboard = (score, topScores) => {
     };
 };
 
+// Add user to leaderboard if score is one of the top 10.
 export const addUserToLeaderboard = (toRemove, name, score, topScores) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
