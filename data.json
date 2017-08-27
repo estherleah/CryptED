@@ -95,7 +95,13 @@
             }
         }
     },
-    "members": {
+    "scores": {
+        "user-1": {
+            "name": "Fred Bloggs",
+            "score": 3
+        }
+    },
+    "users": {
         "user-1": {
             "name": "Fred Bloggs",
             "admin": true,
