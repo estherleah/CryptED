@@ -118,6 +118,7 @@ class SinglePuzzle extends Component {
     render() {
         return(
             (this.props.type == 'cryptography') ?
+            // Cryptography puzzle
             <View style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
@@ -175,7 +176,10 @@ class SinglePuzzle extends Component {
                     {/* End of modal */}
                     
                 </ScrollView>
-            </View> :
+            </View> 
+            // end of Cryptography puzzle
+            :
+            // Cybersecurity and logic puzzle
             <View style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                 <View style={styles.header}>
@@ -194,6 +198,7 @@ class SinglePuzzle extends Component {
                     {this.props.puzzle.problem}
                 </Text>
                 {(this.props.puzzle.type == 'text') ? 
+                    // Text only solution
                     <View>
                         <FormInput 
                             onChangeText={solution => this.setState({solution})}
@@ -201,7 +206,7 @@ class SinglePuzzle extends Component {
                             placeholder={'Solution'} 
                         />
                     </View> : 
-                    (this.props.puzzle.type == 'multi') ? 
+                    // Multiple choice solution
                     <View>
                         <RadioForm 
                             radio_props = {[
@@ -221,12 +226,12 @@ class SinglePuzzle extends Component {
                             buttonSize = {10} 
                             style = {styles.radio} 
                         />
-                    </View> :
-                    null
+                    </View>
                 }
                 <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
             </ScrollView>
         </View>
+        // end of Cybersecurity and Logic puzzle
         );
     }
 }

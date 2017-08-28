@@ -47,7 +47,7 @@ class Login extends Component {
     }
 
     // View sign up modal.
-    onSignUpPress() {
+    onSignUpButtonPress() {
         this.setState({newUser: true});
     }
 
@@ -62,7 +62,7 @@ class Login extends Component {
     }
     
     // Actual sign up method for a new user.
-    onButtonPress() {
+    onSignUpPress() {
         const { email, password, name, date } = this.state;
         this.setState({error: '', loading: true});
         if (date != '' && name != '') {
@@ -103,7 +103,7 @@ class Login extends Component {
         firebase.auth().sendPasswordResetEmail(email)
         .then(() => {
             this.setState({forgot: false});
-            alert("Message sent")
+            alert("Message sent");
         })
         .catch((error) => console.log(error));
     }
@@ -114,7 +114,7 @@ class Login extends Component {
             <ActivityIndicator size='large' /> :
             <View>
                 <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Login' onPress={this.onLoginPress.bind(this)} />
-                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Sign up' onPress={this.onSignUpPress.bind(this)} />
+                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Sign up' onPress={this.onSignUpButtonPress.bind(this)} />
                 <TouchableOpacity
                     onPress={() => {this.setState({forgot: true})}}
                 >
@@ -221,7 +221,7 @@ class Login extends Component {
                                 {(this.state.loading) ? 
                                     <ActivityIndicator size='large' /> :
                                     <View>
-                                        <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Sign up' onPress={this.onButtonPress.bind(this)} />
+                                        <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Sign up' onPress={this.onSignUpPress.bind(this)} />
                                     </View>}
                             </ScrollView>
                         </View>
