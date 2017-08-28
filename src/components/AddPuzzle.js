@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { FormInput, Button } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
@@ -71,6 +71,7 @@ class AddPuzzle extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <KeyboardAvoidingView style={styles.scroll}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
                     <Text style={styles.title}>Add your own puzzle</Text>
@@ -194,6 +195,7 @@ class AddPuzzle extends Component {
                     </Select>
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
                 </ScrollView>
+                </KeyboardAvoidingView>
             </View>
         );
     }

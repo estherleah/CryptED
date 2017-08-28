@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, ScrollView, Modal, TouchableOpacity } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView, Modal, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { Header, Button, FormInput, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
@@ -128,6 +128,7 @@ class Login extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <KeyboardAvoidingView style={styles.scroll}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.header}>
                         <Header backgroundColor='#567FDE'
@@ -161,6 +162,7 @@ class Login extends Component {
                         animationType='none'
                     >
                         <View style={styles.container}>
+                            <KeyboardAvoidingView style={styles.scroll}>
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
@@ -224,6 +226,7 @@ class Login extends Component {
                                         <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Sign up' onPress={this.onSignUpPress.bind(this)} />
                                     </View>}
                             </ScrollView>
+                            </KeyboardAvoidingView>
                         </View>
                     </Modal>
                     {/* End of modal */}
@@ -235,6 +238,7 @@ class Login extends Component {
                         animationType='none'
                     >
                         <View style={styles.container}>
+                            <KeyboardAvoidingView style={styles.scroll}>
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
@@ -257,11 +261,13 @@ class Login extends Component {
                                 />
                                 <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Reset' onPress={this.onForgotPassword.bind(this)} />
                             </ScrollView>
+                            </KeyboardAvoidingView>
                         </View>
                     </Modal>
                     {/* End of modal */}
 
                 </ScrollView>
+                </KeyboardAvoidingView>
             </View>
         );
     }

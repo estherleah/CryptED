@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Modal, Alert } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Modal, Alert, KeyboardAvoidingView } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import RadioForm from 'react-native-simple-radio-button';
 import { connect } from 'react-redux';
@@ -120,6 +120,7 @@ class SinglePuzzle extends Component {
             (this.props.type == 'cryptography') ?
             // Cryptography puzzle
             <View style={styles.container}>
+                <KeyboardAvoidingView style={styles.scroll}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
                         <Header 
@@ -176,62 +177,65 @@ class SinglePuzzle extends Component {
                     {/* End of modal */}
                     
                 </ScrollView>
+                </KeyboardAvoidingView>
             </View> 
             // end of Cryptography puzzle
             :
             // Cybersecurity and logic puzzle
             <View style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
-                <View style={styles.header}>
-                    <Header 
-                        backgroundColor='#567FDE'
-                        leftComponent={<Icon 
-                            name='arrow-back' 
-                            color='#fff' 
-                            onPress={() => this.props.noneSelected()} 
-                        />} 
-                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
-                    />
-                </View>
-                <Text style={styles.title}>{(this.props.type == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
-                <Text style={styles.body}>
-                    {this.props.puzzle.problem}
-                </Text>
-                {(this.props.puzzle.type == 'text') ? 
-                    // Text only solution
-                    <View>
-                        <FormInput 
-                            onChangeText={solution => this.setState({solution})}
-                            textInputRef={this.state.solution}  
-                            placeholder={'Solution'} 
-                        />
-                    </View> : 
-                    // Multiple choice solution
-                    <View>
-                        <RadioForm 
-                            radio_props = {[
-                                {label: this.props.puzzle.options.A, value: 'A'},
-                                {label: this.props.puzzle.options.B, value: 'B'},
-                                {label: this.props.puzzle.options.C, value: 'C'},
-                                {label: this.props.puzzle.options.D, value: 'D'},
-                            ]}
-                            initial = {
-                                (this.state.solution == 'A') ? 0 : 
-                                    (this.state.solution == 'B') ? 1 :
-                                        (this.state.solution == 'C') ? 2 : 
-                                            (this.state.solution == 'D') ? 3 : -1
-                            }
-                            onPress = {value => this.setState({solution: value})} 
-                            buttonColor = '#567FDE' 
-                            buttonSize = {10} 
-                            style = {styles.radio} 
+                <KeyboardAvoidingView style={styles.scroll}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                    <View style={styles.header}>
+                        <Header 
+                            backgroundColor='#567FDE'
+                            leftComponent={<Icon 
+                                name='arrow-back' 
+                                color='#fff' 
+                                onPress={() => this.props.noneSelected()} 
+                            />} 
+                            centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
-                }
-                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
-            </ScrollView>
-        </View>
-        // end of Cybersecurity and Logic puzzle
+                    <Text style={styles.title}>{(this.props.type == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                    <Text style={styles.body}>
+                        {this.props.puzzle.problem}
+                    </Text>
+                    {(this.props.puzzle.type == 'text') ? 
+                        // Text only solution
+                        <View>
+                            <FormInput 
+                                onChangeText={solution => this.setState({solution})}
+                                textInputRef={this.state.solution}  
+                                placeholder={'Solution'} 
+                            />
+                        </View> : 
+                        // Multiple choice solution
+                        <View>
+                            <RadioForm 
+                                radio_props = {[
+                                    {label: this.props.puzzle.options.A, value: 'A'},
+                                    {label: this.props.puzzle.options.B, value: 'B'},
+                                    {label: this.props.puzzle.options.C, value: 'C'},
+                                    {label: this.props.puzzle.options.D, value: 'D'},
+                                ]}
+                                initial = {
+                                    (this.state.solution == 'A') ? 0 : 
+                                        (this.state.solution == 'B') ? 1 :
+                                            (this.state.solution == 'C') ? 2 : 
+                                                (this.state.solution == 'D') ? 3 : -1
+                                }
+                                onPress = {value => this.setState({solution: value})} 
+                                buttonColor = '#567FDE' 
+                                buttonSize = {10} 
+                                style = {styles.radio} 
+                            />
+                        </View>
+                    }
+                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
+                </ScrollView>
+                </KeyboardAvoidingView>
+            </View>
+            // end of Cybersecurity and Logic puzzle
         );
     }
 }
