@@ -91,8 +91,25 @@ export default styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
     },
+
+    // Puzzles page
+    tabs: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#567FDE',
+        paddingTop: 5,
+    },
+    tab: {
+        flex: 1,
+        height: 50,
+    },
+    tabText: {
+        color: '#fff',
+        textAlign: 'center',
+    },
     
-    // Cryptography page
+    // Single puzzle page
     more: {
         textAlign: 'center',
         marginTop: 45,
