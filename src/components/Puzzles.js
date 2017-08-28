@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ListView, ScrollView } from 'react-native';
-import { List, ListItem } from 'react-native-elements';
+import { List, ListItem, ButtonGroup } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import SinglePuzzle from './SinglePuzzle';
@@ -8,9 +8,21 @@ import * as actions from '../actions';
 import styles from '../styles';
 
 class Puzzles extends Component {
+    // Initial state
+    state = {
+        selectedIndex: 0,
+    };
+
     // Executes before component mounts.
     componentWillMount() {
         this.props.loadPuzzles();
+    }
+
+    // 
+    updateIndex(selectedIndex) {
+        this.setState({
+            selectedIndex,
+        })
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
@@ -18,13 +30,37 @@ class Puzzles extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1!== r2,
         });
-        this.dataSource = ds.cloneWithRows(this.props.puzzles);
+        switch (this.state.selectedIndex) {
+            case 0:
+                crypto = this.props.puzzles.filter((item) => {return item.type == 'cryptography'});
+                this.dataSource = ds.cloneWithRows(crypto);
+                break;
+            case 1:
+                cyber = this.props.puzzles.filter((item) => {return item.type == 'cybersecurity'});
+                this.dataSource = ds.cloneWithRows(cyber);
+                break;
+            case 2:
+                logic = this.props.puzzles.filter((item) => {return item.type == 'logic'});
+                this.dataSource = ds.cloneWithRows(logic);
+                break;
+            default:
+                this.dataSource = ds.cloneWithRows(this.props.puzzles);
+                break;
+        }
+        const buttons = ['Cryptography', 'Cybersecurity', 'Logic'];
 
         return (this.props.detailView) ?
             <SinglePuzzle /> :
             <View style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
+                    <ButtonGroup
+                        onPress={this.updateIndex.bind(this)}
+                        selectedIndex={this.state.selectedIndex}
+                        buttons={buttons}
+                        containerStyle={{backgroundColor: '#567FDE'}}
+                        textStyle={{color: '#fff'}}
+                    />
                     <List containerStyle={styles.list}>
                         <ListView 
                             enableEmptySections
