@@ -6,12 +6,21 @@ import CryptographyPuzzles from './CryptographyPuzzles';
 import CyberSecurityPuzzles from './CyberSecurityPuzzles';
 import CryptographyHistory from './CryptographyHistory';
 import LogicPuzzles from './LogicPuzzles';
+import Puzzles from './Puzzles';
 import AddPuzzle from './AddPuzzle';
 import Leaderboard from './Leaderboard';
 import Settings from './Settings';
 import Login from './Login';
 
 const Navigation = DrawerNavigator({
+    Puzzles: {
+        screen: Puzzles,
+        navigationOptions: {
+            drawerLabel: 'Puzzles',
+            drawerIcon: () => 
+                (<Icon name='puzzle-piece' type='font-awesome' />),
+        }
+    },
     CryptographyPuzzles: {
         screen: CryptographyPuzzles,
         navigationOptions: {

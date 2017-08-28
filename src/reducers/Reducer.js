@@ -1,5 +1,6 @@
 // Initial state
 const initialState = {
+    puzzles: [],
     cryptoPuzzles: [],
     cyberPuzzles: [],
     logicPuzzles: [],
@@ -23,6 +24,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+
+        case 'PUZZLES_FETCH':
+            return {
+                ...state,
+                puzzles: action.payload,
+            };
 
         case 'LOGIC_FETCH':
             return {

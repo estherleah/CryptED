@@ -45,6 +45,26 @@ export const createNewPuzzle = ({ problem, solution, notes, rating, options, typ
     };
 };
 
+// Load all puzzles from the database
+export const loadPuzzles = () => {
+    let puzzles = [];
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/`)
+        .on('value', snapshot => {
+            snapshot.forEach((child) => {
+                type = child.key;
+                firebase.database().ref(`/puzzles/${type}`).orderByChild('rating')
+                .on('value', snapshot => {
+                    snapshot.forEach((puzzle) => {
+                        puzzles.push({data: puzzle.val(), type})
+                    })
+                })
+            })
+            dispatch({ type: 'PUZZLES_FETCH', payload: puzzles });
+        });
+    };
+};
+
 // Load the logic puzzles from the database.
 export const loadLogicPuzzles = () => {
     let logicPuzzles = [];
