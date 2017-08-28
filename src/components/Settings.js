@@ -236,8 +236,9 @@ class Settings extends Component {
                                     dataSource={this.getData()} 
                                     renderRow={(rowData, sectionID, rowID) =>
                                         <ListItem 
+                                            hideChevron={true}
                                             containerStyle={styles.listItem} 
-                                            rightIcon={<Text style={styles.scores}>{rowData.score}</Text>}
+                                            badge={{ value: rowData.score, containerStyle: styles.badge }}
                                             title={rowData.name} 
                                             leftIcon={<Text style={styles.numbering}>{Number(rowID) + 1}.</Text>}
                                         />
