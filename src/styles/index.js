@@ -98,11 +98,13 @@ export default styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: '#567FDE',
-        paddingTop: 5,
+        paddingTop: 7,
     },
     tab: {
         flex: 1,
-        height: 50,
+        height: 55,
+        paddingTop: 7,
+        marginTop: -7,
     },
     tabText: {
         color: '#fff',
