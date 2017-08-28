@@ -99,6 +99,7 @@ export default styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: '#567FDE',
         paddingTop: 7,
+        marginTop: -0.75,
     },
     tab: {
         flex: 1,
