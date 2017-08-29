@@ -181,6 +181,54 @@ class SinglePuzzle extends Component {
             </View> 
             // end of Cryptography puzzle
             :
+            (this.props.type == 'new') ?
+            // Newly added puzzle
+            <View style={styles.container}>
+                <KeyboardAvoidingView style={styles.scroll}>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                    <View style={styles.header}>
+                        <Header 
+                            backgroundColor='#567FDE'
+                            leftComponent={<Icon 
+                                name='arrow-back' 
+                                color='#fff' 
+                                onPress={() => this.props.noneSelected()} 
+                            />} 
+                            centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                        />
+                    </View>
+                    <Text style={styles.title}>{(this.props.type == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                    <Text style={styles.subheading}>Problem:</Text>
+                    <Text style={styles.body}>
+                        {this.props.puzzle.problem}
+                        {'\n'}{'\n'}
+                    </Text>
+                    <Text style={styles.subheading}>Solution:</Text>
+                    <Text style={styles.body}>
+                        {this.props.puzzle.solution}
+                        {'\n'}{'\n'}
+                    </Text>
+                    {(this.props.puzzle.notes != '') ?
+                    <View>
+                        <Text style={styles.subheading}>Notes:</Text>
+                        <Text style={styles.body}>
+                            {this.props.puzzle.notes}
+                            {'\n'}{'\n'}
+                        </Text>
+                    </View>
+                    : null}
+                    <Text style={styles.subheading}>Level:</Text>
+                    <Text style={styles.body}>
+                        {this.props.puzzle.rating}
+                    </Text>
+                    <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Approve' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Change' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='red' containerViewStyle={styles.button} title='Delete' onPress={this.onSubmit.bind(this)} />
+                </ScrollView>
+                </KeyboardAvoidingView>
+            </View>
+        // end of newly added puzzle
+            :
             // Cybersecurity and logic puzzle
             <View style={styles.container}>
                 <KeyboardAvoidingView style={styles.scroll}>

@@ -24,6 +24,13 @@ export default styles = StyleSheet.create({
         margin: 10,
         paddingBottom: 20,
     },
+    subheading: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        marginBottom: 5,
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
     body: {
         textAlign: 'center',
         color: '#333333',

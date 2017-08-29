@@ -36,6 +36,10 @@ class Puzzles extends Component {
                 logic = this.props.puzzles.filter((item) => {return item.type == 'logic'});
                 this.dataSource = ds.cloneWithRows(logic);
                 break;
+            case 'admin':
+                newlyAdded = this.props.puzzles.filter((item) => {return item.type == 'new'});
+                this.dataSource = ds.cloneWithRows(newlyAdded);
+                break;
             default:
                 this.dataSource = ds.cloneWithRows(this.props.puzzles);
                 break;
