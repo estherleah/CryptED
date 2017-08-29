@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, KeyboardAvoidingView } from 'react-native';
-import { FormInput, Button } from 'react-native-elements';
+import { Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
+import { FormInput, Button, Icon } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
 import AppHeader from './AppHeader';
-import LogicPuzzles from './LogicPuzzles';
 import CyberSecurityPuzzles from './CyberSecurityPuzzles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -15,7 +14,7 @@ class AddPuzzle extends Component {
     state = {
         errors: [],
         type: 'text',
-        category: '',
+        category: 'cybersecurity',
     };
 
     // Method for what happens when press the add button. Validate input and add puzzle.
@@ -57,10 +56,9 @@ class AddPuzzle extends Component {
             else {
                 this.props.createNewPuzzle({problem, solution, notes, rating, options, type, category});
             }
-            // navigate to list of puzzles of the category that was just added
-            (this.state.category == 'logic') ? 
-                this.props.navigation.navigate('LogicPuzzles') :
-                this.props.navigation.navigate('CyberSecurityPuzzles');
+            // inform user of success
+            Alert.alert("Success", "Puzzle added");
+            this.props.navigation.navigate('AddPuzzle');
         }
         // if errors then add to the state
         else {
@@ -74,6 +72,22 @@ class AddPuzzle extends Component {
                 <KeyboardAvoidingView style={styles.scroll}>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <AppHeader />
+                    <View style={styles.tabs}>
+                        <TouchableOpacity 
+                            style={[styles.tab, {backgroundColor: this.state.category == 'cybersecurity' ? '#6392FF' : null}]} 
+                            onPress={() => {this.setState({category: 'cybersecurity'})}} 
+                        >
+                            <Icon name='security' color='#fff' containerStyle={{height: 25}} />
+                            <Text style={styles.tabText}>Cybersecurity</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            style={[styles.tab, {backgroundColor: this.state.category == 'logic' ? '#6392FF' : null}]} 
+                            onPress={() => {this.setState({category: 'logic'})}} 
+                        >
+                            <Icon name='puzzle-piece' type='font-awesome' color='#fff' containerStyle={{height: 25}} />
+                            <Text style={styles.tabText}>Logic</Text>
+                        </TouchableOpacity>
+                    </View>
                     <Text style={styles.title}>Add your own puzzle</Text>
                     <View>
                         {(this.state.errors.length != 0) ?
@@ -92,25 +106,8 @@ class AddPuzzle extends Component {
                         buttonSize = {10} 
                         style = {styles.radio} 
                     />
-                    <Select
-                        transparent 
-                        onSelect = {value => this.setState({category: value})} 
-                        selectedValue = {this.state.category} 
-                        selected = {this.state.category} 
-                        defaultText  = 'Please select a category' 
-                        style = {styles.select} 
-                        backdropStyle  = {styles.selectBackdrop} 
-                        optionListStyle = {[styles.selectOptions, {height: 80}]} 
-                        textStyle = {{marginLeft: -10}} 
-                        indicator = 'down' 
-                        indicatorColor = 'gray'
-                    >
-                        <Option value = 'cybersecurity'>Cyber security puzzle</Option>
-                        <Option value = 'logic'>Logic puzzle</Option>
-                    </Select>
                     <FormInput 
                         multiline={true} 
-                        numberOfLines={5}
                         autoCapitalize={'sentences'}
                         placeholder={'Problem'} 
                         value={this.props.problem} 

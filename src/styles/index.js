@@ -50,6 +50,10 @@ export default styles = StyleSheet.create({
     subtitle: {
         fontWeight: 'normal',
     },
+    badge: {
+        backgroundColor: '#567FDE',
+        marginRight: 7,
+    },
     select: {
         marginLeft: 20,
         marginRight: 20,
@@ -60,17 +64,35 @@ export default styles = StyleSheet.create({
         marginBottom: 5,
     },
     selectOptions: {
-        backgroundColor : '#F5FCFF',
+        backgroundColor : '#FFF',
         width: '90%',
-        borderColor: 'lightgray',
+        borderColor: 'white',
     },
     selectBackdrop: {
-        backgroundColor: 'rgba(245, 252, 255, 0.75)',
+        backgroundColor: 'rgba(100, 100, 100, 0.75)',
     },
     radio: {
         alignItems: 'flex-start',
         justifyContent: 'space-around',
         padding: 20,
+    },
+    tabs: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: '#567FDE',
+        paddingTop: 7,
+        marginTop: -0.75,
+    },
+    tab: {
+        flex: 1,
+        height: 55,
+        paddingTop: 7,
+        marginTop: -7,
+    },
+    tabText: {
+        color: '#fff',
+        textAlign: 'center',
     },
 
     //
@@ -91,38 +113,12 @@ export default styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
     },
-
-    // Puzzles page
-    tabs: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: '#567FDE',
-        paddingTop: 7,
-        marginTop: -0.75,
-    },
-    tab: {
-        flex: 1,
-        height: 55,
-        paddingTop: 7,
-        marginTop: -7,
-    },
-    tabText: {
-        color: '#fff',
-        textAlign: 'center',
-    },
     
     // Single puzzle page
     more: {
         textAlign: 'center',
         marginTop: 45,
         paddingBottom: 20,
-    },
-
-    // Settings page
-    badge: {
-        backgroundColor: '#567FDE',
-        marginRight: 7,
     },
 
     // Add puzzle page
