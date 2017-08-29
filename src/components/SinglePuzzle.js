@@ -13,6 +13,7 @@ class SinglePuzzle extends Component {
         ciphertext: '',
         solution: '',
         modalVisible: false,
+        editing: false,
     };
 
     // Executes before component mounts.
@@ -122,8 +123,9 @@ class SinglePuzzle extends Component {
     }
 
     // Admin changes a puzzle.
+    // TODO: implementation
     onChange() {
-
+        this.setState({editing: true});
     }
 
     // Admin removes a puzzle.
@@ -220,6 +222,21 @@ class SinglePuzzle extends Component {
                         {this.props.puzzle.problem}
                         {'\n'}{'\n'}
                     </Text>
+                    {(this.props.puzzle.type == 'multi') ?
+                    <View>
+                        <Text style={styles.subheading}>Options:</Text>
+                        <Text style={styles.body}>
+                            A:   {this.props.puzzle.options.A}
+                            {'\n'}
+                            B:   {this.props.puzzle.options.B}
+                            {'\n'}
+                            C:   {this.props.puzzle.options.C}
+                            {'\n'}
+                            D:   {this.props.puzzle.options.D}
+                            {'\n'}{'\n'}
+                        </Text>
+                    </View>
+                    : null}
                     <Text style={styles.subheading}>Solution:</Text>
                     <Text style={styles.body}>
                         {this.props.puzzle.solution}
@@ -241,10 +258,35 @@ class SinglePuzzle extends Component {
                     <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Approve' onPress={this.onApprove.bind(this)} />
                     <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Change' onPress={this.onChange.bind(this)} />
                     <Button raised backgroundColor='red' containerViewStyle={styles.button} title='Delete' onPress={this.onDelete.bind(this)} />
+
+                    {/* Modal for editing a puzzle */}
+                    <Modal
+                        visible={this.state.editing}
+                        onRequestClose={() => this.setState({editing: false})}
+                    >
+                        <View style={styles.container}>
+                            <View style={styles.header}>
+                                <Header 
+                                    backgroundColor='#567FDE'
+                                    leftComponent={<Icon 
+                                        name='arrow-back' 
+                                        color='#fff' 
+                                        onPress={() => this.setState({editing: false})} 
+                                    />} 
+                                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                                />
+                            </View>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
+                                
+                            </ScrollView>
+                        </View>
+                    </Modal>
+                    {/* End of modal */}
+
                 </ScrollView>
                 </KeyboardAvoidingView>
             </View>
-        // end of newly added puzzle
+            // end of newly added puzzle
             :
             // Cybersecurity and logic puzzle
             <View style={styles.container}>

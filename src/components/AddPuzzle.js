@@ -117,6 +117,7 @@ class AddPuzzle extends Component {
                     {
                         (this.state.type == 'text') ?
                             <FormInput 
+                                autoCapitalize={'sentences'} 
                                 placeholder={'Solution'} 
                                 value={this.props.solution} 
                                 onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
@@ -124,24 +125,28 @@ class AddPuzzle extends Component {
                             <View>
                                 <FormInput 
                                     multiline={true} 
+                                    autoCapitalize={'sentences'} 
                                     placeholder={'Solution option A'} 
                                     value={this.props.options.A} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'A', value })} 
                                 />
                                 <FormInput 
                                     multiline={true} 
+                                    autoCapitalize={'sentences'} 
                                     placeholder={'Solution option B'} 
                                     value={this.props.options.B} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'B', value })} 
                                 />
                                 <FormInput 
                                     multiline={true} 
+                                    autoCapitalize={'sentences'} 
                                     placeholder={'Solution option C'} 
                                     value={this.props.options.C} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'C', value })} 
                                 />
                                 <FormInput 
                                     multiline={true} 
+                                    autoCapitalize={'sentences'} 
                                     placeholder={'Solution option D'} 
                                     value={this.props.options.D} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'D', value })} 
@@ -168,6 +173,7 @@ class AddPuzzle extends Component {
                     }
                     <FormInput 
                         multiline={true} 
+                        autoCapitalize={'sentences'} 
                         placeholder={'Notes'} 
                         value={this.props.notes} 
                         onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 
