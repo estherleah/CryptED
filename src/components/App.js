@@ -57,9 +57,7 @@ class App extends Component {
             case true:
                 this.props.loadUser();
                 // load puzzles so available if then lose internet connection
-                this.props.loadCryptographyPuzzles();
-                this.props.loadCyberSecurityPuzzles();
-                this.props.loadLogicPuzzles();
+                this.props.loadPuzzles();
                 return <Navigation />;
             case false:
                 return <Login />;

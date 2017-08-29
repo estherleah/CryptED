@@ -78,48 +78,6 @@ export const loadPuzzles = () => {
     };
 };
 
-// Load the logic puzzles from the database.
-export const loadLogicPuzzles = () => {
-    let logicPuzzles = [];
-    return (dispatch) => {
-        firebase.database().ref(`/puzzles/logic`).orderByChild('rating')
-        .on('value', snapshot => {
-            snapshot.forEach((child) => {
-                logicPuzzles.push(child.val())
-            })
-            dispatch({ type: 'LOGIC_FETCH', payload: logicPuzzles });
-        });
-    };
-};
-
-// Load the cryptography puzzles from the database.
-export const loadCryptographyPuzzles = () => {
-    let cryptoPuzzles = [];
-    return (dispatch) => {
-        firebase.database().ref(`/puzzles/cryptography`).orderByChild('rating')
-        .on('value', snapshot => {
-            snapshot.forEach((child) => {
-                cryptoPuzzles.push(child.val())
-            })
-            dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: cryptoPuzzles });
-        });
-    };
-};
-
-// Load the cybersecurity puzzles from the database.
-export const loadCyberSecurityPuzzles = () => {
-    let cyberPuzzles = [];
-    return (dispatch) => {
-        firebase.database().ref(`/puzzles/cybersecurity`).orderByChild('rating')
-        .on('value', snapshot => {
-            snapshot.forEach((child) => {
-                cyberPuzzles.push(child.val())
-            })
-            dispatch({ type: 'CYBERSECURITY_FETCH', payload: cyberPuzzles });
-        });
-    };
-};
-
 // Load the user data.
 export const loadUser = () => {
     const { currentUser } = firebase.auth();

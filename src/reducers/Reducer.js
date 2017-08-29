@@ -31,24 +31,6 @@ export default (state = initialState, action) => {
                 puzzles: action.payload,
             };
 
-        case 'LOGIC_FETCH':
-            return {
-                ...state,
-                logicPuzzles: action.payload,
-            };
-
-        case 'CRYPTOGRAPHY_FETCH':
-            return {
-                ...state,
-                cryptoPuzzles: action.payload,
-            };
-
-        case 'CYBERSECURITY_FETCH':
-            return {
-                ...state,
-                cyberPuzzles: action.payload,
-            };
-
         case 'USER_FETCH':
             return {
                 ...state,
