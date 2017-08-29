@@ -20,6 +20,7 @@ class AddPuzzle extends Component {
     // Method for what happens when press the add button. Validate input and add puzzle.
     onAddPress() {
         const { problem, solution, notes, rating, options } = this.props;
+        const admin = this.props.user.admin;
         const { type, category } = this.state;
         // reset state so no errors
         this.setState({ errors: [] });
@@ -50,11 +51,11 @@ class AddPuzzle extends Component {
         if (formErrors.length == 0) {
             // if text puzzle
             if (this.state.type == 'text') {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options: [], type, category});
+                this.props.createNewPuzzle({problem, solution, notes, rating, options: [], type, category, admin});
             }
             // if multiple choice puzzle
             else {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options, type, category});
+                this.props.createNewPuzzle({problem, solution, notes, rating, options, type, category, admin});
             }
             // inform user of success
             Alert.alert("Success", "Puzzle added");
@@ -201,7 +202,7 @@ class AddPuzzle extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     const { problem, solution, notes, rating, options } = state;
-    return { problem, solution, notes, rating, options };
+    return { problem, solution, notes, rating, options, user: state.user };
 }
 
 export default connect(mapStateToProps, actions)(AddPuzzle);

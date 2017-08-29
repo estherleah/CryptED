@@ -32,17 +32,30 @@ export const optionsUpdate = ({ position, value }) => {
 };
 
 // Creating a new puzzle and adding it to the database.
-export const createNewPuzzle = ({ problem, solution, notes, rating, options, type, category }) => {
+export const createNewPuzzle = ({ problem, solution, notes, rating, options, type, category, admin }) => {
     const { currentUser } = firebase.auth();
     addedBy = currentUser.uid;
-    return (dispatch) => {
-        var id = firebase.database().ref(`/puzzles/${category}`).push().key;
-        firebase.database().ref(`/puzzles/${category}/${id}`)
-        .update({ problem, solution, notes, id, rating, options, type, addedBy })
-        .then(() => {
-            dispatch({ type: 'NEW_PUZZLE' });
-        });
-    };
+    if (admin) {
+        // admin user can add a puzzle directly
+        return (dispatch) => {
+            var id = firebase.database().ref(`/puzzles/${category}`).push().key;
+            firebase.database().ref(`/puzzles/${category}/${id}`)
+            .update({ problem, solution, notes, id, rating, options, type, addedBy })
+            .then(() => {
+                dispatch({ type: 'NEW_PUZZLE' });
+            });
+        };
+    } else {
+        // other users need to have puzzles checked by admin
+        return (dispatch) => {
+            var id = firebase.database().ref(`/puzzles/new`).push().key;
+            firebase.database().ref(`/puzzles/new/${id}`)
+            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
+            .then(() => {
+                dispatch({ type: 'NEW_PUZZLE' });
+            });
+        };
+    }
 };
 
 // Load all puzzles from the database
