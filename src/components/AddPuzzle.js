@@ -201,8 +201,8 @@ class AddPuzzle extends Component {
 
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
-    const { problem, solution, notes, rating, options } = state;
-    return { problem, solution, notes, rating, options, user: state.user };
+    const { problem, solution, notes, rating, options, user } = state;
+    return { problem, solution, notes, rating, options, user };
 }
 
 export default connect(mapStateToProps, actions)(AddPuzzle);
