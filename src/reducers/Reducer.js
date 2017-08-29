@@ -1,9 +1,6 @@
 // Initial state
 const initialState = {
     puzzles: [],
-    cryptoPuzzles: [],
-    cyberPuzzles: [],
-    logicPuzzles: [],
     detailView: false,
     puzzleSelected: null,
     problem: '',
@@ -16,7 +13,6 @@ const initialState = {
         C: '',
         D: ''
     },
-    loadingPuzzles: false,
     user: null,
     topScores: [],
     scores: [],
