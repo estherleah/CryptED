@@ -2,11 +2,8 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import CryptographyPuzzles from './CryptographyPuzzles';
-import CyberSecurityPuzzles from './CyberSecurityPuzzles';
-import CryptographyHistory from './CryptographyHistory';
-import LogicPuzzles from './LogicPuzzles';
 import Puzzles from './Puzzles';
+import CryptographyHistory from './CryptographyHistory';
 import AddPuzzle from './AddPuzzle';
 import Leaderboard from './Leaderboard';
 import Settings from './Settings';
@@ -21,36 +18,12 @@ const Navigation = DrawerNavigator({
                 (<Icon name='puzzle-piece' type='font-awesome' />),
         }
     },
-    CryptographyPuzzles: {
-        screen: CryptographyPuzzles,
-        navigationOptions: {
-            drawerLabel: 'Cryptography puzzles',
-            drawerIcon: () => 
-                (<Icon name='key-variant' type='material-community' />),
-        }
-    },
-    CyberSecurityPuzzles: {
-        screen: CyberSecurityPuzzles,
-        navigationOptions: {
-            drawerLabel: 'Cybersecurity puzzles',
-            drawerIcon: () => 
-                (<Icon name='security' />),
-        }
-    },
     CryptographyHistory: {
         screen: CryptographyHistory,
         navigationOptions: {
             drawerLabel: 'History of cryptography',
             drawerIcon: () => 
                 (<Icon name='history' type='material-community' />),
-        }
-    },
-    LogicPuzzles: {
-        screen: LogicPuzzles,
-        navigationOptions: {
-            drawerLabel: 'Logic puzzles',
-            drawerIcon: () => 
-                (<Icon name='puzzle-piece' type='font-awesome' />),
         }
     },
     AddPuzzle: {

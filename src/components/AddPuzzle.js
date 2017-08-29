@@ -4,7 +4,6 @@ import { FormInput, Button, Icon } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
 import AppHeader from './AppHeader';
-import CyberSecurityPuzzles from './CyberSecurityPuzzles';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import styles from '../styles';
