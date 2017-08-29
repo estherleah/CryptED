@@ -50,7 +50,7 @@ class SinglePuzzle extends Component {
     onSubmit() {
         const { solution } = this.state;
         const { puzzle } = this.props;
-        isCorrect = false
+        isCorrect = false;
         // check to see if correct solution
         if (this.props.type == 'cryptography') {
             isCorrect = (this.state.solution.toLowerCase() === this.props.puzzle.plaintext.toLowerCase());
@@ -121,6 +121,7 @@ class SinglePuzzle extends Component {
     onApprove() {
         const { puzzle } = this.props;
         this.props.addPuzzle(puzzle.id, puzzle, puzzle.category);
+        this.props.loadPuzzles();
     }
 
     // Admin changes a puzzle.
@@ -158,12 +159,14 @@ class SinglePuzzle extends Component {
         // inform user of success
         Alert.alert("Success", "Puzzle amended");
         this.props.noneSelected();
+        this.props.loadPuzzles();
     }
 
     // Admin removes a puzzle.
     onDelete() {
         const { puzzle } = this.props;
         this.props.deletePuzzle(puzzle.id);
+        this.props.loadPuzzles();
     }
 
     render() {
