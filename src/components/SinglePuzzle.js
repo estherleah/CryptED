@@ -150,11 +150,11 @@ class SinglePuzzle extends Component {
     onFinishEditing() {
         const { puzzle, problem, solution, notes, rating, options } = this.props;
         if (puzzle.type == 'text') {
-            this.props.amendPuzzle({pid: puzzle.id, problem, solution, notes, rating, options: []});
+            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, []);
         }
         // if multiple choice puzzle
         else {
-            this.props.amendPuzzle({pid: puzzle.id, problem, solution, notes, rating, options});
+            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, options);
         }
         // inform user of success
         Alert.alert("Success", "Puzzle amended");

@@ -245,7 +245,7 @@ export const addPuzzle = (pid, puzzle, category) => {
 };
 
 // Amend an added and change it in the database.
-export const amendPuzzle = ({ pid, problem, solution, notes, rating, options }) => {
+export const amendPuzzle = (pid, problem, solution, notes, rating, options) => {
     const { currentUser } = firebase.auth();
     changedBy = currentUser.uid;
     return (dispatch) => {
