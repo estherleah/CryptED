@@ -261,3 +261,27 @@ export const changeName = (name) => {
         });
     };
 };
+
+// Delete an added puzzle.
+export const deletePuzzle = (pid) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/new/${pid}`).remove()
+        .then(() => {
+            dispatch({ type: 'NONE_SELECTED' });
+        });
+    };
+};
+
+// Approve an added puzzle.
+export const addPuzzle = (pid, puzzle, category) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/new/${pid}`).remove();
+        firebase.database().ref(`/puzzles/${category}/${pid}`)
+        .set(puzzle)
+        .then(() => {
+            dispatch({ type: 'NONE_SELECTED' });
+        });
+    };
+};

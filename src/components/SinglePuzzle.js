@@ -115,6 +115,23 @@ class SinglePuzzle extends Component {
         }
     }
 
+    // Admin approves a puzzle.
+    onApprove() {
+        const { puzzle } = this.props;
+        this.props.addPuzzle(puzzle.id, puzzle, puzzle.category);
+    }
+
+    // Admin changes a puzzle.
+    onChange() {
+
+    }
+
+    // Admin removes a puzzle.
+    onDelete() {
+        const { puzzle } = this.props;
+        this.props.deletePuzzle(puzzle.id);
+    }
+
     render() {
         return(
             (this.props.type == 'cryptography') ?
@@ -197,7 +214,7 @@ class SinglePuzzle extends Component {
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
-                    <Text style={styles.title}>{(this.props.type == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                    <Text style={styles.title}>New {(this.props.puzzle.category == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
                     <Text style={styles.subheading}>Problem:</Text>
                     <Text style={styles.body}>
                         {this.props.puzzle.problem}
@@ -221,9 +238,9 @@ class SinglePuzzle extends Component {
                     <Text style={styles.body}>
                         {this.props.puzzle.rating}
                     </Text>
-                    <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Approve' onPress={this.onSubmit.bind(this)} />
-                    <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Change' onPress={this.onSubmit.bind(this)} />
-                    <Button raised backgroundColor='red' containerViewStyle={styles.button} title='Delete' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Approve' onPress={this.onApprove.bind(this)} />
+                    <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Change' onPress={this.onChange.bind(this)} />
+                    <Button raised backgroundColor='red' containerViewStyle={styles.button} title='Delete' onPress={this.onDelete.bind(this)} />
                 </ScrollView>
                 </KeyboardAvoidingView>
             </View>
