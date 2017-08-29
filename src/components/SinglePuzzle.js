@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Modal, Alert, KeyboardAvoidingView } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
+import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
 import { connect } from 'react-redux';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
@@ -123,9 +124,40 @@ class SinglePuzzle extends Component {
     }
 
     // Admin changes a puzzle.
-    // TODO: implementation
     onChange() {
+        const { puzzle } = this.props;
         this.setState({editing: true});
+        this.props.formUpdate({ prop: 'problem', value: this.props.puzzle.problem });
+        this.props.formUpdate({ prop: 'solution', value: this.props.puzzle.solution });
+        this.props.formUpdate({ prop: 'notes', value: this.props.puzzle.notes });
+        this.props.formUpdate({ prop: 'rating', value: this.props.puzzle.rating });
+        if (this.props.puzzle.type == 'multi') {
+            this.props.optionsUpdate({ position: 'A', value: this.props.puzzle.options.A });
+            this.props.optionsUpdate({ position: 'B', value: this.props.puzzle.options.B });
+            this.props.optionsUpdate({ position: 'C', value: this.props.puzzle.options.C });
+            this.props.optionsUpdate({ position: 'D', value: this.props.puzzle.options.D });
+        }
+    }
+
+    // Admin cancels amending a puzzles
+    onCancelEditing() {
+        this.props.noneSelected();
+        this.props.cancelEditing();
+    }
+
+    // Admin finishes amending a puzzle.
+    onFinishEditing() {
+        const { puzzle, problem, solution, notes, rating, options } = this.props;
+        if (puzzle.type == 'text') {
+            this.props.amendPuzzle({pid: puzzle.id, problem, solution, notes, rating, options: []});
+        }
+        // if multiple choice puzzle
+        else {
+            this.props.amendPuzzle({pid: puzzle.id, problem, solution, notes, rating, options});
+        }
+        // inform user of success
+        Alert.alert("Success", "Puzzle amended");
+        this.props.noneSelected();
     }
 
     // Admin removes a puzzle.
@@ -265,20 +297,122 @@ class SinglePuzzle extends Component {
                         onRequestClose={() => this.setState({editing: false})}
                     >
                         <View style={styles.container}>
-                            <View style={styles.header}>
-                                <Header 
-                                    backgroundColor='#567FDE'
-                                    leftComponent={<Icon 
-                                        name='arrow-back' 
-                                        color='#fff' 
-                                        onPress={() => this.setState({editing: false})} 
-                                    />} 
-                                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
-                                />
-                            </View>
-                            <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
-                                
-                            </ScrollView>
+                            <KeyboardAvoidingView style={styles.scroll}>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+                                <View style={styles.header}>
+                                    <Header 
+                                        backgroundColor='#567FDE'
+                                        leftComponent={<Icon 
+                                            name='arrow-back' 
+                                            color='#fff' 
+                                            onPress={() => this.setState({editing: false})} 
+                                        />} 
+                                        centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                                    />
+                                </View>
+                                    <Text style={styles.title}>Amending {(this.props.puzzle.category == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                                    <Text style={styles.subheading}>Problem:</Text>
+                                    <FormInput 
+                                        multiline={true} 
+                                        autoCapitalize={'sentences'}
+                                        placeholder={this.props.problem} 
+                                        value={this.props.problem} 
+                                        onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
+                                    />
+                                    {
+                                        (this.props.puzzle.type == 'text') ?
+                                            <View>
+                                                <Text style={styles.subheading}>Solution:</Text>
+                                                <FormInput 
+                                                    autoCapitalize={'sentences'} 
+                                                    placeholder={this.props.solution} 
+                                                    value={this.props.solution} 
+                                                    onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
+                                                />
+                                            </View> :
+                                            <View>
+                                                <Text style={styles.subheading}>Options:</Text>
+                                                <FormInput 
+                                                    multiline={true} 
+                                                    autoCapitalize={'sentences'} 
+                                                    placeholder={this.props.options.A} 
+                                                    value={this.props.options.A} 
+                                                    onChangeText={value => this.props.optionsUpdate({ position: 'A', value })} 
+                                                />
+                                                <FormInput 
+                                                    multiline={true} 
+                                                    autoCapitalize={'sentences'} 
+                                                    placeholder={this.props.options.B} 
+                                                    value={this.props.options.B} 
+                                                    onChangeText={value => this.props.optionsUpdate({ position: 'B', value })} 
+                                                />
+                                                <FormInput 
+                                                    multiline={true} 
+                                                    autoCapitalize={'sentences'} 
+                                                    placeholder={this.props.options.C} 
+                                                    value={this.props.options.C} 
+                                                    onChangeText={value => this.props.optionsUpdate({ position: 'C', value })} 
+                                                />
+                                                <FormInput 
+                                                    multiline={true} 
+                                                    autoCapitalize={'sentences'} 
+                                                    placeholder={this.props.options.D} 
+                                                    value={this.props.options.D} 
+                                                    onChangeText={value => this.props.optionsUpdate({ position: 'D', value })} 
+                                                />
+                                                <Text style={styles.subheading}>Solution:</Text>
+                                                <Select
+                                                    transparent 
+                                                    onSelect = {value => this.props.formUpdate({ prop: 'solution', value })} 
+                                                    selectedValue = {this.props.solution} 
+                                                    selected = {this.props.solution} 
+                                                    defaultText  = 'Please select the correct solution' 
+                                                    style = {styles.select} 
+                                                    backdropStyle  = {styles.selectBackdrop} 
+                                                    optionListStyle = {[styles.selectOptions, {height: 160}]} 
+                                                    textStyle = {{marginLeft: -10}} 
+                                                    indicator = 'down' 
+                                                    indicatorColor = 'gray'
+                                                >
+                                                    <Option value = 'A'>Option A</Option>
+                                                    <Option value = 'B'>Option B</Option>
+                                                    <Option value = 'C'>Option C</Option>
+                                                    <Option value = 'D'>Option D</Option>
+                                                </Select>
+                                            </View>
+                                    }
+                                    <Text style={styles.subheading}>Notes:</Text>
+                                    <FormInput 
+                                        multiline={true} 
+                                        autoCapitalize={'sentences'} 
+                                        placeholder={this.props.notes} 
+                                        value={this.props.notes} 
+                                        onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 
+                                    />
+                                    <Text style={styles.subheading}>Level:</Text>
+                                    <Select 
+                                        transparent 
+                                        onSelect = {value => this.props.formUpdate({ prop: 'rating', value })} 
+                                        selectedValue = {this.props.rating} 
+                                        selected = {this.props.rating}
+                                        defaultText  = 'Level' 
+                                        style = {styles.select} 
+                                        backdropStyle  = {styles.selectBackdrop} 
+                                        optionListStyle = {[styles.selectOptions, {height: 200}]} 
+                                        textStyle = {{marginLeft: -10}} 
+                                        indicator = 'down' 
+                                        indicatorColor = 'gray'
+                                    >
+                                        <Option value = {1}>Very easy</Option>
+                                        <Option value = {2}>Easy</Option>
+                                        <Option value = {3}>Medium</Option>
+                                        <Option value = {4}>Hard</Option>
+                                        <Option value = {5}>Very hard</Option>
+                                    </Select>
+                                    <Button raised backgroundColor='#567FDE' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Amend' onPress={this.onFinishEditing.bind(this)} />
+                                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Back' onPress={this.onCancelEditing.bind(this)} />
+                                </ScrollView>
+                                </KeyboardAvoidingView>
                         </View>
                     </Modal>
                     {/* End of modal */}
@@ -354,6 +488,11 @@ const mapStateToProps = (state) => {
         puzzle: state.puzzleSelected.data,
         user: state.user,
         topScores: state.topScores,
+        problem: state.problem,
+        solution: state.solution,
+        notes: state.notes,
+        rating: state.rating,
+        options: state.options,
     };
 };
 

@@ -285,3 +285,23 @@ export const addPuzzle = (pid, puzzle, category) => {
         });
     };
 };
+
+// Amend an added and change it in the database.
+export const amendPuzzle = ({ pid, problem, solution, notes, rating, options }) => {
+    const { currentUser } = firebase.auth();
+    changedBy = currentUser.uid;
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/new/${pid}`)
+        .update({ problem, solution, notes, rating, options, changedBy })
+        .then(() => {
+            dispatch({ type: 'NEW_PUZZLE' });
+        });
+    };
+};
+
+// Cancel amending an added puzzle.
+export const cancelEditing = () => {
+    return {
+        type: 'NEW_PUZZLE',
+    };
+};
