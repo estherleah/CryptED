@@ -70,14 +70,9 @@ class SinglePuzzle extends Component {
                 let leaderboard = this.props.topScores;
                 // check if leaderboard has less than 10 users
                 if (leaderboard.length < 10) {
-                    // add to leaderboard
-                    leaderboard.push({deletionKey: this.props.user.uid, name: this.props.user.name, score: newScore});
-                    // sort the leaderboard
-                    leaderboard.sort((a, b) => {
-                        return b.score - a.score;
-                    });
                     // add to database and store
-                    this.props.addUserToLeaderboard(null, this.props.user.name, newScore, leaderboard);
+                    this.props.addUserToLeaderboard(null, this.props.user.name, newScore);
+                    this.props.loadTopScores();
                 }
                 else {
                     // check if score qualifies a place on the leaderboard
@@ -85,29 +80,14 @@ class SinglePuzzle extends Component {
                     if (newScore > lowest.score) {
                         // check if already on the leaderboard
                         if (JSON.stringify(this.props.topScores).includes(this.props.user.uid)) {
-                            // change the score in the leaderboard
-                            leaderboard.forEach((person) => {
-                                if (person.name == this.props.user.name) {
-                                    person.score == newScore;
-                                }
-                            }, this);
-                            // sort the leaderboard
-                            leaderboard.sort((a, b) => {
-                                return b.score - a.score;
-                            });
                             // add to database and store
-                            this.props.updateUserOnLeaderboard(newScore, leaderboard);
+                            this.props.updateUserOnLeaderboard(newScore);
+                            this.props.loadTopScores();
                         }
                         else {
-                            // change the lowest person on leaderboard to current user
-                            leaderboard.pop();
-                            leaderboard.push({deletionKey: this.props.user.uid, name: this.props.user.name, score: newScore});
-                            // sort the leaderboard
-                            leaderboard.sort((a, b) => {
-                                return b.score - a.score;
-                            });
                             // add to database and store
-                            this.props.addUserToLeaderboard(lowest.deletionKey, this.props.user.name, newScore, leaderboard);
+                            this.props.addUserToLeaderboard(lowest.deletionKey, this.props.user.name, newScore);
+                            this.props.loadTopScores();
                         }
                     }
                 }

@@ -171,7 +171,6 @@ export default (state = initialState, action) => {
         case 'UPDATE_LEADERBOARD':
             return {
                 ...state,
-                topScores: action.payload,
             };
 
         case 'UPDATE_NAME':

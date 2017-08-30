@@ -154,26 +154,26 @@ export const updateScore = (score) => {
 };
 
 // Update user's score if user already on leaderboard.
-export const updateUserOnLeaderboard = (score, topScores) => {
+export const updateUserOnLeaderboard = (score) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/scores/${currentUser.uid}/score`)
         .set(score)
         .then(() => {
-            dispatch({ type: 'UPDATE_LEADERBOARD', payload: topScores });
+            dispatch({ type: 'UPDATE_LEADERBOARD' });
         });
     };
 };
 
 // Add user to leaderboard if score is one of the top 10.
-export const addUserToLeaderboard = (toRemove, name, score, topScores) => {
+export const addUserToLeaderboard = (toRemove, name, score) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/scores/${toRemove}`).remove()
         firebase.database().ref(`/scores/${currentUser.uid}`)
         .set({name, score})
         .then(() => {
-            dispatch({ type: 'UPDATE_LEADERBOARD', payload: topScores });
+            dispatch({ type: 'UPDATE_LEADERBOARD' });
         });
     };
 }
