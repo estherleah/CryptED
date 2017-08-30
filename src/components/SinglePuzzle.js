@@ -38,6 +38,7 @@ class SinglePuzzle extends Component {
                 ciphertext: cipher,
             });
         }
+        // load top scores so have the most up-to-date information
         this.props.loadTopScores();
     }
 
@@ -72,7 +73,6 @@ class SinglePuzzle extends Component {
                 if (leaderboard.length < 10) {
                     // add to database and store
                     this.props.addUserToLeaderboard(null, this.props.user.name, newScore);
-                    this.props.loadTopScores();
                 }
                 else {
                     // check if score qualifies a place on the leaderboard
@@ -82,12 +82,10 @@ class SinglePuzzle extends Component {
                         if (JSON.stringify(this.props.topScores).includes(this.props.user.uid)) {
                             // add to database and store
                             this.props.updateUserOnLeaderboard(newScore);
-                            this.props.loadTopScores();
                         }
                         else {
                             // add to database and store
                             this.props.addUserToLeaderboard(lowest.deletionKey, this.props.user.name, newScore);
-                            this.props.loadTopScores();
                         }
                     }
                 }
@@ -99,14 +97,17 @@ class SinglePuzzle extends Component {
         }
     }
 
+
     //
-    // ADMIN OPTIONS
+    // ADMIN FUNCTIONS -----------------------------------------------------------------
     //
 
     // Admin approves a puzzle.
     onApprove() {
-        const { puzzle } = this.props;
-        this.props.addPuzzle(puzzle.id, puzzle, puzzle.category);
+        const { puzzle, newPuzzles } = this.props;
+        // find index of puzzle in newPuzzles so can remove it
+        toApprove = newPuzzles.indexOf(puzzle);
+        this.props.addPuzzle(puzzle.id, puzzle, puzzle.category, toApprove);
     }
 
     // Admin changes a puzzle.
@@ -127,34 +128,36 @@ class SinglePuzzle extends Component {
 
     // Admin cancels amending a puzzles
     onCancelEditing() {
-        this.props.noneSelected();
         this.props.cancelEditing();
     }
 
     // Admin finishes amending a puzzle.
     onFinishEditing() {
-        const { puzzle, problem, solution, notes, rating, options } = this.props;
+        const { puzzle, problem, solution, notes, rating, options, newPuzzles } = this.props;
+        toAmend = newPuzzles.indexOf(puzzle);
+        amendedPuzzle = { ...puzzle, problem, solution, notes, rating, options };
         if (puzzle.type == 'text') {
-            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, []);
+            
+            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, [], toAmend, amendedPuzzle);
         }
         // if multiple choice puzzle
         else {
-            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, options);
+            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, options, toAmend, amendedPuzzle);
         }
-        // inform user of success
-        Alert.alert("Success", "Puzzle amended");
-        this.props.noneSelected();
     }
 
     // Admin removes a puzzle.
     onDelete() {
-        const { puzzle } = this.props;
-        this.props.deletePuzzle(puzzle.id);
+        const { puzzle, newPuzzles } = this.props;
+        // find index of puzzle in array
+        toDelete = newPuzzles.indexOf(puzzle);
+        this.props.deletePuzzle(puzzle.id, toDelete);
     }
 
     //
-    // END ADMIN OPTIONS
+    // END OF ADMIN FUNCTIONS ----------------------------------------------------------
     //
+
 
     render() {
         return(
@@ -483,6 +486,7 @@ const mapStateToProps = (state) => {
         notes: state.notes,
         rating: state.rating,
         options: state.options,
+        newPuzzles: state.newPuzzles,
     };
 };
 

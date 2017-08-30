@@ -139,6 +139,91 @@ export default (state = initialState, action) => {
                 ],
             };
 
+        case 'DELETE_PUZZLE':
+            return {
+                ...state,
+                detailView: false,
+                puzzleSelected: null,
+                type: null,
+                newPuzzles: [
+                    ...state.newPuzzles.slice(0, action.payload),
+                    ...state.newPuzzles.slice(action.payload + 1),
+                ],
+            };
+
+        case 'APPROVE_CYBER_PUZZLE':
+            return {
+                ...state,
+                detailView: false,
+                puzzleSelected: null,
+                type: null,
+                newPuzzles: [
+                    ...state.newPuzzles.slice(0, action.payload.index),
+                    ...state.newPuzzles.slice(action.payload.index + 1),
+                ],
+                cyberPuzzles: [
+                    ...state.cyberPuzzles.slice(0),
+                    action.payload.puzzle,
+                ],
+            };
+
+        case 'APPROVE_LOGIC_PUZZLE':
+            return {
+                ...state,
+                detailView: false,
+                puzzleSelected: null,
+                type: null,
+                newPuzzles: [
+                    ...state.newPuzzles.slice(0, action.payload.index),
+                    ...state.newPuzzles.slice(action.payload.index + 1),
+                ],
+                logicPuzzles: [
+                    ...state.logicPuzzles.slice(0),
+                    action.payload.puzzle,
+                ],
+            };
+
+        case 'AMEND_PUZZLE':
+            return {
+                ...state,
+                problem: '',
+                solution: '',
+                notes: '',
+                rating: 0,
+                options: {
+                    A: '',
+                    B: '',
+                    C: '',
+                    D: ''
+                },
+                detailView: false,
+                puzzleSelected: null,
+                type: null,
+                newPuzzles: [
+                    ...state.newPuzzles.slice(0, action.payload.index),
+                    action.payload.puzzle,
+                    ...state.newPuzzles.slice(action.payload.index + 1),
+                ],
+            };
+
+        case 'CANCEL_EDITING':
+            return {
+                ...state,
+                problem: '',
+                solution: '',
+                notes: '',
+                rating: 0,
+                options: {
+                    A: '',
+                    B: '',
+                    C: '',
+                    D: ''
+                },
+                detailView: false,
+                puzzleSelected: null,
+                type: null,
+            };
+
         case 'PUZZLE_SOLVED':
             return {
                 ...state,

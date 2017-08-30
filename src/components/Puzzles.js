@@ -15,10 +15,21 @@ class Puzzles extends Component {
 
     // Executes before component mounts.
     componentWillMount() {
-        this.props.loadCryptographyPuzzles();
-        this.props.loadCyberSecurityPuzzles();
-        this.props.loadLogicPuzzles();
-        this.props.loadNewPuzzles();
+        // check if data and load if there is none
+        // really just an extra check
+        if (this.props.cryptoPuzzles == []) {
+            this.props.loadCryptographyPuzzles();
+        }
+        if (this.props.cyberPuzzles == []) {
+            this.props.loadCyberSecurityPuzzles();
+        }
+        if (this.props.loadLogicPuzzles == []) {
+            this.props.loadLogicPuzzles();
+        }
+        // only check and load if the user is an admin (data is already loaded when loggedIn)
+        if (this.props.newPuzzles == [] && this.props.user.admin) {
+            this.props.loadNewPuzzles();
+        }
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.

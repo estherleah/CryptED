@@ -56,6 +56,11 @@ class App extends Component {
         switch (this.state.loggedIn) {
             case true:
                 this.props.loadUser();
+                // load all the puzzles once so not constantly connecting to firebase
+                this.props.loadCryptographyPuzzles();
+                this.props.loadCyberSecurityPuzzles();
+                this.props.loadLogicPuzzles();
+                this.props.loadNewPuzzles();
                 return <Navigation />;
             case false:
                 return <Login />;

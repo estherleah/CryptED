@@ -67,7 +67,7 @@ export const loadCryptographyPuzzles = () => {
     let cryptoPuzzles = [];
     return (dispatch) => {
         firebase.database().ref(`/puzzles/cryptography`).orderByChild('rating')
-        .on('value', snapshot => {
+        .once('value', snapshot => {
             snapshot.forEach((child) => {
                 cryptoPuzzles.push(child.val())
             })
@@ -81,7 +81,7 @@ export const loadCyberSecurityPuzzles = () => {
     let cyberPuzzles = [];
     return (dispatch) => {
         firebase.database().ref(`/puzzles/cybersecurity`).orderByChild('rating')
-        .on('value', snapshot => {
+        .once('value', snapshot => {
             snapshot.forEach((child) => {
                 cyberPuzzles.push(child.val())
             })
@@ -95,7 +95,7 @@ export const loadLogicPuzzles = () => {
     let logicPuzzles = [];
     return (dispatch) => {
         firebase.database().ref(`/puzzles/logic`).orderByChild('rating')
-        .on('value', snapshot => {
+        .once('value', snapshot => {
             snapshot.forEach((child) => {
                 logicPuzzles.push(child.val())
             })
@@ -109,7 +109,7 @@ export const loadNewPuzzles = () => {
     let newPuzzles = [];
     return (dispatch) => {
         firebase.database().ref(`/puzzles/new`).orderByChild('rating')
-        .on('value', snapshot => {
+        .once('value', snapshot => {
             snapshot.forEach((child) => {
                 newPuzzles.push(child.val())
             })
@@ -123,6 +123,7 @@ export const loadUser = () => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/`)
+        // set to listen to any events => will update the user in state
         .on('value', snapshot => {
             uid = currentUser.uid;
             user = {...snapshot.val(), uid}
@@ -198,6 +199,7 @@ export const loadTopScores = () => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/scores/`)
+        // listen to any changes in top scores so no mistakes are made
         .on('value', snapshot => {
             snapshot.forEach((child) => {
                 deletionKey = child.key;
@@ -217,20 +219,21 @@ export const loadTopScores = () => {
 export const loadScores = () => {
     // initial array of scores
     let userScores = [];
+    // only listen once as updates every time reload the page
     return (dispatch) => {
         firebase.database().ref(`/users`)
-        .on('value', snapshot => {
+        .once('value', snapshot => {
             // find each user's name and score
             snapshot.forEach(data => {
                 uid = data.key;
                 // get user's name
                 firebase.database().ref(`users/${uid}/name`)
-                .on('value', snapshot => {
+                .once('value', snapshot => {
                     user = snapshot.val()
                 });
                 // get user's score
                 firebase.database().ref(`/users/${uid}/score`)
-                .on('value', snapshot => {
+                .once('value', snapshot => {
                     // add user's name and score to the array
                     userScores.push({ name: user, score: snapshot.val() })
                 });
@@ -263,38 +266,41 @@ export const changeName = (name) => {
 };
 
 // Delete an added puzzle.
-export const deletePuzzle = (pid) => {
+export const deletePuzzle = (pid, toDelete) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/new/${pid}`).remove()
         .then(() => {
-            dispatch({ type: 'NONE_SELECTED' });
+            dispatch({ type: 'DELETE_PUZZLE', payload: toDelete });
         });
     };
 };
 
 // Approve an added puzzle.
-export const addPuzzle = (pid, puzzle, category) => {
+export const addPuzzle = (pid, puzzle, category, index) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         firebase.database().ref(`/puzzles/new/${pid}`).remove();
         firebase.database().ref(`/puzzles/${category}/${pid}`)
         .set(puzzle)
         .then(() => {
-            dispatch({ type: 'NONE_SELECTED' });
+            // currently added to the end of the list of puzzles (i.e. not in order of rating)
+            (category == 'cybersecurity') ?
+            dispatch({ type: 'APPROVE_CYBER_PUZZLE', payload: {puzzle, index} }) :
+            dispatch({ type: 'APPROVE_LOGIC_PUZZLE', payload: {puzzle, index} })
         });
     };
 };
 
 // Amend an added and change it in the database.
-export const amendPuzzle = (pid, problem, solution, notes, rating, options) => {
+export const amendPuzzle = (pid, problem, solution, notes, rating, options, index, puzzle) => {
     const { currentUser } = firebase.auth();
     changedBy = currentUser.uid;
     return (dispatch) => {
         firebase.database().ref(`/puzzles/new/${pid}`)
         .update({ problem, solution, notes, rating, options, changedBy })
         .then(() => {
-            dispatch({ type: 'NEW_PUZZLE' });
+            dispatch({ type: 'AMEND_PUZZLE', payload: {puzzle, index} });
         });
     };
 };
@@ -302,6 +308,6 @@ export const amendPuzzle = (pid, problem, solution, notes, rating, options) => {
 // Cancel amending an added puzzle.
 export const cancelEditing = () => {
     return {
-        type: 'NEW_PUZZLE',
+        type: 'CANCEL_EDITING',
     };
 };
