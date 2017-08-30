@@ -11,7 +11,7 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import firebase from 'firebase';
-import { createStore, applyMiddleware, bindActionCreators } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import Thunk from 'redux-thunk';
 import Login from './Login';
@@ -22,6 +22,7 @@ import styles from '../styles';
 
 // Store
 const store = createStore(reducers, applyMiddleware(Thunk));
+//const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(applyMiddleware(Thunk)));
 
 class App extends Component {
     // Added to remove timer warning when using firebase.
@@ -57,7 +58,10 @@ class App extends Component {
             case true:
                 this.props.loadUser();
                 // load puzzles so available if then lose internet connection
-                this.props.loadPuzzles();
+                this.props.loadCryptographyPuzzles();
+                this.props.loadCyberSecurityPuzzles();
+                this.props.loadLogicPuzzles();
+                this.props.loadNewPuzzles();
                 return <Navigation />;
             case false:
                 return <Login />;
@@ -78,7 +82,7 @@ class App extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     return {
-        newUser: state.newUser,
+        
     };
 }
 

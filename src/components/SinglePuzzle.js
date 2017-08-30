@@ -20,22 +20,24 @@ class SinglePuzzle extends Component {
     // Executes before component mounts.
     // Sets ciphertext so it does not change as the state changes.
     componentWillMount() {
-        switch (this.props.puzzle.type) {
-            case 'caesar':
-                cipher = caesar(this.props.puzzle.plaintext);
-                break;
-            case 'vigenere':
-                cipher = vigenere(this.props.puzzle.plaintext, this.props.puzzle.key);
-                break;
-            case 'atbash':
-                cipher = atbash(this.props.puzzle.plaintext);
-                break;    
-            default:
-                cipher = this.props.puzzle.ciphertext;
+        if (this.props.type = 'crypto') {
+            switch (this.props.puzzle.type) {
+                case 'caesar':
+                    cipher = caesar(this.props.puzzle.plaintext);
+                    break;
+                case 'vigenere':
+                    cipher = vigenere(this.props.puzzle.plaintext, this.props.puzzle.key);
+                    break;
+                case 'atbash':
+                    cipher = atbash(this.props.puzzle.plaintext);
+                    break;    
+                default:
+                    cipher = this.props.puzzle.ciphertext;
+            }
+            this.setState({
+                ciphertext: cipher,
+            });
         }
-        this.setState({
-            ciphertext: cipher,
-        });
         this.props.loadTopScores();
     }
 
@@ -52,7 +54,7 @@ class SinglePuzzle extends Component {
         const { puzzle } = this.props;
         isCorrect = false;
         // check to see if correct solution
-        if (this.props.type == 'cryptography') {
+        if (this.props.type == 'crypto') {
             isCorrect = (this.state.solution.toLowerCase() === this.props.puzzle.plaintext.toLowerCase());
         } else {
             isCorrect = (this.state.solution.toLowerCase() === this.props.puzzle.solution.toLowerCase());
@@ -117,11 +119,14 @@ class SinglePuzzle extends Component {
         }
     }
 
+    //
+    // ADMIN OPTIONS
+    //
+
     // Admin approves a puzzle.
     onApprove() {
         const { puzzle } = this.props;
         this.props.addPuzzle(puzzle.id, puzzle, puzzle.category);
-        this.props.loadPuzzles();
     }
 
     // Admin changes a puzzle.
@@ -159,19 +164,21 @@ class SinglePuzzle extends Component {
         // inform user of success
         Alert.alert("Success", "Puzzle amended");
         this.props.noneSelected();
-        this.props.loadPuzzles();
     }
 
     // Admin removes a puzzle.
     onDelete() {
         const { puzzle } = this.props;
         this.props.deletePuzzle(puzzle.id);
-        this.props.loadPuzzles();
     }
+
+    //
+    // END ADMIN OPTIONS
+    //
 
     render() {
         return(
-            (this.props.type == 'cryptography') ?
+            (this.props.type == 'crypto') ?
             // Cryptography puzzle
             <View style={styles.container}>
                 <KeyboardAvoidingView style={styles.scroll}>
@@ -235,7 +242,7 @@ class SinglePuzzle extends Component {
             </View> 
             // end of Cryptography puzzle
             :
-            (this.props.type == 'new') ?
+            (this.props.type == 'admin') ?
             // Newly added puzzle
             <View style={styles.container}>
                 <KeyboardAvoidingView style={styles.scroll}>
@@ -487,8 +494,8 @@ class SinglePuzzle extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     return {
-        type: state.puzzleSelected.type,
-        puzzle: state.puzzleSelected.data,
+        type: state.type,
+        puzzle: state.puzzleSelected,
         user: state.user,
         topScores: state.topScores,
         problem: state.problem,

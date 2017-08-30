@@ -1,10 +1,10 @@
 import firebase from 'firebase';
 
 // A puzzle is selected.
-export const selectPuzzle = (puzzleId) => {
+export const selectPuzzle = (puzzleId, type) => {
     return {
         type: 'SELECTED_PUZZLE',
-        payload: puzzleId,
+        payload: {puzzle: puzzleId, type},
     };
 };
 
@@ -58,22 +58,59 @@ export const createNewPuzzle = ({ problem, solution, notes, rating, options, typ
     }
 };
 
-// Load all puzzles from the database
-export const loadPuzzles = () => {
-    let puzzles = [];
+
+// Load the cryptography puzzles from the database.
+export const loadCryptographyPuzzles = () => {
+    let cryptoPuzzles = [];
     return (dispatch) => {
-        firebase.database().ref(`/puzzles/`)
+        firebase.database().ref(`/puzzles/cryptography`).orderByChild('rating')
         .on('value', snapshot => {
             snapshot.forEach((child) => {
-                type = child.key;
-                firebase.database().ref(`/puzzles/${type}`).orderByChild('rating')
-                .on('value', snapshot => {
-                    snapshot.forEach((puzzle) => {
-                        puzzles.push({data: puzzle.val(), type})
-                    })
-                })
+                cryptoPuzzles.push(child.val())
             })
-            dispatch({ type: 'PUZZLES_FETCH', payload: puzzles });
+            dispatch({ type: 'CRYPTOGRAPHY_FETCH', payload: cryptoPuzzles });
+        });
+    };
+};
+
+// Load the cybersecurity puzzles from the database.
+export const loadCyberSecurityPuzzles = () => {
+    let cyberPuzzles = [];
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/cybersecurity`).orderByChild('rating')
+        .on('value', snapshot => {
+            snapshot.forEach((child) => {
+                cyberPuzzles.push(child.val())
+            })
+            dispatch({ type: 'CYBERSECURITY_FETCH', payload: cyberPuzzles });
+        });
+    };
+};
+
+// Load the logic puzzles from the database.
+export const loadLogicPuzzles = () => {
+    let logicPuzzles = [];
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/logic`).orderByChild('rating')
+        .on('value', snapshot => {
+            snapshot.forEach((child) => {
+                logicPuzzles.push(child.val())
+            })
+            dispatch({ type: 'LOGIC_FETCH', payload: logicPuzzles });
+        });
+    };
+};
+
+// Load all puzzles from the database
+export const loadNewPuzzles = () => {
+    let newPuzzles = [];
+    return (dispatch) => {
+        firebase.database().ref(`/puzzles/new`).orderByChild('rating')
+        .on('value', snapshot => {
+            snapshot.forEach((child) => {
+                newPuzzles.push(child.val())
+            })
+            dispatch({ type: 'NEW_FETCH', payload: newPuzzles });
         });
     };
 };

@@ -15,7 +15,10 @@ class Puzzles extends Component {
 
     // Executes before component mounts.
     componentWillMount() {
-        this.props.loadPuzzles();
+        this.props.loadCryptographyPuzzles();
+        this.props.loadCyberSecurityPuzzles();
+        this.props.loadLogicPuzzles();
+        this.props.loadNewPuzzles();
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.
@@ -25,23 +28,18 @@ class Puzzles extends Component {
         });
         switch (this.state.selected) {
             case 'crypto':
-                crypto = this.props.puzzles.filter((item) => {return item.type == 'cryptography'});
-                this.dataSource = ds.cloneWithRows(crypto);
+                this.dataSource = ds.cloneWithRows(this.props.cryptoPuzzles);
                 break;
             case 'cyber':
-                cyber = this.props.puzzles.filter((item) => {return item.type == 'cybersecurity'});
-                this.dataSource = ds.cloneWithRows(cyber);
+                this.dataSource = ds.cloneWithRows(this.props.cyberPuzzles);
                 break;
             case 'logic':
-                logic = this.props.puzzles.filter((item) => {return item.type == 'logic'});
-                this.dataSource = ds.cloneWithRows(logic);
+                this.dataSource = ds.cloneWithRows(this.props.logicPuzzles);
                 break;
             case 'admin':
-                newlyAdded = this.props.puzzles.filter((item) => {return item.type == 'new'});
-                this.dataSource = ds.cloneWithRows(newlyAdded);
+                this.dataSource = ds.cloneWithRows(this.props.newPuzzles);
                 break;
             default:
-                this.dataSource = ds.cloneWithRows(this.props.puzzles);
                 break;
         }
 
@@ -89,10 +87,10 @@ class Puzzles extends Component {
                             renderRow={(rowData) =>
                                 <ListItem 
                                     containerStyle={styles.listItem} 
-                                    title={(rowData.type == 'cryptography') ? rowData.data.category : rowData.data.problem}
-                                    subtitle={'Level: ' + rowData.data.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.data.id) ? 'Solved' : '')}
+                                    title={(this.state.selected == 'crypto') ? rowData.category : rowData.problem}
+                                    subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.id) ? 'Solved' : '')}
                                     subtitleStyle={styles.subtitle}
-                                    onPress={() => this.props.selectPuzzle(rowData)} 
+                                    onPress={() => this.props.selectPuzzle(rowData, this.state.selected)} 
                                 />
                             } 
                         />
@@ -115,9 +113,12 @@ class Puzzles extends Component {
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
     return {
-        puzzles: state.puzzles,
         detailView: state.detailView,
         user: state.user,
+        cryptoPuzzles: state.cryptoPuzzles,
+        cyberPuzzles: state.cyberPuzzles,
+        logicPuzzles: state.logicPuzzles,
+        newPuzzles: state.newPuzzles,
     };
 }
 

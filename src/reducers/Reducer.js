@@ -1,8 +1,12 @@
 // Initial state
 const initialState = {
-    puzzles: [],
+    cryptoPuzzles: [],
+    cyberPuzzles: [],
+    logicPuzzles: [],
+    newPuzzles: [],
     detailView: false,
     puzzleSelected: null,
+    type: null,
     problem: '',
     solution: '',
     notes: '',
@@ -21,10 +25,28 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
 
-        case 'PUZZLES_FETCH':
+        case 'CRYPTOGRAPHY_FETCH':
             return {
                 ...state,
-                puzzles: action.payload,
+                cryptoPuzzles: action.payload,
+            };
+
+        case 'CYBERSECURITY_FETCH':
+            return {
+                ...state,
+                cyberPuzzles: action.payload,
+            };
+
+        case 'LOGIC_FETCH':
+            return {
+                ...state,
+                logicPuzzles: action.payload,
+            };
+
+        case 'NEW_FETCH':
+            return {
+                ...state,
+                newPuzzles: action.payload,
             };
 
         case 'USER_FETCH':
@@ -37,7 +59,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 detailView: true,
-                puzzleSelected: action.payload,
+                puzzleSelected: action.payload.puzzle,
+                type: action.payload.type
             };
             
         case 'NONE_SELECTED':
@@ -45,6 +68,7 @@ export default (state = initialState, action) => {
                 ...state,
                 detailView: false,
                 puzzleSelected: null,
+                type: null,
             };
 
         case 'FORM_UPDATE':
