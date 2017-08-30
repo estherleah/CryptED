@@ -124,7 +124,9 @@ export const loadUser = () => {
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/`)
         .on('value', snapshot => {
-            dispatch({ type: 'USER_FETCH', payload: snapshot.val() });
+            uid = currentUser.uid;
+            user = {...snapshot.val(), uid}
+            dispatch({ type: 'USER_FETCH', payload: user });
         });
     };
 };
