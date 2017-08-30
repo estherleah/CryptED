@@ -56,11 +56,6 @@ class App extends Component {
         switch (this.state.loggedIn) {
             case true:
                 this.props.loadUser();
-                // load puzzles so available if then lose internet connection
-                this.props.loadCryptographyPuzzles();
-                this.props.loadCyberSecurityPuzzles();
-                this.props.loadLogicPuzzles();
-                this.props.loadNewPuzzles();
                 return <Navigation />;
             case false:
                 return <Login />;
@@ -78,17 +73,10 @@ class App extends Component {
     }
 }
 
-// Passing the state components to the props.
-const mapStateToProps = (state) => {
-    return {
-        
-    };
-}
-
 // Connect store with app so can load initial user data into store.
 // see https://github.com/reactjs/react-redux/issues/390
 const connectWithStore = (store, App) => {
-    var ConnectedApp = connect(mapStateToProps, actions)(App)
+    var ConnectedApp = connect(null, actions)(App)
     return function (props) {
         return <ConnectedApp {...props} store={store} />
     }

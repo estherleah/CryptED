@@ -101,10 +101,42 @@ export default (state = initialState, action) => {
                 },
             };
 
-        case 'ADD_PUZZLE':
+        case 'ADD_CYBER_PUZZLE':
             return {
                 ...state,
-                ...action.newPuzzle,
+                problem: '',
+                solution: '',
+                notes: '',
+                rating: 0,
+                options: {
+                    A: '',
+                    B: '',
+                    C: '',
+                    D: ''
+                },
+                cyberPuzzles: [
+                    ...state.cyberPuzzles.slice(0),
+                    action.payload,
+                ],
+            };
+
+        case 'ADD_LOGIC_PUZZLE':
+            return {
+                ...state,
+                problem: '',
+                solution: '',
+                notes: '',
+                rating: 0,
+                options: {
+                    A: '',
+                    B: '',
+                    C: '',
+                    D: ''
+                },
+                logicPuzzles: [
+                    ...state.logicPuzzles.slice(0),
+                    action.payload,
+                ],
             };
 
         case 'PUZZLE_SOLVED':

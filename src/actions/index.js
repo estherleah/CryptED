@@ -39,10 +39,13 @@ export const createNewPuzzle = ({ problem, solution, notes, rating, options, typ
         // admin user can add a puzzle directly
         return (dispatch) => {
             var id = firebase.database().ref(`/puzzles/${category}`).push().key;
+            var puzzle = { problem, solution, notes, id, rating, options, type, addedBy, category }
             firebase.database().ref(`/puzzles/${category}/${id}`)
-            .update({ problem, solution, notes, id, rating, options, type, addedBy })
+            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
             .then(() => {
-                dispatch({ type: 'NEW_PUZZLE' });
+                (category == 'cybersecurity') ?
+                dispatch({ type: 'ADD_CYBER_PUZZLE', payload: puzzle }) :
+                dispatch({ type: 'ADD_LOGIC_PUZZLE', payload: puzzle })
             });
         };
     } else {
