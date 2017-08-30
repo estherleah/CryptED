@@ -21,8 +21,7 @@ import * as actions from '../actions';
 import styles from '../styles';
 
 // Store
-const store = createStore(reducers, applyMiddleware(Thunk));
-//const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(applyMiddleware(Thunk)));
+const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(Thunk));
 
 class App extends Component {
     // Added to remove timer warning when using firebase.
