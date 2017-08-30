@@ -61,7 +61,7 @@ class SinglePuzzle extends Component {
         }
         if (isCorrect) {
             // check if already solved the puzzle
-            if (!JSON.stringify(this.props.user.solved).contains(this.props.puzzle.id)) {
+            if (!JSON.stringify(this.props.user.solved).includes(this.props.puzzle.id)) {
                 let newScore = this.props.user.score + this.props.puzzle.rating;
                 this.props.puzzleSolved(this.props.puzzle.id);
                 this.props.updateScore(newScore);
@@ -84,7 +84,7 @@ class SinglePuzzle extends Component {
                     lowest = leaderboard[9];
                     if (newScore > lowest.score) {
                         // check if already on the leaderboard
-                        if (JSON.stringify(this.props.topScores).contains(this.props.user.uid)) {
+                        if (JSON.stringify(this.props.topScores).includes(this.props.user.uid)) {
                             // change the score in the leaderboard
                             leaderboard.forEach((person) => {
                                 if (person.name == this.props.user.name) {

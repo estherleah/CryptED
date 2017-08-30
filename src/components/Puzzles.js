@@ -88,7 +88,7 @@ class Puzzles extends Component {
                                 <ListItem 
                                     containerStyle={styles.listItem} 
                                     title={(this.state.selected == 'crypto') ? rowData.category : rowData.problem}
-                                    subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).contains(rowData.id) ? 'Solved' : '')}
+                                    subtitle={'Level: ' + rowData.rating + '     ' + (JSON.stringify(this.props.user.solved).includes(rowData.id) ? 'Solved' : '')}
                                     subtitleStyle={styles.subtitle}
                                     onPress={() => this.props.selectPuzzle(rowData, this.state.selected)} 
                                 />
