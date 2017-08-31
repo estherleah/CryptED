@@ -76,7 +76,7 @@ class SinglePuzzle extends Component {
                 }
                 else {
                     // check if score qualifies a place on the leaderboard
-                    lowest = leaderboard[9];
+                    lowest = leaderboard[leaderboard.length - 1];
                     if (newScore > lowest.score) {
                         // check if already on the leaderboard
                         if (JSON.stringify(this.props.topScores).includes(this.props.user.uid)) {
