@@ -98,12 +98,22 @@ export default (state = initialState, action) => {
         case 'PUZZLE_SOLVED':
             return {
                 ...state,
+                user: {
+                    ...state.user,
+                    solved: {
+                        ...state.user.solved,
+                        [action.payload]: true,
+                    },
+                },
             };
 
         case 'UPDATE_SCORE':
             return {
                 ...state,
-                score: action.payload,
+                user: {
+                    ...state.user,
+                    score: action.payload,
+                },
             };
 
         case 'UPDATE_LEADERBOARD':
@@ -266,13 +276,19 @@ export default (state = initialState, action) => {
         case 'CHANGE_ADMIN':
             return {
                 ...state,
-                admin: action.payload,
+                user: {
+                    ...state.user,
+                    admin: action.payload,
+                },
             };
 
         case 'UPDATE_NAME':
             return {
                 ...state,
-                name: action.payload,
+                user: {
+                    ...state.user,
+                    name: action.payload,
+                },
             };
 
         // end of settings options

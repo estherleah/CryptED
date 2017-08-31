@@ -169,7 +169,7 @@ export const puzzleSolved = (id) => {
         firebase.database().ref(`/users/${currentUser.uid}/solved/${id}`)
         .set(true)
         .then(() => {
-            dispatch({ type: 'PUZZLE_SOLVED' });
+            dispatch({ type: 'PUZZLE_SOLVED', payload: id });
         });
     };
 };
