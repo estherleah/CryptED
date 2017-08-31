@@ -57,7 +57,9 @@ class AddPuzzle extends Component {
                 this.props.createNewPuzzle({problem, solution, notes, rating, options, type, category, admin});
             }
             // inform user of success
-            Alert.alert("Success", "Puzzle added");
+            (this.props.user.admin) ? 
+            Alert.alert("Success", "Puzzle added") : 
+            Alert.alert("Success", "Your puzzle will be added once it has been checked.");
             this.props.navigation.navigate('AddPuzzle');
         }
         // if errors then add to the state

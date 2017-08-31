@@ -56,9 +56,9 @@ class SinglePuzzle extends Component {
         isCorrect = false;
         // check to see if correct solution
         if (this.props.type == 'crypto') {
-            isCorrect = (this.state.solution.toLowerCase() === this.props.puzzle.plaintext.toLowerCase());
+            isCorrect = (this.state.solution.trim().toLowerCase() === this.props.puzzle.plaintext.trim().toLowerCase());
         } else {
-            isCorrect = (this.state.solution.toLowerCase() === this.props.puzzle.solution.toLowerCase());
+            isCorrect = (this.state.solution.trim().toLowerCase() === this.props.puzzle.solution.trim().toLowerCase());
         }
         if (isCorrect) {
             // check if already solved the puzzle
@@ -438,6 +438,7 @@ class SinglePuzzle extends Component {
                         // Text only solution
                         <View>
                             <FormInput 
+                                autoCapitalize={'sentences'}
                                 onChangeText={solution => this.setState({solution})}
                                 textInputRef={this.state.solution}  
                                 placeholder={'Solution'} 

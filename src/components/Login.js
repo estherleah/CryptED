@@ -189,6 +189,7 @@ class Login extends Component {
                                     secureTextEntry={true} 
                                 />
                                 <FormInput 
+                                    autoCapitalize={'words'}
                                     onChangeText={name => this.setState({name})}
                                     textInputRef={this.state.name}  
                                     placeholder={'Name'} 
