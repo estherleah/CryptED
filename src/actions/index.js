@@ -1,66 +1,21 @@
 import firebase from 'firebase';
 
-// A puzzle is selected.
-export const selectPuzzle = (puzzleId, type) => {
-    return {
-        type: 'SELECTED_PUZZLE',
-        payload: {puzzle: puzzleId, type},
-    };
-};
+// ----------------------------------------------------------------------------------- //
+// ---------------------------------- data fetching ---------------------------------- //
 
-// No specific puzzle is selected.
-export const noneSelected = () => {
-    return {
-        type: 'NONE_SELECTED',
-    };
-};
-
-// Updating the add puzzle form.
-export const formUpdate = ({ prop, value }) => {
-    return {
-        type: 'FORM_UPDATE',
-        payload: { prop, value },
-    };
-};
-
-// Updating the add puzzle solution options.
-export const optionsUpdate = ({ position, value }) => {
-    return {
-        type: 'OPTIONS_UPDATE',
-        payload: { position, value },
-    };
-};
-
-// Creating a new puzzle and adding it to the database.
-export const createNewPuzzle = ({ problem, solution, notes, rating, options, type, category, admin }) => {
+// Load the user data.
+export const loadUser = () => {
     const { currentUser } = firebase.auth();
-    addedBy = currentUser.uid;
-    if (admin) {
-        // admin user can add a puzzle directly
-        return (dispatch) => {
-            var id = firebase.database().ref(`/puzzles/${category}`).push().key;
-            var puzzle = { problem, solution, notes, id, rating, options, type, addedBy, category }
-            firebase.database().ref(`/puzzles/${category}/${id}`)
-            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
-            .then(() => {
-                (category == 'cybersecurity') ?
-                dispatch({ type: 'ADD_CYBER_PUZZLE', payload: puzzle }) :
-                dispatch({ type: 'ADD_LOGIC_PUZZLE', payload: puzzle })
-            });
-        };
-    } else {
-        // other users need to have puzzles checked by admin
-        return (dispatch) => {
-            var id = firebase.database().ref(`/puzzles/new`).push().key;
-            firebase.database().ref(`/puzzles/new/${id}`)
-            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
-            .then(() => {
-                dispatch({ type: 'NEW_PUZZLE' });
-            });
-        };
-    }
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/`)
+        // set to listen to any events => will update the user in state
+        .on('value', snapshot => {
+            uid = currentUser.uid;
+            user = {...snapshot.val(), uid}
+            dispatch({ type: 'USER_FETCH', payload: user });
+        });
+    };
 };
-
 
 // Load the cryptography puzzles from the database.
 export const loadCryptographyPuzzles = () => {
@@ -118,19 +73,94 @@ export const loadNewPuzzles = () => {
     };
 };
 
-// Load the user data.
-export const loadUser = () => {
+// Load the top scores for the leaderboard.
+export const loadTopScores = () => {
+    let topScores = [];
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/`)
-        // set to listen to any events => will update the user in state
+        firebase.database().ref(`/scores/`)
+        // listen to any changes in top scores so no mistakes are made
         .on('value', snapshot => {
-            uid = currentUser.uid;
-            user = {...snapshot.val(), uid}
-            dispatch({ type: 'USER_FETCH', payload: user });
+            snapshot.forEach((child) => {
+                deletionKey = child.key;
+                name = child.val().name;
+                score = child.val().score
+                topScores.push({deletionKey, name, score})
+            })
+            topScores.sort((a, b) => {
+                return b.score - a.score;
+            });
+            dispatch({ type: 'LEADERBOARD_FETCH', payload: topScores });
         });
     };
+}
+
+// Load the user scores from the database.
+// NB: This is only done if the user is an admin.
+export const loadScores = () => {
+    // initial array of scores
+    let userScores = [];
+    // only listen once as updates every time reload the page
+    return (dispatch) => {
+        firebase.database().ref(`/users`)
+        .once('value', snapshot => {
+            // find each user's name and score
+            snapshot.forEach(data => {
+                uid = data.key;
+                // get user's name
+                firebase.database().ref(`users/${uid}/name`)
+                .once('value', snapshot => {
+                    user = snapshot.val()
+                });
+                // get user's score
+                firebase.database().ref(`/users/${uid}/score`)
+                .once('value', snapshot => {
+                    // add user's name and score to the array
+                    userScores.push({ name: user, score: snapshot.val() })
+                });
+            });
+            // sort the scores
+            userScores.sort((a, b) => {
+                return b.score - a.score;
+            });
+            // return scores
+            dispatch({ type: 'SCORES_FETCH', payload: userScores });
+        });
+    };
+ };
+
+// ------------------------------- end of data fetching ------------------------------ //
+// ----------------------------------------------------------------------------------- //
+
+
+
+
+// ----------------------------------------------------------------------------------- //
+// ------------------------ selecting and deselecting a puzzle ----------------------- //
+
+// A puzzle is selected.
+export const selectPuzzle = (puzzleId, type) => {
+    return {
+        type: 'SELECTED_PUZZLE',
+        payload: {puzzle: puzzleId, type},
+    };
 };
+
+// No specific puzzle is selected.
+export const noneSelected = () => {
+    return {
+        type: 'NONE_SELECTED',
+    };
+};
+
+// -------------------- end of selecting and deselecting a puzzle -------------------- //
+// ----------------------------------------------------------------------------------- //
+
+
+
+
+// ----------------------------------------------------------------------------------- //
+// --------------------------------- solving a puzzle -------------------------------- //
 
 // Write to the database when a puzzle is solved.
 export const puzzleSolved = (id) => {
@@ -168,7 +198,7 @@ export const updateUserOnLeaderboard = (score) => {
     };
 };
 
-// Add user to leaderboard if score is one of the top 10.
+// Add user to leaderboard if score becomes one of the top 10.
 export const addUserToLeaderboard = (toRemove, name, score) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
@@ -181,89 +211,69 @@ export const addUserToLeaderboard = (toRemove, name, score) => {
     };
 }
 
-// Change the admin status of a user.
-export const changeAdmin = (admin) => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        firebase.database().ref(`/users/${currentUser.uid}/admin`)
-        .set(admin)
-        .then(() => {
-            dispatch({ type: 'CHANGE_ADMIN', payload: admin });
-        });
+// ----------------------------- end of solving a puzzle ----------------------------- //
+// ----------------------------------------------------------------------------------- //
+
+
+
+
+// ----------------------------------------------------------------------------------- //
+// --------------------------------- adding a puzzle --------------------------------- //
+
+// Updating the add puzzle form.
+export const formUpdate = ({ prop, value }) => {
+    return {
+        type: 'FORM_UPDATE',
+        payload: { prop, value },
     };
 };
 
-// Load the top scores for the leaderboard.
-export const loadTopScores = () => {
-    let topScores = [];
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        firebase.database().ref(`/scores/`)
-        // listen to any changes in top scores so no mistakes are made
-        .on('value', snapshot => {
-            snapshot.forEach((child) => {
-                deletionKey = child.key;
-                name = child.val().name;
-                score = child.val().score
-                topScores.push({deletionKey, name, score})
-            })
-            topScores.sort((a, b) => {
-                return b.score - a.score;
-            });
-            dispatch({ type: 'LEADERBOARD_FETCH', payload: topScores });
-        });
-    };
-}
-
-// Load the user scores from the database.
-export const loadScores = () => {
-    // initial array of scores
-    let userScores = [];
-    // only listen once as updates every time reload the page
-    return (dispatch) => {
-        firebase.database().ref(`/users`)
-        .once('value', snapshot => {
-            // find each user's name and score
-            snapshot.forEach(data => {
-                uid = data.key;
-                // get user's name
-                firebase.database().ref(`users/${uid}/name`)
-                .once('value', snapshot => {
-                    user = snapshot.val()
-                });
-                // get user's score
-                firebase.database().ref(`/users/${uid}/score`)
-                .once('value', snapshot => {
-                    // add user's name and score to the array
-                    userScores.push({ name: user, score: snapshot.val() })
-                });
-            });
-            // sort the scores
-            userScores.sort((a, b) => {
-                return b.score - a.score;
-            });
-            // return scores
-            dispatch({ type: 'SCORES_FETCH', payload: userScores });
-        });
-    };
- };
-
-// Change the user's name.
-export const changeName = (name) => {
-    const { currentUser } = firebase.auth();
-    return (dispatch) => {
-        // if on leaderboard, change user's name on leaderboard
-        if(firebase.database().ref(`/scores/`).child(currentUser.uid)) {
-            firebase.database().ref(`/scores/${currentUser.uid}/name`)
-            .set(name)
-        }
-        firebase.database().ref(`/users/${currentUser.uid}/name`)
-        .set(name)
-        .then(() => {
-            dispatch({ type: 'UPDATE_NAME', payload: name});
-        });
+// Updating the add puzzle solution options.
+export const optionsUpdate = ({ position, value }) => {
+    return {
+        type: 'OPTIONS_UPDATE',
+        payload: { position, value },
     };
 };
+
+// Creating a new puzzle and adding it to the database.
+export const createNewPuzzle = ({ problem, solution, notes, rating, options, type, category, admin }) => {
+    const { currentUser } = firebase.auth();
+    addedBy = currentUser.uid;
+    if (admin) {
+        // admin user can add a puzzle directly
+        return (dispatch) => {
+            var id = firebase.database().ref(`/puzzles/${category}`).push().key;
+            var puzzle = { problem, solution, notes, id, rating, options, type, addedBy, category }
+            firebase.database().ref(`/puzzles/${category}/${id}`)
+            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
+            .then(() => {
+                (category == 'cybersecurity') ?
+                dispatch({ type: 'ADD_CYBER_PUZZLE', payload: puzzle }) :
+                dispatch({ type: 'ADD_LOGIC_PUZZLE', payload: puzzle })
+            });
+        };
+    } else {
+        // other users need to have puzzles checked by admin
+        return (dispatch) => {
+            var id = firebase.database().ref(`/puzzles/new`).push().key;
+            firebase.database().ref(`/puzzles/new/${id}`)
+            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
+            .then(() => {
+                dispatch({ type: 'NEW_PUZZLE' });
+            });
+        };
+    }
+};
+
+// ------------------------------ end of adding a puzzle ----------------------------- //
+// ----------------------------------------------------------------------------------- //
+
+
+
+
+// ----------------------------------------------------------------------------------- //
+// ------------------------------ admin vetting process ------------------------------ //
 
 // Delete an added puzzle.
 export const deletePuzzle = (pid, toDelete) => {
@@ -311,3 +321,44 @@ export const cancelEditing = () => {
         type: 'CANCEL_EDITING',
     };
 };
+
+// --------------------------- end of admin vetting process -------------------------- //
+// ----------------------------------------------------------------------------------- //
+
+
+
+
+// ----------------------------------------------------------------------------------- //
+// --------------------------------- settings options -------------------------------- //
+
+// Change the admin status of a user.
+export const changeAdmin = (admin) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        firebase.database().ref(`/users/${currentUser.uid}/admin`)
+        .set(admin)
+        .then(() => {
+            dispatch({ type: 'CHANGE_ADMIN', payload: admin });
+        });
+    };
+};
+
+// Change the user's name.
+export const changeName = (name) => {
+    const { currentUser } = firebase.auth();
+    return (dispatch) => {
+        // if on leaderboard, change user's name on leaderboard
+        if(firebase.database().ref(`/scores/`).child(currentUser.uid)) {
+            firebase.database().ref(`/scores/${currentUser.uid}/name`)
+            .set(name)
+        }
+        firebase.database().ref(`/users/${currentUser.uid}/name`)
+        .set(name)
+        .then(() => {
+            dispatch({ type: 'UPDATE_NAME', payload: name});
+        });
+    };
+};
+
+// ----------------------------- end of settings options ----------------------------- //
+// ----------------------------------------------------------------------------------- //

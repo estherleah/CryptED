@@ -1,5 +1,6 @@
 // Initial state
 const initialState = {
+    user: null,
     cryptoPuzzles: [],
     cyberPuzzles: [],
     logicPuzzles: [],
@@ -7,23 +8,27 @@ const initialState = {
     detailView: false,
     puzzleSelected: null,
     type: null,
+    topScores: [],
     problem: '',
     solution: '',
     notes: '',
     rating: 0,
-    options: {
-        A: '',
-        B: '',
-        C: '',
-        D: ''
-    },
-    user: null,
-    topScores: [],
+    options: { A: '', B: '', C: '', D: '' },
     scores: [],
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
+
+        // -----------------------------------------------------------------------------------
+
+        // data fetching
+
+        case 'USER_FETCH':
+            return {
+                ...state,
+                user: action.payload,
+            };
 
         case 'CRYPTOGRAPHY_FETCH':
             return {
@@ -49,11 +54,24 @@ export default (state = initialState, action) => {
                 newPuzzles: action.payload,
             };
 
-        case 'USER_FETCH':
+        case 'LEADERBOARD_FETCH':
             return {
                 ...state,
-                user: action.payload,
+                topScores: action.payload,
             };
+
+        // NB: only fetch all scores if user is admin
+        case 'SCORES_FETCH':
+            return {
+                ...state,
+                scores: action.payload,
+            };
+
+        // end of data fetching
+
+        // -----------------------------------------------------------------------------------
+
+        // selecting and deselecting a puzzle
 
         case 'SELECTED_PUZZLE':
             return {
@@ -62,7 +80,7 @@ export default (state = initialState, action) => {
                 puzzleSelected: action.payload.puzzle,
                 type: action.payload.type
             };
-            
+
         case 'NONE_SELECTED':
             return {
                 ...state,
@@ -70,6 +88,34 @@ export default (state = initialState, action) => {
                 puzzleSelected: null,
                 type: null,
             };
+
+        // end of selecting and deselecting a puzzle
+
+        // -----------------------------------------------------------------------------------
+
+        // solving a puzzle
+
+        case 'PUZZLE_SOLVED':
+            return {
+                ...state,
+            };
+
+        case 'UPDATE_SCORE':
+            return {
+                ...state,
+                score: action.payload,
+            };
+
+        case 'UPDATE_LEADERBOARD':
+            return {
+                ...state,
+            };
+
+        // end of solving a puzzle
+
+        // -----------------------------------------------------------------------------------
+
+        // adding a new puzzle as non admin
 
         case 'FORM_UPDATE':
             return {
@@ -93,13 +139,14 @@ export default (state = initialState, action) => {
                 solution: '',
                 notes: '',
                 rating: 0,
-                options: {
-                    A: '',
-                    B: '',
-                    C: '',
-                    D: ''
-                },
+                options: { A: '', B: '', C: '', D: '' },
             };
+
+        // end of adding a new puzzle as non admin
+
+        // -----------------------------------------------------------------------------------
+
+        // adding a new puzzle as admin
 
         case 'ADD_CYBER_PUZZLE':
             return {
@@ -108,12 +155,7 @@ export default (state = initialState, action) => {
                 solution: '',
                 notes: '',
                 rating: 0,
-                options: {
-                    A: '',
-                    B: '',
-                    C: '',
-                    D: ''
-                },
+                options: { A: '', B: '', C: '', D: '' },
                 cyberPuzzles: [
                     ...state.cyberPuzzles.slice(0),
                     action.payload,
@@ -127,17 +169,18 @@ export default (state = initialState, action) => {
                 solution: '',
                 notes: '',
                 rating: 0,
-                options: {
-                    A: '',
-                    B: '',
-                    C: '',
-                    D: ''
-                },
+                options: { A: '', B: '', C: '', D: '' },
                 logicPuzzles: [
                     ...state.logicPuzzles.slice(0),
                     action.payload,
                 ],
             };
+
+        // end of adding a new puzzle as admin
+
+        // -----------------------------------------------------------------------------------
+
+        // admin vetting options
 
         case 'DELETE_PUZZLE':
             return {
@@ -190,12 +233,7 @@ export default (state = initialState, action) => {
                 solution: '',
                 notes: '',
                 rating: 0,
-                options: {
-                    A: '',
-                    B: '',
-                    C: '',
-                    D: ''
-                },
+                options: { A: '', B: '', C: '', D: '' },
                 detailView: false,
                 puzzleSelected: null,
                 type: null,
@@ -213,27 +251,17 @@ export default (state = initialState, action) => {
                 solution: '',
                 notes: '',
                 rating: 0,
-                options: {
-                    A: '',
-                    B: '',
-                    C: '',
-                    D: ''
-                },
+                options: { A: '', B: '', C: '', D: '' },
                 detailView: false,
                 puzzleSelected: null,
                 type: null,
             };
 
-        case 'PUZZLE_SOLVED':
-            return {
-                ...state,
-            };
+        // end of admin vetting options
 
-        case 'UPDATE_SCORE':
-            return {
-                ...state,
-                score: action.payload,
-            };
+        // -----------------------------------------------------------------------------------
+
+        // settings options
 
         case 'CHANGE_ADMIN':
             return {
@@ -241,28 +269,15 @@ export default (state = initialState, action) => {
                 admin: action.payload,
             };
 
-        case 'SCORES_FETCH':
-            return {
-                ...state,
-                scores: action.payload,
-            };
-
-        case 'LEADERBOARD_FETCH':
-            return {
-                ...state,
-                topScores: action.payload,
-            };
-
-        case 'UPDATE_LEADERBOARD':
-            return {
-                ...state,
-            };
-
         case 'UPDATE_NAME':
             return {
                 ...state,
                 name: action.payload,
             };
+
+        // end of settings options
+
+        // -----------------------------------------------------------------------------------
             
         default:
             return state;
