@@ -124,13 +124,6 @@ class Settings extends Component {
                         />
                         <ListItem 
                             containerStyle={styles.listItem}
-                            hideChevron={true} 
-                            title='Age'
-                            leftIcon={{name: 'calendar', type: 'evilicon'}}
-                            badge={{ value: this.getAge(this.props.user.dob), containerStyle: styles.badge }}
-                        />
-                        <ListItem 
-                            containerStyle={styles.listItem}
                             hideChevron={!this.props.user.admin} 
                             title={(this.props.user.admin) ? 'Admin options' : 'Admin'} 
                             leftIcon={(this.props.user.admin) ? {name: 'unlock', type: 'evilicon'} : {name: 'lock', type: 'evilicon'}}
