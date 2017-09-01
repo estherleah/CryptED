@@ -202,7 +202,9 @@ export const updateUserOnLeaderboard = (score) => {
 export const addUserToLeaderboard = (toRemove, name, score) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
-        firebase.database().ref(`/scores/${toRemove}`).remove()
+        if (toRemove != null) {
+            firebase.database().ref(`/scores/${toRemove}`).remove()
+        }
         firebase.database().ref(`/scores/${currentUser.uid}`)
         .set({name, score})
         .then(() => {

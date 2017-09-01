@@ -72,6 +72,7 @@ class SinglePuzzle extends Component {
                 // check if leaderboard has less than 10 users
                 if (leaderboard.length < 10) {
                     // add to database and store
+                    // NB: if the user is already on the leaderboard, this will just overwrite any data at that location
                     this.props.addUserToLeaderboard(null, this.props.user.name, newScore);
                 }
                 else {
