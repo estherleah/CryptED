@@ -77,7 +77,7 @@ export default styles = StyleSheet.create({
         borderColor: 'white',
     },
     selectBackdrop: {
-        backgroundColor: 'rgba(100, 100, 100, 0.75)',
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
     },
     radio: {
         alignItems: 'flex-start',
