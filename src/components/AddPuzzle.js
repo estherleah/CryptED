@@ -18,7 +18,7 @@ class AddPuzzle extends Component {
 
     // Method for what happens when press the add button. Validate input and add puzzle.
     onAddPress() {
-        const { problem, solution, notes, rating, options } = this.props;
+        const { title, problem, solution, notes, rating, options } = this.props;
         const admin = this.props.user.admin;
         const { type, category } = this.state;
         // reset state so no errors
@@ -30,6 +30,9 @@ class AddPuzzle extends Component {
             formErrors.push('Please select a category');
         }
         // check if valid - if not valid then add an error
+        if (this.props.title == 0) {
+            formErrors.push('Please pick a valid title');
+        }
         if (this.props.problem.length == 0) {
             formErrors.push('Please enter a valid problem');
         }
@@ -38,7 +41,7 @@ class AddPuzzle extends Component {
         }
         if (this.props.rating == 0) {
             formErrors.push('Please pick a valid level');
-        }
+        }     
         // check errors in multiple choice options
         if (this.state.type == 'multi') {
             if (this.props.options.A.length == 0 || this.props.options.B.length == 0 ||
@@ -50,11 +53,11 @@ class AddPuzzle extends Component {
         if (formErrors.length == 0) {
             // if text puzzle
             if (this.state.type == 'text') {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options: [], type, category, admin});
+                this.props.createNewPuzzle({title, problem, solution, notes, rating, options: [], type, category, admin});
             }
             // if multiple choice puzzle
             else {
-                this.props.createNewPuzzle({problem, solution, notes, rating, options, type, category, admin});
+                this.props.createNewPuzzle({title, problem, solution, notes, rating, options, type, category, admin});
             }
             // inform user of success
             (this.props.user.admin) ? 
@@ -107,6 +110,12 @@ class AddPuzzle extends Component {
                         buttonColor = '#567FDE' 
                         buttonSize = {10} 
                         style = {styles.radio} 
+                    />
+                    <FormInput 
+                        autoCapitalize={'words'}
+                        placeholder={'Title'} 
+                        value={this.props.title} 
+                        onChangeText={value => this.props.formUpdate({ prop: 'title', value })} 
                     />
                     <FormInput 
                         multiline={true} 
@@ -208,8 +217,8 @@ class AddPuzzle extends Component {
 
 // Passing the state components to the props.
 const mapStateToProps = (state) => {
-    const { problem, solution, notes, rating, options, user } = state;
-    return { problem, solution, notes, rating, options, user };
+    const { title, problem, solution, notes, rating, options, user } = state;
+    return { title, problem, solution, notes, rating, options, user };
 }
 
 export default connect(mapStateToProps, actions)(AddPuzzle);

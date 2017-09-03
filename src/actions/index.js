@@ -239,16 +239,16 @@ export const optionsUpdate = ({ position, value }) => {
 };
 
 // Creating a new puzzle and adding it to the database.
-export const createNewPuzzle = ({ problem, solution, notes, rating, options, type, category, admin }) => {
+export const createNewPuzzle = ({ title, problem, solution, notes, rating, options, type, category, admin }) => {
     const { currentUser } = firebase.auth();
     addedBy = currentUser.uid;
     if (admin) {
         // admin user can add a puzzle directly
         return (dispatch) => {
             var id = firebase.database().ref(`/puzzles/${category}`).push().key;
-            var puzzle = { problem, solution, notes, id, rating, options, type, addedBy, category }
+            var puzzle = { title, problem, solution, notes, id, rating, options, type, addedBy, category }
             firebase.database().ref(`/puzzles/${category}/${id}`)
-            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
+            .update({ title, problem, solution, notes, id, rating, options, type, addedBy, category })
             .then(() => {
                 (category == 'cybersecurity') ?
                 dispatch({ type: 'ADD_CYBER_PUZZLE', payload: puzzle }) :
@@ -260,7 +260,7 @@ export const createNewPuzzle = ({ problem, solution, notes, rating, options, typ
         return (dispatch) => {
             var id = firebase.database().ref(`/puzzles/new`).push().key;
             firebase.database().ref(`/puzzles/new/${id}`)
-            .update({ problem, solution, notes, id, rating, options, type, addedBy, category })
+            .update({ title, problem, solution, notes, id, rating, options, type, addedBy, category })
             .then(() => {
                 dispatch({ type: 'NEW_PUZZLE' });
             });
@@ -305,12 +305,12 @@ export const addPuzzle = (pid, puzzle, category, index) => {
 };
 
 // Amend an added and change it in the database.
-export const amendPuzzle = (pid, problem, solution, notes, rating, options, index, puzzle) => {
+export const amendPuzzle = (pid, title, problem, solution, notes, rating, options, index, puzzle) => {
     const { currentUser } = firebase.auth();
     changedBy = currentUser.uid;
     return (dispatch) => {
         firebase.database().ref(`/puzzles/new/${pid}`)
-        .update({ problem, solution, notes, rating, options, changedBy })
+        .update({ title, problem, solution, notes, rating, options, changedBy })
         .then(() => {
             dispatch({ type: 'AMEND_PUZZLE', payload: {puzzle, index} });
         });

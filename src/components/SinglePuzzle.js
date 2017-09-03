@@ -115,6 +115,7 @@ class SinglePuzzle extends Component {
     onChange() {
         const { puzzle } = this.props;
         this.setState({editing: true});
+        this.props.formUpdate({ prop: 'title', value: this.props.puzzle.title });
         this.props.formUpdate({ prop: 'problem', value: this.props.puzzle.problem });
         this.props.formUpdate({ prop: 'solution', value: this.props.puzzle.solution });
         this.props.formUpdate({ prop: 'notes', value: this.props.puzzle.notes });
@@ -134,16 +135,16 @@ class SinglePuzzle extends Component {
 
     // Admin finishes amending a puzzle.
     onFinishEditing() {
-        const { puzzle, problem, solution, notes, rating, options, newPuzzles } = this.props;
+        const { puzzle, title, problem, solution, notes, rating, options, newPuzzles } = this.props;
         toAmend = newPuzzles.indexOf(puzzle);
-        amendedPuzzle = { ...puzzle, problem, solution, notes, rating, options };
+        amendedPuzzle = { ...puzzle, title, problem, solution, notes, rating, options };
         if (puzzle.type == 'text') {
             
-            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, [], toAmend, amendedPuzzle);
+            this.props.amendPuzzle(puzzle.id, title, problem, solution, notes, rating, [], toAmend, amendedPuzzle);
         }
         // if multiple choice puzzle
         else {
-            this.props.amendPuzzle(puzzle.id, problem, solution, notes, rating, options, toAmend, amendedPuzzle);
+            this.props.amendPuzzle(puzzle.id, title, problem, solution, notes, rating, options, toAmend, amendedPuzzle);
         }
     }
 
@@ -178,7 +179,7 @@ class SinglePuzzle extends Component {
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
-                    <Text style={styles.title}>{this.props.puzzle.category}</Text>
+                    <Text style={styles.title}>{this.props.puzzle.title}</Text>
                     <Text style={styles.body}>
                         {this.state.ciphertext}
                     </Text>
@@ -242,7 +243,7 @@ class SinglePuzzle extends Component {
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
-                    <Text style={styles.title}>New {(this.props.puzzle.category == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                    <Text style={styles.title}>{this.props.puzzle.title}</Text>
                     <Text style={styles.subheading}>Problem:</Text>
                     <Text style={styles.body}>
                         {this.props.puzzle.problem}
@@ -305,6 +306,14 @@ class SinglePuzzle extends Component {
                                     />
                                 </View>
                                     <Text style={styles.title}>Amending {(this.props.puzzle.category == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                                    <Text style={styles.subheading}>Title:</Text>
+                                    <FormInput 
+                                        multiline={true} 
+                                        autoCapitalize={'words'}
+                                        placeholder={this.props.title} 
+                                        value={this.props.title} 
+                                        onChangeText={value => this.props.formUpdate({ prop: 'title', value })} 
+                                    />
                                     <Text style={styles.subheading}>Problem:</Text>
                                     <FormInput 
                                         multiline={true} 
@@ -431,7 +440,7 @@ class SinglePuzzle extends Component {
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
-                    <Text style={styles.title}>{(this.props.type == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
+                    <Text style={styles.title}>{this.props.puzzle.title}</Text>
                     <Text style={styles.body}>
                         {this.props.puzzle.problem}
                     </Text>
@@ -483,6 +492,7 @@ const mapStateToProps = (state) => {
         puzzle: state.puzzleSelected,
         user: state.user,
         topScores: state.topScores,
+        title: state.title,
         problem: state.problem,
         solution: state.solution,
         notes: state.notes,

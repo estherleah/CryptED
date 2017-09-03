@@ -9,6 +9,7 @@ const initialState = {
     puzzleSelected: null,
     type: null,
     topScores: [],
+    title: '',
     problem: '',
     solution: '',
     notes: '',
@@ -145,6 +146,7 @@ export default (state = initialState, action) => {
         case 'NEW_PUZZLE':
             return {
                 ...state,
+                title: '',
                 problem: '',
                 solution: '',
                 notes: '',
@@ -161,6 +163,7 @@ export default (state = initialState, action) => {
         case 'ADD_CYBER_PUZZLE':
             return {
                 ...state,
+                title: '',
                 problem: '',
                 solution: '',
                 notes: '',
@@ -175,6 +178,7 @@ export default (state = initialState, action) => {
         case 'ADD_LOGIC_PUZZLE':
             return {
                 ...state,
+                title: '',
                 problem: '',
                 solution: '',
                 notes: '',
@@ -239,6 +243,7 @@ export default (state = initialState, action) => {
         case 'AMEND_PUZZLE':
             return {
                 ...state,
+                title: '',
                 problem: '',
                 solution: '',
                 notes: '',
@@ -257,6 +262,7 @@ export default (state = initialState, action) => {
         case 'CANCEL_EDITING':
             return {
                 ...state,
+                title: '',
                 problem: '',
                 solution: '',
                 notes: '',
