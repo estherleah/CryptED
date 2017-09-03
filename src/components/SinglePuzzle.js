@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, ScrollView, Modal, Alert, KeyboardAvoidingView } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
+import MultilineTextInput from './MultilineTextInput';
 import RadioForm from 'react-native-simple-radio-button';
 import { connect } from 'react-redux';
 import { caesar, vigenere, atbash } from '../functions/ciphers.js';
@@ -309,15 +310,13 @@ class SinglePuzzle extends Component {
                                     <Text style={styles.title}>Amending {(this.props.puzzle.category == 'logic') ? 'Logic' : 'Cyber Security'} Puzzle</Text>
                                     <Text style={styles.subheading}>Title:</Text>
                                     <FormInput 
-                                        multiline={true} 
                                         autoCapitalize={'words'}
                                         placeholder={this.props.title} 
                                         value={this.props.title} 
                                         onChangeText={value => this.props.formUpdate({ prop: 'title', value })} 
                                     />
                                     <Text style={styles.subheading}>Problem:</Text>
-                                    <FormInput 
-                                        multiline={true} 
+                                    <MultilineTextInput 
                                         autoCapitalize={'sentences'}
                                         placeholder={this.props.problem} 
                                         value={this.props.problem} 
@@ -336,29 +335,25 @@ class SinglePuzzle extends Component {
                                             </View> :
                                             <View>
                                                 <Text style={styles.subheading}>Options:</Text>
-                                                <FormInput 
-                                                    multiline={true} 
+                                                <MultilineTextInput 
                                                     autoCapitalize={'sentences'} 
                                                     placeholder={this.props.options.A} 
                                                     value={this.props.options.A} 
                                                     onChangeText={value => this.props.optionsUpdate({ position: 'A', value })} 
                                                 />
-                                                <FormInput 
-                                                    multiline={true} 
+                                                <MultilineTextInput 
                                                     autoCapitalize={'sentences'} 
                                                     placeholder={this.props.options.B} 
                                                     value={this.props.options.B} 
                                                     onChangeText={value => this.props.optionsUpdate({ position: 'B', value })} 
                                                 />
-                                                <FormInput 
-                                                    multiline={true} 
+                                                <MultilineTextInput 
                                                     autoCapitalize={'sentences'} 
                                                     placeholder={this.props.options.C} 
                                                     value={this.props.options.C} 
                                                     onChangeText={value => this.props.optionsUpdate({ position: 'C', value })} 
                                                 />
-                                                <FormInput 
-                                                    multiline={true} 
+                                                <MultilineTextInput 
                                                     autoCapitalize={'sentences'} 
                                                     placeholder={this.props.options.D} 
                                                     value={this.props.options.D} 
@@ -386,8 +381,7 @@ class SinglePuzzle extends Component {
                                             </View>
                                     }
                                     <Text style={styles.subheading}>Notes:</Text>
-                                    <FormInput 
-                                        multiline={true} 
+                                    <MultilineTextInput 
                                         autoCapitalize={'sentences'} 
                                         placeholder={this.props.notes} 
                                         value={this.props.notes} 
