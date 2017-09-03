@@ -441,10 +441,6 @@ class SinglePuzzle extends Component {
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
-                    <Text style={styles.title}>{this.props.puzzle.title}</Text>
-                    <Text style={styles.body}>
-                        {this.props.puzzle.problem}
-                    </Text>
 
                     {/* Modal for notes. This needs to be before the split for text and multi */}
                     <Modal
@@ -470,7 +466,9 @@ class SinglePuzzle extends Component {
                         </View>
                     </Modal>
                     {/* End of modal */}
-                    
+
+                    <Text style={styles.title}>{this.props.puzzle.title}</Text>
+                    <Text style={styles.content}>{this.props.puzzle.problem}</Text>                    
                     {(this.props.puzzle.type == 'text') ? 
                         // Text only solution
                         <View>
