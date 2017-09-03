@@ -15,6 +15,7 @@ class SinglePuzzle extends Component {
         solution: '',
         modalVisible: false,
         editing: false,
+        moreVisible: false,
     };
 
     // Executes before component mounts.
@@ -444,6 +445,32 @@ class SinglePuzzle extends Component {
                     <Text style={styles.body}>
                         {this.props.puzzle.problem}
                     </Text>
+
+                    {/* Modal for notes. This needs to be before the split for text and multi */}
+                    <Modal
+                        visible={this.state.moreVisible}
+                        onRequestClose={() => this.setState({moreVisible: false})}
+                    >
+                        <View style={styles.container}>
+                            <View style={styles.header}>
+                                <Header 
+                                    backgroundColor='#567FDE'
+                                    leftComponent={<Icon 
+                                        name='arrow-back' 
+                                        color='#fff' 
+                                        onPress={() => this.setState({moreVisible: false})} 
+                                    />} 
+                                    centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
+                                />
+                            </View>
+                            <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
+                                <Text style={styles.title}>{this.props.puzzle.title}</Text>
+                                <Text>{this.props.puzzle.notes}</Text>
+                            </ScrollView>
+                        </View>
+                    </Modal>
+                    {/* End of modal */}
+                    
                     {(this.props.puzzle.type == 'text') ? 
                         // Text only solution
                         <View>
@@ -477,6 +504,15 @@ class SinglePuzzle extends Component {
                         </View>
                     }
                     <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
+                    {(this.props.puzzle.notes != '') ?
+                    <TouchableOpacity
+                        onPress={() => this.setState({moreVisible: true})}
+                    >
+                        <Text style={styles.more}>
+                            Learn more...
+                        </Text>
+                    </TouchableOpacity>
+                    : null }
                 </ScrollView>
                 </KeyboardAvoidingView>
             </View>

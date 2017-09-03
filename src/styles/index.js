@@ -125,7 +125,7 @@ export default styles = StyleSheet.create({
     // Single puzzle page
     more: {
         textAlign: 'center',
-        marginTop: 45,
+        marginTop: 30,
         paddingBottom: 20,
     },
 
