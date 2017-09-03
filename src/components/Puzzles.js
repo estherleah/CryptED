@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, View, ListView, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
 import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
@@ -11,7 +11,31 @@ class Puzzles extends Component {
     // Initial state
     state = {
         selected: 'crypto',
+        refreshing: false,
     };
+
+    // Refresh the data when pull down to refresh.
+    onRefresh() {
+        this.setState({refreshing: true});
+        this.fetchData()
+        .then(() => {
+            this.setState({refreshing: false});
+        })
+    }
+
+    // Fetch data from realtime database.
+    fetchData() {
+        return new Promise((resolve, reject) => {
+            this.props.loadCryptographyPuzzles();
+            this.props.loadCyberSecurityPuzzles();
+            this.props.loadCyberSecurityPuzzles();
+            this.props.loadLogicPuzzles();     
+            if (this.props.user.admin) {
+                this.props.loadNewPuzzles();
+            }
+            setTimeout(() => {resolve()}, 1000);
+        });
+    }
 
     // Executes before component mounts.
     componentWillMount() {
@@ -93,6 +117,11 @@ class Puzzles extends Component {
                     </View>
                     <List containerStyle={styles.list}>
                         <ListView 
+                            refreshControl={
+                                <RefreshControl 
+                                    refreshing={this.state.refreshing} 
+                                    onRefresh={this.onRefresh.bind(this)}
+                                />}
                             enableEmptySections
                             dataSource={this.dataSource} 
                             renderRow={(rowData) =>
