@@ -37,12 +37,16 @@ class App extends Component {
 
     // Connect to firebase. Do this before the component is mounted.
     componentWillMount() {
-        firebase.initializeApp({
-            apiKey: "AIzaSyBG8ASDzhtL0y2aek6Id65nTJqZAkbEUVo",
-            authDomain: "crypted-b0db8.firebaseapp.com",
-            databaseURL: "https://crypted-b0db8.firebaseio.com",
-            storageBucket: "crypted-b0db8.appspot.com",
-        });
+        // fixes the Firebase App named '[DEFAULT]' already exists (app/duplicate-app) error
+        // see https://stackoverflow.com/questions/37652328/how-to-check-if-a-firebase-app-is-already-initialized-on-android
+        if (!firebase.apps.length) {
+            firebase.initializeApp({
+                apiKey: "AIzaSyBG8ASDzhtL0y2aek6Id65nTJqZAkbEUVo",
+                authDomain: "crypted-b0db8.firebaseapp.com",
+                databaseURL: "https://crypted-b0db8.firebaseio.com",
+                storageBucket: "crypted-b0db8.appspot.com",
+            });
+        }
 
         firebase.auth().onAuthStateChanged((user) => {
             (user) ? 
