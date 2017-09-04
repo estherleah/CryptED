@@ -219,7 +219,7 @@ export default (state = initialState, action) => {
                     ...state.newPuzzles.slice(action.payload.index + 1),
                 ],
                 cyberPuzzles: [
-                    ...state.cyberPuzzles.slice(0),
+                    ...state.cyberPuzzles,
                     action.payload.puzzle,
                 ],
             };
@@ -235,7 +235,7 @@ export default (state = initialState, action) => {
                     ...state.newPuzzles.slice(action.payload.index + 1),
                 ],
                 logicPuzzles: [
-                    ...state.logicPuzzles.slice(0),
+                    ...state.logicPuzzles,
                     action.payload.puzzle,
                 ],
             };
