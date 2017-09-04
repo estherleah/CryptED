@@ -1,86 +1,86 @@
 {
     "puzzles": {
         "cryptography": {
-            "puzzle-1" : {
-                "category" : "Vigenère Cipher",
-                "ciphertext" : "",
-                "id" : "puzzle-1",
-                "key" : "abc",
-                "notes" : "This is where information on the Vigenère cipher goes.",
-                "plaintext" : "ATTACK AT DAWN",
-                "rating" : 4,
-                "title" : "Vigenère Cipher",
-                "type" : "vigenere"
+            "puzzle-1": {
+                "category": "Vigenère Cipher",
+                "ciphertext": "",
+                "id": "puzzle-1",
+                "key": "abc",
+                "notes": "This is where information on the Vigenère cipher goes.",
+                "plaintext": "ATTACK AT DAWN",
+                "rating": 4,
+                "title": "Vigenère Cipher",
+                "type": "vigenere"
             },
-            "puzzle-2" : {
-                "category" : "Caesar Cipher",
-                "ciphertext" : "",
-                "id" : "puzzle-2",
-                "key" : "",
-                "notes" : "This is where information on the Caesar cipher goes.",
-                "plaintext" : "HELLO WORLD",
-                "rating" : 2,
-                "title" : "Caesar Cipher",
-                "type" : "caesar"
+            "puzzle-2": {
+                "category": "Caesar Cipher",
+                "ciphertext": "",
+                "id": "puzzle-2",
+                "key": "",
+                "notes": "This is where information on the Caesar cipher goes.",
+                "plaintext": "HELLO WORLD",
+                "rating": 2,
+                "title": "Caesar Cipher",
+                "type": "caesar"
             }
         },
         "cybersecurity": {
-            "cyber-1" : {
-                "category" : "cybersecurity",
-                "id" : "cyber-1",
-                "notes" : "",
-                "problem" : "Test puzzle",
-                "rating" : 1,
-                "solution" : "test",
-                "title" : "Test",
-                "type" : "text"
+            "cyber-1": {
+                "category": "cybersecurity",
+                "id": "cyber-1",
+                "notes": "",
+                "problem": "Test puzzle",
+                "rating": 1,
+                "solution": "test",
+                "title": "Test",
+                "type": "text"
             },
-            "cyber-2" : {
+            "cyber-2": {
                 "addedBy": "user-2",
-                "category" : "cybersecurity",
+                "category": "cybersecurity",
                 "changedBy": "user-1",
-                "id" : "cyber-2",
-                "notes" : "This is where any additional information goes. It can be read at any time including before a puzzle has been solved.",
-                "options" : {
-                  "A" : "option A",
-                  "B" : "option B",
-                  "C" : "option C",
-                  "D" : "option D"
+                "id": "cyber-2",
+                "notes": "This is where any additional information goes. It can be read at any time including before a puzzle has been solved.",
+                "options": {
+                  "A": "option A",
+                  "B": "option B",
+                  "C": "option C",
+                  "D": "option D"
                 },
-                "problem" : "Please pick the correct solution",
-                "rating" : 5,
-                "solution" : "B",
-                "title" : "Test Multiple Choice Question",
-                "type" : "multi"
+                "problem": "Please pick the correct solution",
+                "rating": 5,
+                "solution": "B",
+                "title": "Test Multiple Choice Question",
+                "type": "multi"
             }
         },
         "logic": {
-            "logic-1" : {
+            "logic-1": {
                 "addedBy": "user-1",
-                "category" : "logic",
-                "id" : "logic-1",
-                "notes" : "",
-                "problem" : "Test puzzle",
-                "rating" : 1,
-                "solution" : "test",
-                "title" : "Test",
-                "type" : "text"
+                "category": "logic",
+                "id": "logic-1",
+                "notes": "",
+                "problem": "Test puzzle",
+                "rating": 1,
+                "solution": "test",
+                "title": "Test",
+                "type": "text"
             },
-            "logic-2" : {
-                "category" : "logic",
-                "id" : "logic-2",
-                "notes" : "This is where any additional information goes. It can be read at any time including before a puzzle has been solved.",
-                "options" : {
-                  "A" : "option A",
-                  "B" : "option B",
-                  "C" : "option C",
-                  "D" : "option D"
+            "logic-2": {
+                "category": "logic",
+                "id": "logic-2",
+                "notes": "This is where any additional information goes. It can be read at any time including before a puzzle has been solved.",
+                "options": {
+                  "A": "option A",
+                  "B": "option B",
+                  "C": "option C",
+                  "D": "option D"
                 },
-                "problem" : "Please pick the correct solution",
-                "rating" : 2,
-                "solution" : "C",
-                "title" : "Test Multiple Choice Question",
-                "type" : "multi"
+                "problem": "Please pick the correct solution",
+                "rating": 2,
+                "solution": "C",
+                "title": "Test Multiple Choice Question",
+                "type": "multi"
             }
         }
     },
@@ -93,7 +93,7 @@
     "users": {
         "user-1": {
             "admin": true,
-            "dob" : "1996-05-18",
+            "dob": "1996-05-18",
             "name": "Fred Bloggs",
             "score": 3,
             "solved": {
@@ -103,7 +103,7 @@
         },
         "user-2": {
             "admin": false,
-            "dob" : "2004-12-04",
+            "dob": "2004-12-04",
             "name": "John Doe",
             "score": 0,
             "solved": ""
