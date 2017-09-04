@@ -84,8 +84,8 @@ export const loadTopScores = () => {
             snapshot.forEach((child) => {
                 deletionKey = child.key;
                 name = child.val().name;
-                score = child.val().score
-                topScores.push({deletionKey, name, score})
+                score = child.val().score;
+                topScores.push({deletionKey, name, score});
             })
             topScores.sort((a, b) => {
                 return b.score - a.score;
@@ -102,22 +102,14 @@ export const loadScores = () => {
     let userScores = [];
     // only listen once as updates every time reload the page
     return (dispatch) => {
-        firebase.database().ref(`/users`)
+        firebase.database().ref(`/users/`)
         .once('value', snapshot => {
             // find each user's name and score
             snapshot.forEach(data => {
                 uid = data.key;
-                // get user's name
-                firebase.database().ref(`users/${uid}/name`)
-                .once('value', snapshot => {
-                    user = snapshot.val()
-                });
-                // get user's score
-                firebase.database().ref(`/users/${uid}/score`)
-                .once('value', snapshot => {
-                    // add user's name and score to the array
-                    userScores.push({ name: user, score: snapshot.val() })
-                });
+                name = data.val().name;
+                score = data.val().score;
+                userScores.push({name, score});
             });
             // sort the scores
             userScores.sort((a, b) => {
