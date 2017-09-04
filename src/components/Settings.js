@@ -129,6 +129,8 @@ class Settings extends Component {
                             leftIcon={(this.props.user.admin) ? {name: 'unlock', type: 'evilicon'} : {name: 'lock', type: 'evilicon'}}
                             switchButton={!this.props.user.admin}
                             switched={this.state.adminUser}
+                            switchOnTintColor='#FFD180' 
+                            switchThumbTintColor='#ff6d00' 
                             onSwitch={this.onAdminToggle.bind(this)}
                             onPress={this.onAdminPress.bind(this)}
                         />
@@ -144,7 +146,7 @@ class Settings extends Component {
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
-                                        backgroundColor='#567FDE'
+                                        backgroundColor='#673ab7'
                                         leftComponent={<Icon 
                                             name='arrow-back' 
                                             color='#fff' 
@@ -159,7 +161,7 @@ class Settings extends Component {
                                     textInputRef={this.state.username}
                                     placeholder={this.props.user.name} 
                                 />
-                                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Save' onPress={this.saveName.bind(this)} />
+                                <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SAVE' onPress={this.saveName.bind(this)} />
                             </ScrollView>
                         </View>
                     </Modal>
@@ -174,7 +176,7 @@ class Settings extends Component {
                         <View style={styles.container}>
                             <View style={styles.header}>
                                 <Header 
-                                    backgroundColor='#567FDE'
+                                    backgroundColor='#673ab7'
                                     leftComponent={<Icon 
                                         name='arrow-back' 
                                         color='#fff' 
@@ -190,7 +192,9 @@ class Settings extends Component {
                                     title={'Admin status'} 
                                     leftIcon={{name: 'unlock', type: 'evilicon'}}
                                     switchButton={true}
-                                    switched={this.state.adminUser}
+                                    switched={this.state.adminUser} 
+                                    switchOnTintColor='#FFD180' 
+                                    switchThumbTintColor='#ff6d00' 
                                     onSwitch={this.onAdminToggle.bind(this)}
                                 />
                                 <ListItem 
@@ -214,7 +218,7 @@ class Settings extends Component {
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
-                                        backgroundColor='#567FDE'
+                                        backgroundColor='#673ab7'
                                         leftComponent={<Icon 
                                             name='arrow-back' 
                                             color='#fff' 

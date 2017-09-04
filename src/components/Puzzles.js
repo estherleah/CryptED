@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, ListView, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
-import { List, ListItem, ButtonGroup, Icon } from 'react-native-elements';
+import { List, ListItem, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
 import SinglePuzzle from './SinglePuzzle';
@@ -85,21 +85,21 @@ class Puzzles extends Component {
                     <AppHeader />
                     <View style={styles.tabs}>
                         <TouchableOpacity 
-                            style={[styles.tab, {backgroundColor: this.state.selected == 'crypto' ? '#6392FF' : null}]} 
+                            style={[styles.tab, {backgroundColor: this.state.selected == 'crypto' ? '#9a67ea' : null}]} 
                             onPress={() => {this.setState({selected: 'crypto'})}} 
                         >
                             <Icon name='key-variant' type='material-community' color='#fff' containerStyle={{height: 25}} />
                             <Text style={styles.tabText}>Cryptography</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
-                            style={[styles.tab, {backgroundColor: this.state.selected == 'cyber' ? '#6392FF' : null}]} 
+                            style={[styles.tab, {backgroundColor: this.state.selected == 'cyber' ? '#9a67ea' : null}]} 
                             onPress={() => {this.setState({selected: 'cyber'})}} 
                         >
                             <Icon name='security' color='#fff' containerStyle={{height: 25}} />
                             <Text style={styles.tabText}>Cybersecurity</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
-                            style={[styles.tab, {backgroundColor: this.state.selected == 'logic' ? '#6392FF' : null}]} 
+                            style={[styles.tab, {backgroundColor: this.state.selected == 'logic' ? '#9a67ea' : null}]} 
                             onPress={() => {this.setState({selected: 'logic'})}} 
                         >
                             <Icon name='puzzle-piece' type='font-awesome' color='#fff' containerStyle={{height: 25}} />
@@ -107,7 +107,7 @@ class Puzzles extends Component {
                         </TouchableOpacity>
                         {(this.props.user.admin) ?
                             <TouchableOpacity 
-                                style={[styles.tab, {backgroundColor: this.state.selected == 'admin' ? '#6392FF' : null}]} 
+                                style={[styles.tab, {backgroundColor: this.state.selected == 'admin' ? '#9a67ea' : null}]} 
                                 onPress={() => {this.setState({selected: 'admin'})}} 
                             >
                                 <Icon name='lock' type='font-awesome' color='#fff' containerStyle={{height: 25}} />

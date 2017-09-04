@@ -80,14 +80,14 @@ class AddPuzzle extends Component {
                     <AppHeader />
                     <View style={styles.tabs}>
                         <TouchableOpacity 
-                            style={[styles.tab, {backgroundColor: this.state.category == 'cybersecurity' ? '#6392FF' : null}]} 
+                            style={[styles.tab, {backgroundColor: this.state.category == 'cybersecurity' ? '#9a67ea' : null}]} 
                             onPress={() => {this.setState({category: 'cybersecurity'})}} 
                         >
                             <Icon name='security' color='#fff' containerStyle={{height: 25}} />
                             <Text style={styles.tabText}>Cybersecurity</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
-                            style={[styles.tab, {backgroundColor: this.state.category == 'logic' ? '#6392FF' : null}]} 
+                            style={[styles.tab, {backgroundColor: this.state.category == 'logic' ? '#9a67ea' : null}]} 
                             onPress={() => {this.setState({category: 'logic'})}} 
                         >
                             <Icon name='puzzle-piece' type='font-awesome' color='#fff' containerStyle={{height: 25}} />
@@ -108,7 +108,7 @@ class AddPuzzle extends Component {
                         ]}
                         initial = {0}
                         onPress = {value => this.setState({type: value})} 
-                        buttonColor = '#567FDE' 
+                        buttonColor = '#ff6d00' 
                         buttonSize = {10} 
                         style = {styles.radio} 
                     />
@@ -202,7 +202,7 @@ class AddPuzzle extends Component {
                         <Option value = {4}>Hard</Option>
                         <Option value = {5}>Very hard</Option>
                     </Select>
-                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Add' onPress={this.onAddPress.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='ADD' onPress={this.onAddPress.bind(this)} />
                 </ScrollView>
                 </KeyboardAvoidingView>
             </View>

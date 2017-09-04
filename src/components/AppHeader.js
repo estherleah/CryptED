@@ -10,7 +10,7 @@ class AppHeader extends Component {
         return (
             <View style={styles.header}>
                 <Header 
-                    backgroundColor='#567FDE'
+                    backgroundColor='#673ab7'
                     leftComponent={<Icon 
                             name='menu' 
                             color='#fff' 

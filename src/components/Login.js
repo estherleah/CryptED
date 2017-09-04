@@ -113,8 +113,8 @@ class Login extends Component {
         return (this.state.loading) ? 
             <ActivityIndicator size='large' /> :
             <View>
-                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Login' onPress={this.onLoginPress.bind(this)} />
-                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#567FDE' title='Sign up' onPress={this.onSignUpButtonPress.bind(this)} />
+                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#ff6d00' title='LOGIN' onPress={this.onLoginPress.bind(this)} />
+                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#ff6d00' title='SIGN UP' onPress={this.onSignUpButtonPress.bind(this)} />
                 <TouchableOpacity
                     onPress={() => {this.setState({forgot: true})}}
                 >
@@ -131,7 +131,7 @@ class Login extends Component {
                 <KeyboardAvoidingView style={styles.scroll}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.header}>
-                        <Header backgroundColor='#567FDE'
+                        <Header backgroundColor='#673ab7'
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
@@ -166,7 +166,7 @@ class Login extends Component {
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
-                                        backgroundColor='#567FDE'
+                                        backgroundColor='#673ab7'
                                         leftComponent={<Icon 
                                             name='arrow-back' 
                                             color='#fff' 
@@ -224,7 +224,7 @@ class Login extends Component {
                                 {(this.state.loading) ? 
                                     <ActivityIndicator size='large' /> :
                                     <View>
-                                        <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Sign up' onPress={this.onSignUpPress.bind(this)} />
+                                        <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SIGN UP' onPress={this.onSignUpPress.bind(this)} />
                                     </View>}
                             </ScrollView>
                             </KeyboardAvoidingView>
@@ -243,7 +243,7 @@ class Login extends Component {
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
-                                        backgroundColor='#567FDE'
+                                        backgroundColor='#673ab7'
                                         leftComponent={<Icon 
                                             name='arrow-back' 
                                             color='#fff' 
@@ -260,7 +260,7 @@ class Login extends Component {
                                     placeholder={'Email'} 
                                     keyboardType={'email-address'}
                                 />
-                                <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Reset' onPress={this.onForgotPassword.bind(this)} />
+                                <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='RESET' onPress={this.onForgotPassword.bind(this)} />
                             </ScrollView>
                             </KeyboardAvoidingView>
                         </View>

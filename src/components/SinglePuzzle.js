@@ -172,7 +172,7 @@ class SinglePuzzle extends Component {
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
                         <Header 
-                            backgroundColor='#567FDE'
+                            backgroundColor='#673ab7'
                             leftComponent={<Icon 
                                 name='arrow-back' 
                                 color='#fff' 
@@ -190,7 +190,7 @@ class SinglePuzzle extends Component {
                         textInputRef={this.state.solution}  
                         placeholder={'Solution'} 
                     />
-                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
                     <TouchableOpacity
                         onPress={() => {this.setModalVisible(true)}}
                     >
@@ -207,7 +207,7 @@ class SinglePuzzle extends Component {
                         <View style={styles.container}>
                             <View style={styles.header}>
                                 <Header 
-                                    backgroundColor='#567FDE'
+                                    backgroundColor='#673ab7'
                                     leftComponent={<Icon 
                                         name='arrow-back' 
                                         color='#fff' 
@@ -236,7 +236,7 @@ class SinglePuzzle extends Component {
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
                         <Header 
-                            backgroundColor='#567FDE'
+                            backgroundColor='#673ab7'
                             leftComponent={<Icon 
                                 name='arrow-back' 
                                 color='#fff' 
@@ -284,9 +284,9 @@ class SinglePuzzle extends Component {
                     <Text style={styles.body}>
                         {this.props.puzzle.rating}
                     </Text>
-                    <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Approve' onPress={this.onApprove.bind(this)} />
-                    <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Change' onPress={this.onChange.bind(this)} />
-                    <Button raised backgroundColor='red' containerViewStyle={styles.button} title='Delete' onPress={this.onDelete.bind(this)} />
+                    <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='APPROVE' onPress={this.onApprove.bind(this)} />
+                    <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='CHANGE' onPress={this.onChange.bind(this)} />
+                    <Button raised backgroundColor='red' containerViewStyle={styles.button} title='DELETE' onPress={this.onDelete.bind(this)} />
 
                     {/* Modal for editing a puzzle */}
                     <Modal
@@ -298,7 +298,7 @@ class SinglePuzzle extends Component {
                             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                                 <View style={styles.header}>
                                     <Header 
-                                        backgroundColor='#567FDE'
+                                        backgroundColor='#673ab7'
                                         leftComponent={<Icon 
                                             name='arrow-back' 
                                             color='#fff' 
@@ -407,8 +407,8 @@ class SinglePuzzle extends Component {
                                         <Option value = {4}>Hard</Option>
                                         <Option value = {5}>Very hard</Option>
                                     </Select>
-                                    <Button raised backgroundColor='#567FDE' containerViewStyle={[styles.button, {marginBottom: 5}]} title='Amend' onPress={this.onFinishEditing.bind(this)} />
-                                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Back' onPress={this.onCancelEditing.bind(this)} />
+                                    <Button raised backgroundColor='#ff6d00' containerViewStyle={[styles.button, {marginBottom: 5}]} title='AMEND' onPress={this.onFinishEditing.bind(this)} />
+                                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='BACK' onPress={this.onCancelEditing.bind(this)} />
                                 </ScrollView>
                                 </KeyboardAvoidingView>
                         </View>
@@ -426,7 +426,7 @@ class SinglePuzzle extends Component {
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                     <View style={styles.header}>
                         <Header 
-                            backgroundColor='#567FDE'
+                            backgroundColor='#673ab7'
                             leftComponent={<Icon 
                                 name='arrow-back' 
                                 color='#fff' 
@@ -444,7 +444,7 @@ class SinglePuzzle extends Component {
                         <View style={styles.container}>
                             <View style={styles.header}>
                                 <Header 
-                                    backgroundColor='#567FDE'
+                                    backgroundColor='#673ab7'
                                     leftComponent={<Icon 
                                         name='arrow-back' 
                                         color='#fff' 
@@ -489,13 +489,13 @@ class SinglePuzzle extends Component {
                                                 (this.state.solution == 'D') ? 3 : -1
                                 }
                                 onPress = {value => this.setState({solution: value})} 
-                                buttonColor = '#567FDE' 
+                                buttonColor = '#ff6d00' 
                                 buttonSize = {10} 
                                 style = {styles.radio} 
                             />
                         </View>
                     }
-                    <Button raised backgroundColor='#567FDE' containerViewStyle={styles.button} title='Submit' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
                     {(this.props.puzzle.notes != '') ?
                     <TouchableOpacity
                         onPress={() => this.setState({moreVisible: true})}

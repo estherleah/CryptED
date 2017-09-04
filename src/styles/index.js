@@ -59,7 +59,7 @@ export default styles = StyleSheet.create({
         fontWeight: 'normal',
     },
     badge: {
-        backgroundColor: '#567FDE',
+        backgroundColor: '#9a67ea',
         marginRight: 7,
     },
     select: {
@@ -88,7 +88,7 @@ export default styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: '#567FDE',
+        backgroundColor: '#673ab7',
         paddingTop: 7,
         marginTop: -0.75,
     },
