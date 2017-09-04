@@ -1,97 +1,86 @@
 {
     "puzzles": {
         "cryptography": {
-            "puzzle-1": {
-                "id": "puzzle-1",
-                "category": "Vigenère Cipher",
-                "type": "vigenere",
-                "rating": 4,
-                "plaintext": "ATTACK AT DAWN",
-                "key": "abc",
-                "notes": ""
+            "puzzle-1" : {
+                "category" : "Vigenère Cipher",
+                "ciphertext" : "",
+                "id" : "puzzle-1",
+                "key" : "abc",
+                "notes" : "This is where information on the Vigenère cipher goes.",
+                "plaintext" : "ATTACK AT DAWN",
+                "rating" : 4,
+                "title" : "Vigenère Cipher",
+                "type" : "vigenere"
             },
-            "puzzle-2": {
-                "id": "puzzle-2",
-                "category": "Caesar Cipher",
-                "type": "caesar",
-                "rating": 2,
-                "plaintext": "HELLO WORLD",
-                "key": "",
-                "notes": "This works by shifting each letter in the message (the plaintext) along by a fixed amount (known as the shift value) to produce the ciphertext. For example, if the shift value was 3 then the word “HELLO” would become “KHOOR”, with each letter shifted 3 to the right. \n\nIt can be deciphered by shifting each letter in the ciphertext “KHOOR” -3 (i.e. shifting each letter 3 to the left) to return the plaintext “HELLO”. \n\nEven without knowing the shift value Caesar ciphers can be broken either by trying out each of the 26 possible options for the shift value or using frequency analysis. Frequency analysis is looking at the frequency of the letters that occur in the ciphertext and comparing it to the frequency of letters in the English language. \n\nThis method is named after Julius Caesar who used it in his correspondence."
-            },
-            "puzzle-3": {
-                "id": "puzzle-3",
-                "category": "Caesar Cipher",
-                "type": "caesar",
-                "rating": 4,
-                "plaintext": "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
-                "key": "",
-                "notes": "This works by shifting each letter in the message (the plaintext) along by a fixed amount (known as the shift value) to produce the ciphertext. For example, if the shift value was 3 then the word “HELLO” would become “KHOOR”, with each letter shifted 3 to the right. \n\nIt can be deciphered by shifting each letter in the ciphertext “KHOOR” -3 (i.e. shifting each letter 3 to the left) to return the plaintext “HELLO”. \n\nEven without knowing the shift value Caesar ciphers can be broken either by trying out each of the 26 possible options for the shift value or using frequency analysis. Frequency analysis is looking at the frequency of the letters that occur in the ciphertext and comparing it to the frequency of letters in the English language. \n\nThis method is named after Julius Caesar who used it in his correspondence."
-            },
-            "puzzle-4": {
-                "id": "puzzle-4",
-                "category": "Atbash Cipher",
-                "type": "atbash",
-                "rating": 1,
-                "plaintext": "CAT",
-                "key": "",
-                "notes": "The Atbash cipher works by substituting every ‘a’ with a ‘z’, every ‘b’ with a ‘y’ etc. For example, “CAT” would become “XZG”. \n\nThe name comes from the Hebrew alphabet, from the names of the first, last, second and second-to-last letters (Aleph-Tav-Bet-Shin)."
+            "puzzle-2" : {
+                "category" : "Caesar Cipher",
+                "ciphertext" : "",
+                "id" : "puzzle-2",
+                "key" : "",
+                "notes" : "This is where information on the Caesar cipher goes.",
+                "plaintext" : "HELLO WORLD",
+                "rating" : 2,
+                "title" : "Caesar Cipher",
+                "type" : "caesar"
             }
         },
         "cybersecurity": {
-            "cyber-1": {
-                "id": "cyber-1",
-                "problem": "Test cyber question.",
-                "solution": "Testing",
-                "rating": 1,
-                "notes": "",
-                "type": "text",
-                "addedBy": "user-1",
-                "verified": true
+            "cyber-1" : {
+                "category" : "cybersecurity",
+                "id" : "cyber-1",
+                "notes" : "",
+                "problem" : "Test puzzle",
+                "rating" : 1,
+                "solution" : "test",
+                "title" : "Test",
+                "type" : "text"
             },
-            "cyber-2": {
-                "id": "cyber-2",
-                "problem": "Test cyber multiple choice question.",
-                "solution": "B",
-                "options": {
-                    "A": "Option A",
-                    "B": "Option B",
-                    "C": "Option C",
-                    "D": "Option D"
-                },
-                "rating": 3,
-                "notes": "",
-                "type": "multi",
+            "cyber-2" : {
                 "addedBy": "user-2",
-                "verified": false
+                "category" : "cybersecurity",
+                "changedBy": "user-1",
+                "id" : "cyber-2",
+                "notes" : "This is where any additional information goes. It can be read at any time including before a puzzle has been solved.",
+                "options" : {
+                  "A" : "option A",
+                  "B" : "option B",
+                  "C" : "option C",
+                  "D" : "option D"
+                },
+                "problem" : "Please pick the correct solution",
+                "rating" : 5,
+                "solution" : "B",
+                "title" : "Test Multiple Choice Question",
+                "type" : "multi"
             }
         },
         "logic": {
-            "logic-1": {
-                "id": "logic-1",
-                "problem": "Test logic question",
-                "solution": "Testing",
-                "rating": 1,
-                "notes": "",
-                "type": "text",
-                "addedBy": "user-2",
-                "verified": true
-            },
-            "logic-2": {
-                "id": "logic-2",
-                "problem": "Testing logic multiple choice question.",
-                "solution": "D",
-                "options": {
-                    "A": "Option A",
-                    "B": "Option B",
-                    "C": "Option C",
-                    "D": "Option D"
-                },
-                "rating": 3,
-                "notes": "",
-                "type": "multi",
+            "logic-1" : {
                 "addedBy": "user-1",
-                "verified": true
+                "category" : "logic",
+                "id" : "logic-1",
+                "notes" : "",
+                "problem" : "Test puzzle",
+                "rating" : 1,
+                "solution" : "test",
+                "title" : "Test",
+                "type" : "text"
+            },
+            "logic-2" : {
+                "category" : "logic",
+                "id" : "logic-2",
+                "notes" : "This is where any additional information goes. It can be read at any time including before a puzzle has been solved.",
+                "options" : {
+                  "A" : "option A",
+                  "B" : "option B",
+                  "C" : "option C",
+                  "D" : "option D"
+                },
+                "problem" : "Please pick the correct solution",
+                "rating" : 2,
+                "solution" : "C",
+                "title" : "Test Multiple Choice Question",
+                "type" : "multi"
             }
         }
     },
@@ -103,8 +92,9 @@
     },
     "users": {
         "user-1": {
-            "name": "Fred Bloggs",
             "admin": true,
+            "dob" : "1996-05-18",
+            "name": "Fred Bloggs",
             "score": 3,
             "solved": {
                 "puzzle-2": true,
@@ -112,8 +102,9 @@
             }
         },
         "user-2": {
-            "name": "John Doe",
             "admin": false,
+            "dob" : "2004-12-04",
+            "name": "John Doe",
             "score": 0,
             "solved": ""
         }
