@@ -62,7 +62,7 @@ const Navigation = DrawerNavigator({
     drawerWidth: 300,
     contentComponent: props => <ScrollView><DrawerItems {...props} /></ScrollView>,
     contentOptions: {
-        activeTintColor: '#9a67ea'
+        activeTintColor: '#673ab7'
     }
 });
 

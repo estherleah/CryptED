@@ -161,7 +161,7 @@ class Settings extends Component {
                                     textInputRef={this.state.username}
                                     placeholder={this.props.user.name} 
                                 />
-                                <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SAVE' onPress={this.saveName.bind(this)} />
+                                <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='SAVE' onPress={this.saveName.bind(this)} />
                             </ScrollView>
                         </View>
                     </Modal>

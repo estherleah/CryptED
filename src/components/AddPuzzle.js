@@ -202,7 +202,7 @@ class AddPuzzle extends Component {
                         <Option value = {4}>Hard</Option>
                         <Option value = {5}>Very hard</Option>
                     </Select>
-                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='ADD' onPress={this.onAddPress.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='ADD' onPress={this.onAddPress.bind(this)} />
                 </ScrollView>
                 </KeyboardAvoidingView>
             </View>

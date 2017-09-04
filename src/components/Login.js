@@ -113,8 +113,8 @@ class Login extends Component {
         return (this.state.loading) ? 
             <ActivityIndicator size='large' /> :
             <View>
-                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#ff6d00' title='LOGIN' onPress={this.onLoginPress.bind(this)} />
-                <Button containerViewStyle={{marginBottom: 15}} raised backgroundColor='#ff6d00' title='SIGN UP' onPress={this.onSignUpButtonPress.bind(this)} />
+                <Button containerViewStyle={{marginBottom: 15}} textStyle={{color: 'black'}} raised backgroundColor='#ff6d00' title='LOGIN' onPress={this.onLoginPress.bind(this)} />
+                <Button containerViewStyle={{marginBottom: 15}} textStyle={{color: 'black'}} raised backgroundColor='#ff6d00' title='SIGN UP' onPress={this.onSignUpButtonPress.bind(this)} />
                 <TouchableOpacity
                     onPress={() => {this.setState({forgot: true})}}
                 >
@@ -224,7 +224,7 @@ class Login extends Component {
                                 {(this.state.loading) ? 
                                     <ActivityIndicator size='large' /> :
                                     <View>
-                                        <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SIGN UP' onPress={this.onSignUpPress.bind(this)} />
+                                        <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='SIGN UP' onPress={this.onSignUpPress.bind(this)} />
                                     </View>}
                             </ScrollView>
                             </KeyboardAvoidingView>
@@ -260,7 +260,7 @@ class Login extends Component {
                                     placeholder={'Email'} 
                                     keyboardType={'email-address'}
                                 />
-                                <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='RESET' onPress={this.onForgotPassword.bind(this)} />
+                                <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='RESET' onPress={this.onForgotPassword.bind(this)} />
                             </ScrollView>
                             </KeyboardAvoidingView>
                         </View>

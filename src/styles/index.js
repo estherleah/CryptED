@@ -9,7 +9,7 @@ export default styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FAFAFA',
     },
     header: {
         height: 70,
@@ -49,7 +49,7 @@ export default styles = StyleSheet.create({
     },
     list: {
         width: '100%',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#FAFAFA',
         marginTop: 0,
     },
     listItem: {

@@ -190,7 +190,7 @@ class SinglePuzzle extends Component {
                         textInputRef={this.state.solution}  
                         placeholder={'Solution'} 
                     />
-                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
                     <TouchableOpacity
                         onPress={() => {this.setModalVisible(true)}}
                     >
@@ -284,9 +284,9 @@ class SinglePuzzle extends Component {
                     <Text style={styles.body}>
                         {this.props.puzzle.rating}
                     </Text>
-                    <Button raised backgroundColor='green' containerViewStyle={[styles.button, {marginBottom: 5}]} title='APPROVE' onPress={this.onApprove.bind(this)} />
-                    <Button raised backgroundColor='orange' containerViewStyle={[styles.button, {marginBottom: 5}]} title='CHANGE' onPress={this.onChange.bind(this)} />
-                    <Button raised backgroundColor='red' containerViewStyle={styles.button} title='DELETE' onPress={this.onDelete.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={[styles.button, {marginBottom: 0}]} title='APPROVE' onPress={this.onApprove.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={[styles.button, {marginBottom: 0}]} title='CHANGE' onPress={this.onChange.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='DELETE' onPress={this.onDelete.bind(this)} />
 
                     {/* Modal for editing a puzzle */}
                     <Modal
@@ -407,8 +407,8 @@ class SinglePuzzle extends Component {
                                         <Option value = {4}>Hard</Option>
                                         <Option value = {5}>Very hard</Option>
                                     </Select>
-                                    <Button raised backgroundColor='#ff6d00' containerViewStyle={[styles.button, {marginBottom: 5}]} title='AMEND' onPress={this.onFinishEditing.bind(this)} />
-                                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='BACK' onPress={this.onCancelEditing.bind(this)} />
+                                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={[styles.button, {marginBottom: 0}]} title='AMEND' onPress={this.onFinishEditing.bind(this)} />
+                                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='BACK' onPress={this.onCancelEditing.bind(this)} />
                                 </ScrollView>
                                 </KeyboardAvoidingView>
                         </View>
@@ -495,7 +495,7 @@ class SinglePuzzle extends Component {
                             />
                         </View>
                     }
-                    <Button raised backgroundColor='#ff6d00' containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
                     {(this.props.puzzle.notes != '') ?
                     <TouchableOpacity
                         onPress={() => this.setState({moreVisible: true})}
