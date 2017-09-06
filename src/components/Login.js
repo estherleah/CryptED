@@ -43,12 +43,17 @@ class Login extends Component {
         // Sign in using firebase
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(this.onAuthSuccess.bind(this))
-        .catch(this.onAuthFailed.bind(this));
+        .catch((e) => {
+            this.setState({
+                error: e.message,
+                loading: false,
+            });
+        });
     }
 
     // View sign up modal.
     onSignUpButtonPress() {
-        this.setState({newUser: true});
+        this.setState({newUser: true, error: ''});
     }
 
     // When authorization is successful, set the state back to the default.
@@ -82,7 +87,12 @@ class Login extends Component {
                     });
                 })
                 .then(this.onAuthSuccess.bind(this))
-                .catch(this.onAuthFailed.bind(this));
+                .catch((e) => {
+                    this.setState({
+                        error: e.message,
+                        loading: false,
+                    });
+                });
             } else {
                 this.setState({
                     error: 'Passwords do not match',
@@ -98,14 +108,7 @@ class Login extends Component {
         }
     }
 
-    // If authorization fails, set the error and set loading to false.
-    onAuthFailed() {
-        this.setState({
-            error: 'Authentication failed',
-            loading: false,
-        });
-    }
-
+    // Request a password reset link.
     onForgotPassword() {
         const { email } = this.state;
         firebase.auth().sendPasswordResetEmail(email)
@@ -113,7 +116,7 @@ class Login extends Component {
             this.setState({forgot: false});
             alert("Message sent");
         })
-        .catch((error) => console.log(error));
+        .catch((e) => this.setState({error: e.message}));
     }
 
     // Add the loader to show that it is loading.
@@ -124,7 +127,7 @@ class Login extends Component {
                 <Button containerViewStyle={{marginBottom: 15}} textStyle={{color: 'black'}} raised backgroundColor='#ff6d00' title='LOGIN' onPress={this.onLoginPress.bind(this)} />
                 <Button containerViewStyle={{marginBottom: 15}} textStyle={{color: 'black'}} raised backgroundColor='#ff6d00' title='SIGN UP' onPress={this.onSignUpButtonPress.bind(this)} />
                 <TouchableOpacity
-                    onPress={() => {this.setState({forgot: true})}}
+                    onPress={() => {this.setState({forgot: true, error: ''})}}
                 >
                     <Text style={styles.forgot}>
                         Forgot password?
@@ -166,7 +169,7 @@ class Login extends Component {
                     {/* Modal for new user */}
                     <Modal
                         visible={this.state.newUser}
-                        onRequestClose={() => this.setState({newUser: false})}
+                        onRequestClose={() => this.setState({newUser: false, error: ''})}
                         animationType='none'
                     >
                         <View style={styles.container}>
@@ -178,7 +181,7 @@ class Login extends Component {
                                         leftComponent={
                                             <TouchableOpacity
                                                 style={{height: 30}}
-                                                onPress={() => this.setState({newUser: false})} 
+                                                onPress={() => this.setState({newUser: false, error: ''})} 
                                             >
                                                 <Icon 
                                                     name='arrow-back' 
@@ -254,7 +257,7 @@ class Login extends Component {
                     {/* Modal for forgot password */}
                     <Modal
                         visible={this.state.forgot}
-                        onRequestClose={() => this.setState({forgot: false})}
+                        onRequestClose={() => this.setState({forgot: false, error: ''})}
                         animationType='none'
                     >
                         <View style={styles.container}>
@@ -266,7 +269,7 @@ class Login extends Component {
                                         leftComponent={
                                             <TouchableOpacity
                                                 style={{height: 30}}
-                                                onPress={() => this.setState({forgot: false})} 
+                                                onPress={() => this.setState({forgot: false, error: ''})} 
                                             >
                                                 <Icon 
                                                     name='arrow-back' 
@@ -284,6 +287,9 @@ class Login extends Component {
                                     placeholder={'Email'} 
                                     keyboardType={'email-address'}
                                 />
+                                <Text style={styles.error}>
+                                    {this.state.error}
+                                </Text>
                                 <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='RESET' onPress={this.onForgotPassword.bind(this)} />
                             </ScrollView>
                             </KeyboardAvoidingView>
