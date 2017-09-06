@@ -63,26 +63,34 @@ class Login extends Component {
     
     // Actual sign up method for a new user.
     onSignUpPress() {
-        const { email, password, name, date } = this.state;
+        const { email, password, repeat, name, date } = this.state;
         this.setState({error: '', loading: true});
-        if (date != '' && name != '') {
-            // Create user with firebase
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(() => {
-                // add user data
-                const { currentUser } = firebase.auth();
-                firebase.database().ref(`/users/${currentUser.uid}`)
-                .set({
-                    score: 0,
-                    admin: false,
-                    solved: '',
-                    name,
-                    date
+        if (date != '' && name != '' && password != '') {
+            if (password == repeat) {
+                // Create user with firebase
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then(() => {
+                    // add user data
+                    const { currentUser } = firebase.auth();
+                    firebase.database().ref(`/users/${currentUser.uid}`)
+                    .set({
+                        score: 0,
+                        admin: false,
+                        solved: '',
+                        name,
+                        date
+                    });
+                })
+                .then(this.onAuthSuccess.bind(this))
+                .catch(this.onAuthFailed.bind(this));
+            } else {
+                this.setState({
+                    error: 'Passwords do not match',
+                    loading: false,
                 });
-            })
-            .then(this.onAuthSuccess.bind(this))
-            .catch(this.onAuthFailed.bind(this));
-        } else {
+            }
+        }
+        else {
             this.setState({
                 error: 'Please fill out all fields',
                 loading: false,
@@ -186,6 +194,12 @@ class Login extends Component {
                                     onChangeText={password => this.setState({password})}
                                     textInputRef={this.state.password}  
                                     placeholder={'Password'} 
+                                    secureTextEntry={true} 
+                                />
+                                <FormInput 
+                                    onChangeText={repeat => this.setState({repeat})}
+                                    textInputRef={this.state.repeat}  
+                                    placeholder={'Repeat password'} 
                                     secureTextEntry={true} 
                                 />
                                 <FormInput 

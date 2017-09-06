@@ -52,19 +52,29 @@ class AddPuzzle extends Component {
         }
         // if no errors add new puzzle
         if (formErrors.length == 0) {
-            // if text puzzle
-            if (this.state.type == 'text') {
-                this.props.createNewPuzzle({title, problem, solution, notes, rating, options: [], type, category, admin});
-            }
-            // if multiple choice puzzle
-            else {
-                this.props.createNewPuzzle({title, problem, solution, notes, rating, options, type, category, admin});
-            }
-            // inform user of success
-            (this.props.user.admin) ? 
-            Alert.alert("Success", "Puzzle added") : 
-            Alert.alert("Success", "Your puzzle will be added once it has been checked.");
-            this.props.navigation.navigate('AddPuzzle');
+            // ask for confirmation
+            Alert.alert(
+                'Confirmation',
+                'Are you sure you want to add this puzzle?',
+                [
+                    {text: 'No', style: 'cancel'},
+                    {text: 'Yes', onPress: () => {
+                        // if text puzzle
+                        if (this.state.type == 'text') {
+                            this.props.createNewPuzzle({title, problem, solution, notes, rating, options: [], type, category, admin});
+                        }
+                        // if multiple choice puzzle
+                        else {
+                            this.props.createNewPuzzle({title, problem, solution, notes, rating, options, type, category, admin});
+                        }
+                        // inform user of success
+                        (this.props.user.admin) ? 
+                        Alert.alert("Success", "Puzzle added") : 
+                        Alert.alert("Success", "Your puzzle will be added once it has been checked.");
+                        this.props.navigation.navigate('AddPuzzle');
+                    }},
+                ]
+            );
         }
         // if errors then add to the state
         else {

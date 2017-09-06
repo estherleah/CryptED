@@ -96,7 +96,7 @@ class SinglePuzzle extends Component {
                     }
                 }
             }
-            Alert.alert("Correct", this.state.solution + " is the correct answer");
+            Alert.alert("Correct", "Well done!");
             this.props.noneSelected();
         } else {
             Alert.alert("Inorrect", "Please try again");
@@ -494,20 +494,20 @@ class SinglePuzzle extends Component {
                                 onPress = {value => this.setState({solution: value})} 
                                 buttonColor = '#ff6d00' 
                                 buttonSize = {10} 
-                                style = {styles.radio} 
+                                style = {[styles.radio, {paddingLeft: 25}]} 
                             />
                         </View>
                     }
-                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
                     {(this.props.puzzle.notes != '') ?
                     <TouchableOpacity
                         onPress={() => this.setState({moreVisible: true})}
                     >
-                        <Text style={styles.more}>
+                        <Text style={styles.notes}>
                             Learn more...
                         </Text>
                     </TouchableOpacity>
                     : null }
+                    <Button raised backgroundColor='#ff6d00' textStyle={{color: 'black'}} containerViewStyle={styles.button} title='SUBMIT' onPress={this.onSubmit.bind(this)} />
                 </ScrollView>
                 </KeyboardAvoidingView>
             </View>

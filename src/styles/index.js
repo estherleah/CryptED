@@ -128,6 +128,12 @@ export default styles = StyleSheet.create({
         marginTop: 30,
         paddingBottom: 20,
     },
+    notes: {
+        textAlign: 'right',
+        paddingTop: 10,
+        paddingRight: 30,
+        paddingBottom: 10,
+    },
 
     // Add puzzle page
     errorList: {
