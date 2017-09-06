@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Alert, ScrollView, Modal, ListView } from 'react-native';
+import { Text, View, Alert, ScrollView, Modal, ListView, TouchableOpacity } from 'react-native';
 import { List, ListItem, Icon, Header, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import moment from 'moment';

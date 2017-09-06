@@ -340,7 +340,8 @@ class SinglePuzzle extends Component {
                                     />
                                     <Text style={styles.subheading}>Problem:</Text>
                                     <MultilineTextInput 
-                                        autoCapitalize={'sentences'}
+                                        autoCapitalize={'sentences'} 
+                                        numberOfLines={5} 
                                         placeholder={this.props.problem} 
                                         value={this.props.problem} 
                                         onChangeText={value => this.props.formUpdate({ prop: 'problem', value })} 
@@ -524,7 +525,7 @@ class SinglePuzzle extends Component {
                                 onPress = {value => this.setState({solution: value})} 
                                 buttonColor = '#ff6d00' 
                                 buttonSize = {10} 
-                                style = {[styles.radio, {paddingLeft: 25}]} 
+                                style = {[styles.radio, {marginLeft: 5, marginRight: 25}]} 
                             />
                         </View>
                     }

@@ -83,7 +83,7 @@ class Login extends Component {
                         admin: false,
                         solved: '',
                         name,
-                        date
+                        dob: date
                     });
                 })
                 .then(this.onAuthSuccess.bind(this))
