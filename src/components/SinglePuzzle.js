@@ -176,11 +176,16 @@ class SinglePuzzle extends Component {
                     <View style={styles.header}>
                         <Header 
                             backgroundColor='#673ab7'
-                            leftComponent={<Icon 
-                                name='arrow-back' 
-                                color='#fff' 
-                                onPress={() => this.props.noneSelected()} 
-                            />} 
+                            leftComponent={
+                                <TouchableOpacity
+                                    style={{width: 40, height: 30}}
+                                    onPress={() => this.props.noneSelected()} 
+                                >
+                                    <Icon 
+                                        name='arrow-back' 
+                                        color='#fff' 
+                                    />
+                                </TouchableOpacity>} 
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
@@ -211,11 +216,16 @@ class SinglePuzzle extends Component {
                             <View style={styles.header}>
                                 <Header 
                                     backgroundColor='#673ab7'
-                                    leftComponent={<Icon 
-                                        name='arrow-back' 
-                                        color='#fff' 
-                                        onPress={() => {this.setModalVisible(!this.state.modalVisible)}} 
-                                    />} 
+                                    leftComponent={
+                                        <TouchableOpacity
+                                            style={{width: 40, height: 30}}
+                                            onPress={() => {this.setModalVisible(!this.state.modalVisible)}} 
+                                        >
+                                            <Icon 
+                                                name='arrow-back' 
+                                                color='#fff' 
+                                            />
+                                        </TouchableOpacity>} 
                                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                 />
                             </View>
@@ -240,11 +250,16 @@ class SinglePuzzle extends Component {
                     <View style={styles.header}>
                         <Header 
                             backgroundColor='#673ab7'
-                            leftComponent={<Icon 
-                                name='arrow-back' 
-                                color='#fff' 
-                                onPress={() => this.props.noneSelected()} 
-                            />} 
+                            leftComponent={
+                                <TouchableOpacity
+                                    style={{width: 40, height: 30}}
+                                    onPress={() => this.props.noneSelected()} 
+                                >
+                                    <Icon 
+                                        name='arrow-back' 
+                                        color='#fff' 
+                                    />
+                                </TouchableOpacity>} 
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
@@ -302,11 +317,16 @@ class SinglePuzzle extends Component {
                                 <View style={styles.header}>
                                     <Header 
                                         backgroundColor='#673ab7'
-                                        leftComponent={<Icon 
-                                            name='arrow-back' 
-                                            color='#fff' 
-                                            onPress={() => this.setState({editing: false})} 
-                                        />} 
+                                        leftComponent={
+                                            <TouchableOpacity
+                                                style={{width: 40, height: 30}}
+                                                onPress={() => this.setState({editing: false})} 
+                                            >
+                                                <Icon 
+                                                    name='arrow-back' 
+                                                    color='#fff' 
+                                                />
+                                            </TouchableOpacity>} 
                                         centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                     />
                                 </View>
@@ -430,11 +450,16 @@ class SinglePuzzle extends Component {
                     <View style={styles.header}>
                         <Header 
                             backgroundColor='#673ab7'
-                            leftComponent={<Icon 
-                                name='arrow-back' 
-                                color='#fff' 
-                                onPress={() => this.props.noneSelected()} 
-                            />} 
+                            leftComponent={
+                                <TouchableOpacity
+                                    style={{width: 40, height: 30}}
+                                    onPress={() => this.props.noneSelected()} 
+                                >
+                                    <Icon 
+                                        name='arrow-back' 
+                                        color='#fff' 
+                                    />
+                                </TouchableOpacity>} 
                             centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                         />
                     </View>
@@ -448,11 +473,16 @@ class SinglePuzzle extends Component {
                             <View style={styles.header}>
                                 <Header 
                                     backgroundColor='#673ab7'
-                                    leftComponent={<Icon 
-                                        name='arrow-back' 
-                                        color='#fff' 
-                                        onPress={() => this.setState({moreVisible: false})} 
-                                    />} 
+                                    leftComponent={
+                                        <TouchableOpacity
+                                            style={{width: 40, height: 30}}
+                                            onPress={() => this.setState({moreVisible: false})} 
+                                        >
+                                            <Icon 
+                                                name='arrow-back' 
+                                                color='#fff' 
+                                            />
+                                        </TouchableOpacity>} 
                                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                 />
                             </View>

@@ -147,11 +147,16 @@ class Settings extends Component {
                                 <View style={styles.header}>
                                     <Header 
                                         backgroundColor='#673ab7'
-                                        leftComponent={<Icon 
-                                            name='arrow-back' 
-                                            color='#fff' 
-                                            onPress={() => this.setState({namePressed: false})} 
-                                        />} 
+                                        leftComponent={
+                                            <TouchableOpacity
+                                                style={{width: 40, height: 30}}
+                                                onPress={() => this.setState({namePressed: false})} 
+                                            >
+                                                <Icon 
+                                                    name='arrow-back' 
+                                                    color='#fff' 
+                                                />
+                                            </TouchableOpacity>} 
                                         centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                     />
                                 </View>
@@ -177,11 +182,16 @@ class Settings extends Component {
                             <View style={styles.header}>
                                 <Header 
                                     backgroundColor='#673ab7'
-                                    leftComponent={<Icon 
-                                        name='arrow-back' 
-                                        color='#fff' 
-                                        onPress={() => this.setState({adminVisible: false})} 
-                                    />} 
+                                    leftComponent={
+                                        <TouchableOpacity
+                                            style={{width: 40, height: 30}}
+                                            onPress={() => this.setState({adminVisible: false})} 
+                                        >
+                                            <Icon 
+                                                name='arrow-back' 
+                                                color='#fff' 
+                                            />
+                                        </TouchableOpacity>} 
                                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                 />
                             </View>
@@ -219,11 +229,16 @@ class Settings extends Component {
                                 <View style={styles.header}>
                                     <Header 
                                         backgroundColor='#673ab7'
-                                        leftComponent={<Icon 
-                                            name='arrow-back' 
-                                            color='#fff' 
-                                            onPress={() => this.setState({viewScores: false})} 
-                                        />} 
+                                        leftComponent={
+                                            <TouchableOpacity
+                                                style={{width: 40, height: 30}}
+                                                onPress={() => this.setState({viewScores: false})} 
+                                            >
+                                                <Icon 
+                                                    name='arrow-back' 
+                                                    color='#fff' 
+                                                />
+                                            </TouchableOpacity>} 
                                         centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                     />
                                 </View>

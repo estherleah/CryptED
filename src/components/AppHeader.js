@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { withNavigation } from 'react-navigation';
 import Navigation from './Navigation';
@@ -11,11 +11,16 @@ class AppHeader extends Component {
             <View style={styles.header}>
                 <Header 
                     backgroundColor='#673ab7'
-                    leftComponent={<Icon 
-                            name='menu' 
-                            color='#fff' 
+                    leftComponent={
+                        <TouchableOpacity
+                            style={{width: 40, height: 30}}
                             onPress={() => this.props.navigation.navigate('DrawerOpen')} 
-                        />}
+                        >
+                            <Icon 
+                                name='menu' 
+                                color='#fff' 
+                            />
+                        </TouchableOpacity>}
                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                 />
             </View>

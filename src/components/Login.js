@@ -175,11 +175,16 @@ class Login extends Component {
                                 <View style={styles.header}>
                                     <Header 
                                         backgroundColor='#673ab7'
-                                        leftComponent={<Icon 
-                                            name='arrow-back' 
-                                            color='#fff' 
-                                            onPress={() => this.setState({newUser: false})} 
-                                        />} 
+                                        leftComponent={
+                                            <TouchableOpacity
+                                                style={{width: 40, height: 30}}
+                                                onPress={() => this.setState({newUser: false})} 
+                                            >
+                                                <Icon 
+                                                    name='arrow-back' 
+                                                    color='#fff' 
+                                                />
+                                            </TouchableOpacity>} 
                                         centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                     />
                                 </View>
@@ -258,11 +263,16 @@ class Login extends Component {
                                 <View style={styles.header}>
                                     <Header 
                                         backgroundColor='#673ab7'
-                                        leftComponent={<Icon 
-                                            name='arrow-back' 
-                                            color='#fff' 
-                                            onPress={() => this.setState({forgot: false})} 
-                                        />} 
+                                        leftComponent={
+                                            <TouchableOpacity
+                                                style={{width: 40, height: 30}}
+                                                onPress={() => this.setState({forgot: false})} 
+                                            >
+                                                <Icon 
+                                                    name='arrow-back' 
+                                                    color='#fff' 
+                                                />
+                                            </TouchableOpacity>} 
                                         centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
                                     />
                                 </View>
