@@ -88,3 +88,64 @@ export const vigenere = (plaintext, key) => {
     }
     return ciphertext;
 }
+
+
+export const keyword = (plaintext, key) => {
+    // output
+    var ciphertext = "";
+
+    // alphabet and cipherbet strings
+    const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    const CIPHERBET = getCipherbet(key);
+
+    // go through plaintext one character at a time
+    for (var i = 0; i < plaintext.length; i++) {
+        var c = plaintext[i];
+        // check if it is a letter
+        if (c.match(/[a-z]/i)) {
+            // get unicode value
+            var unicode = plaintext.charCodeAt(i);
+            // uppercase
+            if ((unicode >= 65) && (unicode <= 90)) {
+                // find position within alphabet and set c to same position in reverse string
+                c = CIPHERBET.charAt(ALPHABET.toUpperCase().indexOf(c)).toUpperCase();
+            }
+            // lowercase
+            else if ((unicode >= 97) && (unicode <= 122)) {
+                // find position within alphabet and set c to same position in reverse string
+                c = CIPHERBET.charAt(ALPHABET.indexOf(c));
+            }
+        }
+        // append to ciphertext
+        ciphertext += c;
+    }
+    return ciphertext;
+}
+
+// helper function to return the cipherbet required by the keyword cipher
+function getCipherbet(key) {
+	// output
+    var cipherbet = "";
+    
+	const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+	// go through keyword one letter at a time
+	for (var i = 0; i < key.length; i++) {
+		var c = key[i];
+		// check if letter
+		if (c.match(/[a-z]/i)) {
+			// if not already in included, append to cipherbet
+			if (!cipherbet.includes(c)) {
+				cipherbet += c;
+			}
+		}
+	}
+	// go through alphabet one letter at a time
+	for (var j = 0; j < ALPHABET.length; j++) {
+		var c = ALPHABET[j];
+		// if not already in included, append to cipherbet
+		if (!cipherbet.includes(c)) {
+			cipherbet += c;
+		}
+	}
+	return cipherbet;
+}

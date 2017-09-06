@@ -5,7 +5,7 @@ import { Select, Option } from 'react-native-chooser';
 import MultilineTextInput from './MultilineTextInput';
 import RadioForm from 'react-native-simple-radio-button';
 import { connect } from 'react-redux';
-import { caesar, vigenere, atbash } from '../functions/ciphers.js';
+import { caesar, vigenere, atbash, keyword } from '../functions/ciphers.js';
 import * as actions from '../actions';
 import styles from '../styles';
 
@@ -33,6 +33,9 @@ class SinglePuzzle extends Component {
                 case 'atbash':
                     cipher = atbash(this.props.puzzle.plaintext);
                     break;    
+                case 'keyword':
+                    cipher = keyword(this.props.puzzle.plaintext, this.props.puzzle.key);
+                    break; 
                 default:
                     cipher = this.props.puzzle.ciphertext;
             }
