@@ -177,7 +177,7 @@ class Login extends Component {
                                         backgroundColor='#673ab7'
                                         leftComponent={
                                             <TouchableOpacity
-                                                style={{width: 40, height: 30}}
+                                                style={{height: 30}}
                                                 onPress={() => this.setState({newUser: false})} 
                                             >
                                                 <Icon 
@@ -265,7 +265,7 @@ class Login extends Component {
                                         backgroundColor='#673ab7'
                                         leftComponent={
                                             <TouchableOpacity
-                                                style={{width: 40, height: 30}}
+                                                style={{height: 30}}
                                                 onPress={() => this.setState({forgot: false})} 
                                             >
                                                 <Icon 
