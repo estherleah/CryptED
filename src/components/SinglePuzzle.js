@@ -140,11 +140,11 @@ class SinglePuzzle extends Component {
         const { puzzle, title, problem, solution, notes, rating, options, newPuzzles } = this.props;
         toAmend = newPuzzles.indexOf(puzzle);
         amendedPuzzle = { ...puzzle, title, problem, solution, notes, rating, options };
+        // text only puzzle
         if (puzzle.type == 'text') {
-            
             this.props.amendPuzzle(puzzle.id, title, problem, solution, notes, rating, [], toAmend, amendedPuzzle);
         }
-        // if multiple choice puzzle
+        // multiple choice puzzle
         else {
             this.props.amendPuzzle(puzzle.id, title, problem, solution, notes, rating, options, toAmend, amendedPuzzle);
         }

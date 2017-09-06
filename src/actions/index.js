@@ -301,10 +301,18 @@ export const amendPuzzle = (pid, title, problem, solution, notes, rating, option
     const { currentUser } = firebase.auth();
     changedBy = currentUser.uid;
     return (dispatch) => {
+        // first check that the puzzle is still in the database
         firebase.database().ref(`/puzzles/new/${pid}`)
-        .update({ title, problem, solution, notes, rating, options, changedBy })
-        .then(() => {
-            dispatch({ type: 'AMEND_PUZZLE', payload: {puzzle, index} });
+        .once("value", snapshot => {
+            // only amend a puzzle if it still exists in the database
+            // this solves the problem of one admin deleting a puzzle and another amending it
+            if (snapshot.exists()) {
+                firebase.database().ref(`/puzzles/new/${pid}`)
+                .update({ title, problem, solution, notes, rating, options, changedBy })
+                .then(() => {
+                    dispatch({ type: 'AMEND_PUZZLE', payload: {puzzle, index} });
+                });
+            }
         });
     };
 };
@@ -342,10 +350,14 @@ export const changeName = (name) => {
     const { currentUser } = firebase.auth();
     return (dispatch) => {
         // if on leaderboard, change user's name on leaderboard
-        if(firebase.database().ref(`/scores/`).child(currentUser.uid)) {
-            firebase.database().ref(`/scores/${currentUser.uid}/name`)
-            .set(name)
-        }
+        firebase.database().ref(`/scores/${currentUser.uid}`)
+        .once("value", snapshot => {
+            // check if user is on leaderboard
+            if (snapshot.exists()) {
+                firebase.database().ref(`/scores/${currentUser.uid}/name`)
+                .set(name)
+            }
+        })        
         firebase.database().ref(`/users/${currentUser.uid}/name`)
         .set(name)
         .then(() => {
