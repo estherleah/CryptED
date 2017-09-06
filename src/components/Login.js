@@ -8,14 +8,6 @@ import * as actions from '../actions';
 import styles from '../styles';
 
 class Login extends Component {
-    // Added to remove timer warning when using firebase.
-    constructor() {
-        super();
-        console.ignoredYellowBox = [
-            'Setting a timer'
-        ];
-    }
-
     // Initial state
     state = {
         email: '',
@@ -30,7 +22,7 @@ class Login extends Component {
 
     // Ensures application is logged out before login screen is rendered.
     componentWillMount() {
-        firebase.auth().signOut();
+        this.props.logout();
         this.setState({
             loggedIn: false,
         });

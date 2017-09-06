@@ -27,9 +27,7 @@ class App extends Component {
     // Added to remove timer warning when using firebase.
     constructor() {
         super();
-        console.ignoredYellowBox = [
-            'Setting a timer'
-        ];
+        console.disableYellowBox = true;
     }
 
     // Initial state before login.
@@ -44,7 +42,6 @@ class App extends Component {
                 apiKey: "AIzaSyBG8ASDzhtL0y2aek6Id65nTJqZAkbEUVo",
                 authDomain: "crypted-b0db8.firebaseapp.com",
                 databaseURL: "https://crypted-b0db8.firebaseio.com",
-                storageBucket: "crypted-b0db8.appspot.com",
             });
         }
 

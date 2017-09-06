@@ -300,6 +300,18 @@ export default (state = initialState, action) => {
         // end of settings options
 
         // -----------------------------------------------------------------------------------
+
+        // logging out
+
+        case 'LOG_OUT':
+            return {
+                ...state,
+                user: null,
+            };
+
+        // end of logging out
+
+        // -----------------------------------------------------------------------------------
             
         default:
             return state;
