@@ -49,6 +49,11 @@ class AddPuzzle extends Component {
                 this.props.options.C.length == 0 || this.props.options.D.length == 0) {
                     formErrors.push('Please add valid solution options');
             }
+            if (this.props.solution != 'A' && this.props.solution != 'B' &&
+                this.props.solution != 'C' && this.props.solution != 'D' && 
+                this.props.solution.length > 0) {
+                formErrors.push('Please enter a valid solution');
+            }
         }
         // if no errors add new puzzle
         if (formErrors.length == 0) {
@@ -190,6 +195,7 @@ class AddPuzzle extends Component {
                     }
                     <MultilineTextInput 
                         autoCapitalize={'sentences'} 
+                        numberOfLines={5} 
                         placeholder={'Notes'} 
                         value={this.props.notes} 
                         onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 

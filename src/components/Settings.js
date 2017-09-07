@@ -162,6 +162,7 @@ class Settings extends Component {
                                 </View>
                                 <Text style={styles.title}>Change name</Text>
                                 <FormInput 
+                                    autoCapitalize={'words'}
                                     onChangeText={username => this.setState({username})}
                                     textInputRef={this.state.username}
                                     placeholder={this.props.user.name} 
