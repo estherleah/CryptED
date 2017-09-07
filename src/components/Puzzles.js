@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ListView, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
+import { Text, View, ListView, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl, BackHandler } from 'react-native';
 import { List, ListItem, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
@@ -54,6 +54,11 @@ class Puzzles extends Component {
         if (this.props.newPuzzles == [] && this.props.user.admin) {
             this.props.loadNewPuzzles();
         }
+        // handle android back button press
+        // should exit the app
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return false;
+        });
     }
 
     // Decides to render a puzzle or the puzzle list, depending on if a puzzle has been selected.

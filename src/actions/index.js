@@ -260,6 +260,13 @@ export const createNewPuzzle = ({ title, problem, solution, notes, rating, optio
     }
 };
 
+// Cancel adding a puzzle.
+export const cancelAdding = () => {
+    return {
+        type: 'CANCEL_ADDING',
+    };
+};
+
 // ------------------------------ end of adding a puzzle ----------------------------- //
 // ----------------------------------------------------------------------------------- //
 

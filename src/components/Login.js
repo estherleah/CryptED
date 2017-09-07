@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, ScrollView, Modal, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView, Modal, TouchableOpacity, KeyboardAvoidingView, BackHandler } from 'react-native';
 import { Header, Button, FormInput, Icon } from 'react-native-elements';
 import firebase from 'firebase';
 import DatePicker from 'react-native-datepicker';
@@ -25,6 +25,11 @@ class Login extends Component {
         this.props.logout();
         this.setState({
             loggedIn: false,
+        });
+        // handle android back button press
+        // should exit the app
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            return false;
         });
     }
     
@@ -187,7 +192,8 @@ class Login extends Component {
                                 <Text style={styles.title}>New user</Text>
                                 <FormInput 
                                     onChangeText={email => this.setState({email})}
-                                    textInputRef={this.state.email}  
+                                    textInputRef={this.state.email} 
+                                    value={this.state.email}
                                     placeholder={'Email'} 
                                     keyboardType={'email-address'}
                                 />

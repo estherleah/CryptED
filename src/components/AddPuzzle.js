@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import { FormInput, Button, Icon } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
@@ -16,6 +16,16 @@ class AddPuzzle extends Component {
         type: 'text',
         category: 'cybersecurity',
     };
+
+    // Executes before component mounts.
+    componentWillMount() {
+        // handle android back button press
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.props.cancelAdding();
+            this.props.navigation.goBack();
+            return true;
+        });
+    }
 
     // Method for what happens when press the add button. Validate input and add puzzle.
     onAddPress() {

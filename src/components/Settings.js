@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Alert, ScrollView, Modal, ListView, TouchableOpacity } from 'react-native';
+import { Text, View, Alert, ScrollView, Modal, ListView, TouchableOpacity, BackHandler } from 'react-native';
 import { List, ListItem, Icon, Header, FormInput, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -23,6 +23,11 @@ class Settings extends Component {
         if (this.props.user.admin) {
             this.props.loadScores();
         }
+        // handle android back button press
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.props.navigation.goBack();
+            return true;
+        });
     }
 
     // Uses moment.js to calculate the current age of the user

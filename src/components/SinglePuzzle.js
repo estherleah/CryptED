@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, ScrollView, Modal, Alert, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TouchableOpacity, ScrollView, Modal, Alert, KeyboardAvoidingView, BackHandler } from 'react-native';
 import { FormInput, Button, Header, Icon } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
 import MultilineTextInput from './MultilineTextInput';
@@ -45,6 +45,11 @@ class SinglePuzzle extends Component {
         }
         // load top scores so have the most up-to-date information
         this.props.loadTopScores();
+        // handle android back button presses
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.props.noneSelected();
+            return true;
+        });
     }
 
     // Toggles the modal with additional info.
@@ -527,6 +532,7 @@ class SinglePuzzle extends Component {
                                 buttonColor = '#ff6d00' 
                                 buttonSize = {10} 
                                 style = {[styles.radio, {marginLeft: 5, marginRight: 25}]} 
+                                labelStyle = {{paddingBottom: 5}}
                             />
                         </View>
                     }

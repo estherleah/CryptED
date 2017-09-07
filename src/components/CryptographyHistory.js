@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, WebView, Dimensions } from 'react-native';
+import { Text, View, WebView, Dimensions, BackHandler } from 'react-native';
 import AppHeader from './AppHeader';
 import styles from '../styles';
 
@@ -7,8 +7,18 @@ export default class Settings extends Component {
     // Initial state
     state = { width: Dimensions.get('screen').width };
 
+    // Executes before component mounts.
+    componentWillMount() {
+        // handle android back button press
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.props.navigation.goBack();
+            return true;
+        });
+    }
+
+    // When orientation changes.
     onNavigationStateChange() {
-        this.setState({width: Dimensions.get('screen').width})
+        this.setState({width: Dimensions.get('screen').width});
     }
 
     render() {

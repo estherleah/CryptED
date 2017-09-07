@@ -154,6 +154,17 @@ export default (state = initialState, action) => {
                 options: { A: '', B: '', C: '', D: '' },
             };
 
+        case 'CANCEL_ADDING':
+            return {
+                ...state,
+                title: '',
+                problem: '',
+                solution: '',
+                notes: '',
+                rating: 0,
+                options: { A: '', B: '', C: '', D: '' },
+            };
+
         // end of adding a new puzzle as non admin
 
         // -----------------------------------------------------------------------------------

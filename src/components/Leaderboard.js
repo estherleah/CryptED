@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, ListView } from 'react-native';
+import { Text, View, ScrollView, ListView, BackHandler } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import AppHeader from './AppHeader';
@@ -11,6 +11,11 @@ class Leaderboard extends Component {
     // Executes before component mounts.
     componentWillMount() {
         this.props.loadTopScores();
+        // handle android back button press
+        BackHandler.addEventListener('hardwareBackPress', () => {
+            this.props.navigation.goBack();
+            return true;
+        });
     }
 
     // Get the data for the top 10 scores.
