@@ -27,6 +27,11 @@ class AddPuzzle extends Component {
         });
     }
 
+    // Executes before a component is unmounted.
+    componentWillUnmount() {
+        this.props.cancelAdding();
+    }
+
     // Method for what happens when press the add button. Validate input and add puzzle.
     onAddPress() {
         const { title, problem, solution, notes, rating, options } = this.props;
