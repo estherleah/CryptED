@@ -236,7 +236,7 @@ class Login extends Component {
                                             color: '#86939e',
                                         },
                                     }} 
-                                    maxDate={new Date()}
+                                    maxDate="2010-12-31"
                                     minDate="1900-01-01"
                                 />
                                 <Text style={styles.error}>

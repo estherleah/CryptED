@@ -14,7 +14,7 @@ class Settings extends Component {
         adminUser: this.props.user.admin,
         adminVisible: false,
         namePressed: false,
-        username: '',
+        username: this.props.user.name,
         viewScores: false,
     };
 
@@ -124,7 +124,7 @@ class Settings extends Component {
                         />
                         <ListItem 
                             containerStyle={styles.listItem}
-                            title={this.props.user.name}
+                            title={'Account options'}
                             leftIcon={{name: 'user', type: 'evilicon'}}
                             onPress={() => this.setState({namePressed: true})} 
                         />
@@ -170,6 +170,7 @@ class Settings extends Component {
                                 <FormInput 
                                     autoCapitalize={'words'}
                                     onChangeText={username => this.setState({username})}
+                                    value={this.state.username}
                                     textInputRef={this.state.username}
                                     placeholder={this.props.user.name} 
                                 />

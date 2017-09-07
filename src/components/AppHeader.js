@@ -19,6 +19,7 @@ class AppHeader extends Component {
                             <Icon 
                                 name='menu' 
                                 color='#fff' 
+                                size={30}
                             />
                         </TouchableOpacity>}
                     centerComponent={{ text: 'CryptED', style: { color: '#fff', fontSize: 22 } }} 
