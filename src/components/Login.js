@@ -103,6 +103,7 @@ class Login extends Component {
     // Request a password reset link.
     onForgotPassword() {
         const { email } = this.state;
+        this.setState({error: ''});
         firebase.auth().sendPasswordResetEmail(email)
         .then(() => {
             this.setState({forgot: false});

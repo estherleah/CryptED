@@ -407,6 +407,7 @@ class SinglePuzzle extends Component {
                                     <Text style={styles.subheading}>Notes:</Text>
                                     <MultilineTextInput 
                                         autoCapitalize={'sentences'} 
+                                        numberOfLines={5} 
                                         placeholder={this.props.notes} 
                                         value={this.props.notes} 
                                         onChangeText={value => this.props.formUpdate({ prop: 'notes', value })} 

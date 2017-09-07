@@ -61,8 +61,9 @@ class Settings extends Component {
                         {text: 'OK', onPress: () => {
                             this.props.changeAdmin(!this.props.user.admin);
                             this.setState({adminUser: true});
-                            // need to load scores as was not done previously
+                            // need to load scores as was not done previously as well as new puzzles
                             this.props.loadScores();
+                            this.props.loadNewPuzzles();
                         }},
                     ],
                     { onDismiss: () => this.setState({adminUser: false}) }
