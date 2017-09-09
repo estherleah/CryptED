@@ -93,7 +93,7 @@ export const loadTopScores = () => {
             dispatch({ type: 'LEADERBOARD_FETCH', payload: topScores });
         });
     };
-}
+};
 
 // Load the user scores from the database.
 // NB: This is only done if the user is an admin.
@@ -203,7 +203,7 @@ export const addUserToLeaderboard = (toRemove, name, score) => {
             dispatch({ type: 'UPDATE_LEADERBOARD' });
         });
     };
-}
+};
 
 // ----------------------------- end of solving a puzzle ----------------------------- //
 // ----------------------------------------------------------------------------------- //
@@ -390,7 +390,7 @@ export const logout = () => {
             dispatch({ type: 'LOG_OUT' });
         });
     };
-}
+};
 
 // -------------------------------- end of logging out ------------------------------- //
 // ----------------------------------------------------------------------------------- //

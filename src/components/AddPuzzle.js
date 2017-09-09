@@ -46,7 +46,7 @@ class AddPuzzle extends Component {
             formErrors.push('Please select a category');
         }
         // check if valid - if not valid then add an error
-        if (this.props.title == 0) {
+        if (this.props.title.length == 0) {
             formErrors.push('Please pick a valid title');
         }
         if (this.props.problem.length == 0) {

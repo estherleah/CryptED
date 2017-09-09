@@ -3,7 +3,7 @@ import { Text, View, WebView, Dimensions, BackHandler } from 'react-native';
 import AppHeader from './AppHeader';
 import styles from '../styles';
 
-export default class Settings extends Component {
+export default class CryptographyHistory extends Component {
     // Initial state
     state = { width: Dimensions.get('screen').width };
 
