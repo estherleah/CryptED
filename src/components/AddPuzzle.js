@@ -3,7 +3,6 @@ import { Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert, 
 import { FormInput, Button, Icon } from 'react-native-elements';
 import { Select, Option } from 'react-native-chooser';
 import RadioForm from 'react-native-simple-radio-button';
-import MultilineTextInput from './MultilineTextInput';
 import AppHeader from './AppHeader';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -148,7 +147,9 @@ class AddPuzzle extends Component {
                         value={this.props.title} 
                         onChangeText={value => this.props.formUpdate({ prop: 'title', value })} 
                     />
-                    <MultilineTextInput 
+                    <FormInput 
+                        multiline={true}
+                        blurOnSubmit={false} 
                         value={this.props.problem} 
                         numberOfLines={5} 
                         autoCapitalize={'sentences'} 
@@ -164,25 +165,33 @@ class AddPuzzle extends Component {
                                 onChangeText={value => this.props.formUpdate({ prop: 'solution', value })} 
                             /> :
                             <View>
-                                <MultilineTextInput 
+                                <FormInput 
+                                    multiline={true}
+                                    blurOnSubmit={false} 
                                     autoCapitalize={'sentences'} 
                                     placeholder={'Solution option A'} 
                                     value={this.props.options.A} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'A', value })} 
                                 />
-                                <MultilineTextInput 
+                                <FormInput 
+                                    multiline={true}
+                                    blurOnSubmit={false} 
                                     autoCapitalize={'sentences'} 
                                     placeholder={'Solution option B'} 
                                     value={this.props.options.B} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'B', value })} 
                                 />
-                                <MultilineTextInput 
+                                <FormInput 
+                                    multiline={true}
+                                    blurOnSubmit={false} 
                                     autoCapitalize={'sentences'} 
                                     placeholder={'Solution option C'} 
                                     value={this.props.options.C} 
                                     onChangeText={value => this.props.optionsUpdate({ position: 'C', value })} 
                                 />
-                                <MultilineTextInput 
+                                <FormInput 
+                                    multiline={true}
+                                    blurOnSubmit={false} 
                                     autoCapitalize={'sentences'} 
                                     placeholder={'Solution option D'} 
                                     value={this.props.options.D} 
@@ -208,7 +217,9 @@ class AddPuzzle extends Component {
                                 </Select>
                             </View>
                     }
-                    <MultilineTextInput 
+                    <FormInput 
+                        multiline={true}
+                        blurOnSubmit={false} 
                         autoCapitalize={'sentences'} 
                         numberOfLines={5} 
                         placeholder={'Notes'} 
