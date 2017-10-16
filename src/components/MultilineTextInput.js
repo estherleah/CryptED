@@ -1,6 +1,7 @@
-import React, {PropTypes, PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {TextInput} from 'react-native';
 import debounce from 'debounce';
+import PropTypes from 'prop-types';
 
 /**
  * NB: The code is taken from: https://gist.github.com/catchin/47afe706256604959c13dc25e7bb9383
