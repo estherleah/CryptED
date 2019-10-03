@@ -31,10 +31,10 @@ This project was developed on Windows and has only been tested on Android device
 * User can only view puzzles already checked by admin.
 * User can view leader board of top scores.
 * User can change profile details.
-* User can become admin (if fulfil criteria).
+* User can become admin (if fulfill criteria).
 * Admin can add puzzle directly to system.
 * Admin can check puzzles added by non-admin users.
 * Admin can see scores of all other users.
 * Admin can remove his/her admin status.
-* User's score increments if correctly solve a puzzle.
+* User's score increments if correctly solve a puzzle for the first time.
 * User's score does not increment if previously solved the puzzle.
